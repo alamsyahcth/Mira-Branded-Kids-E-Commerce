@@ -99,9 +99,6 @@ class Checkout extends CI_Controller {
 		//$data['order'] = $this->product->getOrder($ordId);
 		$this->load->view('Front/orderDetail');
 	}
-
-	
-
 	//Ongkir Function
 	public function getProvinsi() {
         $provinces = $this->rajaongkir->province();
