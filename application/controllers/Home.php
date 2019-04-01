@@ -57,6 +57,7 @@ class Home extends CI_Controller {
             'qty'=>1,
             'name'=>$pro['nm_barang'],
             'price'=>$pro['harga'],
+            'image'=>$pro['gambar'],
             'size'=>'L',
             'weight'=>1
         );
