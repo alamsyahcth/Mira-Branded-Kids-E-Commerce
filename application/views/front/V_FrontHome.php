@@ -22,7 +22,7 @@
                     <h2><a href="<?php echo base_url('index.php/DetilProduct') ?>"><?php echo $b->id_barang ?></a></h3>
                     <h5 class="text-primary font-weight-bold">Rp.<?php echo $b->harga ?></h4><br>
                     <a href="<?php echo base_url('index.php/DetilProduct/data/'.$b->id_barang) ?>"><button type="button" class="btn btn-outline-primary">Detail</button></a>
-                    <a href="<?php echo base_url('index.php/Kategori/addToCart/'.$b->id_barang) ?>"><button type="button" class="btn btn-outline-primary">Add To Cart</button></a>
+                    <a href="<?php echo base_url('index.php/Home/addToCart/'.$b->id_barang) ?>"><button type="button" class="btn btn-outline-primary">Add To Cart</button></a>
                   </div>
                 </div>
               </div>

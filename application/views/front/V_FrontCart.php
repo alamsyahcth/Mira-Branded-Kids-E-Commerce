@@ -23,13 +23,13 @@
                     <th class="product-name" width="40%">Product</th>
                     <th class="product-price" width="20%">Harga</th>
                     <th class="product-quantity" width="5%">Quantity</th>
+                    <th class="product-quantity" width="5%">Ukuran</th>
+                     <th class="product-quantity" width="5%">Berat (Gram)</th>
                     <th class="product-total" width="20%">Total</th>
                     <th class="product-remove" width="5%">Hapus</th>
                   </tr>
                 </thead>
                 <tbody>
-
-                <?php print_r($this->cart->contents()) ?>
                 
                 <?php if($this->cart->total_items()>0) { foreach($this->cart->contents() as $items) { ?>
                     <!--Cart Isi-->
@@ -40,9 +40,7 @@
                     <td class="product-name">
                       <h2 class="h5 text-black"><?php echo $items["name"]; ?></h2>
                     </td>
-                    <!--<td class="product-name">
-                      <h2 class="h5 text-black"><?php echo $items["options"]["Size"]; ?></h2>
-                    </td>-->
+
                     <td>
                       Rp.<?php echo $items["price"]; ?>
                     </td>
@@ -54,6 +52,10 @@
                       </div>
                     </td>
                     <!--Tambah Kurang-->
+
+                    <td>
+                      <?php echo $items["Size"]; ?>
+                    </td>
 
                     <td>
                       Rp.<?php echo $items["subtotal"]; ?>
