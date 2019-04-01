@@ -15,22 +15,23 @@ class DetilProduct extends CI_Controller {
         $this->load->view('Front/V_FrontDetilProduct', $data);
     }
 
-    /*public function addToCart() {
+    public function addToCart() {
         $id_barang = $this->input->post('id');
         $qty = $this->input->post('qty');
         $pro = $this->M_FrontProduct->getRows($id_barang);
 
         $data = array(
             'id'=>$pro['id_barang'],
-            'qty'=>$qty,
+            'qty'=>1,
             'name'=>$pro['nm_barang'],
             'price'=>$pro['harga'],
+            'Size'=>'L',
             'image'=>$pro['gambar'],
-            //'size'=>$pro['ukuran']
+            'weight'=>1
         );
 
         $this->cart->insert($data);
         redirect('cart');
-    }*/
+    }
 
 }

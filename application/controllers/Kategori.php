@@ -57,7 +57,9 @@ class Kategori extends CI_Controller {
             'qty'=>1,
             'name'=>$pro['nm_barang'],
             'price'=>$pro['harga'],
-            'image'=>$pro['gambar']
+            'Size'=>'L',
+            'image'=>$pro['gambar'],
+            'weight'=>1
         );
 
         $this->cart->insert($data);

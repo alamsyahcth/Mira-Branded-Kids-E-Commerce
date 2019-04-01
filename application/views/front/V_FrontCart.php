@@ -24,7 +24,6 @@
                     <th class="product-price" width="20%">Harga</th>
                     <th class="product-quantity" width="5%">Quantity</th>
                     <th class="product-quantity" width="5%">Ukuran</th>
-                     <th class="product-quantity" width="5%">Berat (Gram)</th>
                     <th class="product-total" width="20%">Total</th>
                     <th class="product-remove" width="5%">Hapus</th>
                   </tr>
