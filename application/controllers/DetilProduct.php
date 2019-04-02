@@ -18,14 +18,17 @@ class DetilProduct extends CI_Controller {
     public function addToCart() {
         $id_barang = $this->input->post('id');
         $qty = $this->input->post('qty');
+        $ukuran = $this->input->post('ukuran');
+        $id=$id_barang.$ukuran;
         $pro = $this->M_FrontProduct->getRows($id_barang);
 
         $data = array(
-            'id'=>$pro['id_barang'],
-            'qty'=>1,
+            'id'=>$id,
+            'id_barang'=>$pro['id_barang'],
+            'qty'=>$qty,
             'name'=>$pro['nm_barang'],
             'price'=>$pro['harga'],
-            'Size'=>'L',
+            'Size'=>$ukuran,
             'image'=>$pro['gambar'],
             'weight'=>1
         );

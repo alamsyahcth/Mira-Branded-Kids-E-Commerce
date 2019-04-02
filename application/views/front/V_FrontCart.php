@@ -90,10 +90,10 @@
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
+                    <h4><span class="text-black">Total</span></h4>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">Rp.<?php echo $this->cart->total() ?></strong>
+                    <h4><strong class="text-black">Rp.<?php echo $this->cart->total() ?></strong></h4>
                   </div>
                 </div>
 

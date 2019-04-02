@@ -49,22 +49,4 @@ class Home extends CI_Controller {
         $this->load->view('Front/V_FrontHome', $data);
     }
 
-    public function addToCart($id) {
-        $pro = $this->M_FrontProduct->getRows($id);
-
-        $data = array(
-            'id'=>$pro['id_barang'],
-            'qty'=>1,
-            'name'=>$pro['nm_barang'],
-            'price'=>$pro['harga'],
-            'Size'=>'L',
-            'image'=>$pro['gambar'],
-            'weight'=>1
-        );
-
-        $this->cart->insert($data);
-        redirect('cart');
-
-    }
-
 }
