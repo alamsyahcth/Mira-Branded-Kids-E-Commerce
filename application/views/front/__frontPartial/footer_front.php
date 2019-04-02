@@ -3,42 +3,52 @@
     <footer class="site-footer border-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-9 mb-5 mb-lg-0">
+          <div class="col-lg-3 mb-5 mb-lg-0">
             <div class="row">
               <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
+                <h3 class="footer-heading mb-4">Menu</h3>
               </div>
-              <div class="col-md-6 col-lg-4">
+              <div class="col-md-12 col-lg-12">
                 <ul class="list-unstyled">
-                  <li><a href="#">Sell online</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
+                  <li><a href="<?php echo base_url('index.php/Home') ?>">Home</a></li>
+                  <li><a href="<?php echo base_url('index.php/Konfirmasi') ?>">Konfirmasi Pembayaran</a></li>
+                  <li><a href="<?php echo base_url('index.php/Retur') ?>">Retur</a></li>
+                  <li><a href="<?php echo base_url('index.php/CaraOrder') ?>">Cara Order</a></li>
                 </ul>
               </div>
             </div>
           </div>
+
+          <div class="col-lg-3 mb-5 mb-lg-0">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Kategori</h3>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <ul class="list-unstyled">
+                <?php foreach($kategori as $items) { ?>
+                  <li><a href="<?php echo base_url('index.php/kategori/'.$items->kd_kategori) ?>"><?php echo $items->nm_kategori; ?></a></li>
+                <?php } ?>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Social Media</h3>
+              <ul class="list-unstyled">
+                <a href="#" class="fa fa-facebook">Facebook</a>
+              </ul>
+            </div>
+          </div>
           <div class="col-md-3 col-lg-3">
             <div class="block-5 mb-5">
-              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <h3 class="footer-heading mb-4">Info Kontak</h3>
               <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
+                <li class="address">Vila Mutiara, Blok F4 No.3 Pondok Jagung Timur, Serpong, Tangerang Selatan</li>
+                <li class="phone">0817 1430 41</li>
+                <li class="email">mirabrandedkidsgmail.com</li>
               </ul>
             </div>
 
@@ -48,7 +58,7 @@
           <div class="col-md-12">
             <p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | Dibuat Dengan <i class="icon-heart" aria-hidden="true"></i> by <a href="<?php echo base_url('index.php/home') ?>" target="_blank" class="text-primary">Mira Branded Store</a>
+            Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | Dibuat Dengan <i class="icon-heart" aria-hidden="true"></i> by <a href="<?php echo base_url('index.php/home') ?>" target="_blank" class="text-primary">Mira Branded Kids</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>

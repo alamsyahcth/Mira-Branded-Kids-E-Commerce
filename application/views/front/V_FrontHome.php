@@ -11,7 +11,7 @@
         <div class="row mb-5">
           <div class="col-md-1"></div>
           <div class="col-md-10 order-2">
-            <h4 style="text-align:center;">Produk Kami</h4>
+            <h1 style="text-align:center;">Produk Kami</h1>
             <div class="row mb-5">
               <?php foreach ($data->result() as $b) { ?>
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">

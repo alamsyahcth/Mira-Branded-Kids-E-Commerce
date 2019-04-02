@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="<?php echo base_url('Assets/front/css/aos.css')?>">
 
     <link rel="stylesheet" href="<?php echo base_url('Assets/front/css/style.css')?>">
+
+    <!--Icon-->
+      <link rel="icon" type"image/png" href="<?php echo base_url('Assets/assets/images/favicon.png') ?>">
+    <!--Icon-->
     
   </head>
   <body>
