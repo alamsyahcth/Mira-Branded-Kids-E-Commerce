@@ -22,7 +22,7 @@ class C_MasterKategori extends CI_Controller {
 
     public function add() {
         $table = $this->M_MasterKategori;
-        $validation = $this->form_validation;;
+        $validation = $this->form_validation;
         $validation->set_rules($table->rules());
 
         if ($validation->run()) {

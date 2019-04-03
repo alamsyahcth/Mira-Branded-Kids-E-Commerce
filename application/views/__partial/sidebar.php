@@ -49,7 +49,7 @@
                         <!--End Laporan-->
 
                         <!--Setting-->
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Settings </span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('index.php/admin/C_MasterBanner') ?>" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">Settings Banner </span></a></li>
                         <!--End Setting-->
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('index.php/admin/login/logout') ?>" aria-expanded="false"><i class="mdi mdi-power"></i><span class="hide-menu">Logout</span></a></li>
