@@ -8,12 +8,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Kategori</h4>
+                        <h4 class="page-title">Size</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Master</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Size</li>
                                 </ol>
                             </nav>
                         </div>
@@ -38,10 +38,10 @@
                                 <div id="view" class="col-md-12">
                                     
                                     <div class="card">
-                                        <?php if($this->session->flashdata('tambah_sukses')) { ?>
+                                         <?php if($this->session->flashdata('tambah_sukses')) { ?>
                                             <div class="card" style="padding:10px;">
                                                 <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                    <p style="color:#ffffff"><?php echo $this->session->flashdata('tambah_sukses') ?></p>
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('tambah_sukses') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -49,7 +49,7 @@
                                         <?php if($this->session->flashdata('edit_sukses')) { ?>
                                             <div class="card" style="padding:10px;">
                                                 <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                   <p style="color:#ffffff"> <?php echo $this->session->flashdata('edit_sukses') ?></p>
+                                                   <h4 style="color:#3d3d3d"> <?php echo $this->session->flashdata('edit_sukses') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -57,61 +57,44 @@
                                         <?php if($this->session->flashdata('del_sukses')) { ?>
                                             <div class="card" style="padding:10px;">
                                                 <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                    <p style="color:#ffffff"><?php echo $this->session->flashdata('del_sukses') ?></p>
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_sukses') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
-                                        <!--Buttton
-                                        <div class="row">
-                                            <div class="col-md-2" style="padding-left:40px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterBarang/add') ?>" ><button class="btn btn-primary btn-lg" ><i class="mdi mdi-plus-box"></i> Tambah</button></a></div>
 
-                                            <div class="col-md-2" style="padding-left:0px; padding-top:10px;"><a href="<?php echo base_url('MasterBarang/V_TambahMasterBarang') ?>" ><button class="btn btn-secondary btn-lg" ><i class="mdi mdi-printer"></i></button></a></div>
-                                        </div>
-                                        Button-->
                                         <div class="row">
                                             <!--Form-->
                                             <div class="col-md-4">
                                                 <div id="view" class="col-md-12">
                                                     <div class="card" style="margin:10px; margin-top:50px; border:1px #e8e8e8 solid;">
                                                         <div class="card-header">
-                                                            <h4 style="text-align:center;">Update Data</h4>
+                                                            <h4 style="text-align:center;">Tambah Data</h4>
                                                         </div>
                                                         <div class="card-body">
-                                                            <form class="form-horizontal" action="<?php base_url('index.php/admin/C_MasterKategori/edit') ?>" method="post" enctype="multipart/form-data" role="form">
+                                                            <form class="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterSize/add') ?>" method="post" enctype="multipart/form-data" role="form">
                                                                 <div class="form">
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                                 
                                                                             <div class="form-group">
-                                                                                <label for="id_kategori" class="control-label">Kode</label>
-                                                                                <input type="text" name="id_kategori" id="id_kategori" class="form-control" readonly="" value="<?php  echo $k->id_kategori; ?>">
+                                                                                <label for="id_size" class="control-label">Kode</label>
+                                                                                <input type="text" name="id_size" id="id_size" class="form-control" readonly="" value="<?php  echo $autonumber; ?>">
                                                                             </div>
 
                                                                             <div class="form-group">
-                                                                                <label for="alt_kategori" class="control-label">Nama Alternatif</label>
-                                                                                <input type="text" name="alt_kategori" id="alt_kategori" value="<?php echo $k->alt_kategori; ?>" class="form-control <?php echo form_error('alt_kategori') ? 'is-invalid' : '' ?>" placeholder="Nama Kategori">
-                                                                                <p class="text-danger" style="font-size:8pt;">Pisahkan dengan , dan - Contoh baju-anak, baju-anak-murah</p>
+                                                                                <label for="nm_size" class="control-label">Nama</label>
+                                                                                <input type="text" name="nm_size" id="nm_size" class="form-control <?php echo form_error('nm_size') ? 'is-invalid' : '' ?>" placeholder="Nama Size">
                                                                                 <div class="invalid-feedback">
-                                                                                    <?php form_error('alt_kategori') ?>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <label for="nm_kategori" class="control-label">Nama</label>
-                                                                                <input type="text" name="nm_kategori" id="nm_kategori" value="<?php echo $k->nm_kategori; ?>" class="form-control <?php echo form_error('nm_kategori') ? 'is-invalid' : '' ?>" placeholder="Nama Kategori">
-                                                                                <div class="invalid-feedback">
-                                                                                    <?php form_error('nm_kategori') ?>
+                                                                                    <?php form_error('nm_size') ?>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <input type="submit" name="simpan" id="simpan" value="Simpan" class="btn btn-primary btn-md" disabled>
-
-                                                                            <input type="submit" name="update" id="update" value="Update" class="btn btn-primary btn-md">
-                                                                           
-                                                                            <a href="<?php echo base_url('index.php/admin/C_MasterKategori') ?>"><button type="button" name="batal" id="batal" class="btn btn-secondary btn-md">Batal</button></a>
+                                                                            <input type="submit" name="simpan" id="simpan" value="Simpan" class="btn btn-primary btn-md">
+                                                                            <input type="submit" name="update" id="update" value="Update" class="btn btn-primary btn-md" disabled>
+                                                                            <input type="reset" name="batal" id="batal" value="Batal" class="btn btn-secondary btn-md">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -130,27 +113,25 @@
                                                             <tr>
                                                                 <th style="text-align:center;">No</th>
                                                                 <th style="text-align:center;">Kode</th>
-                                                                <th style="text-align:center;">Alt</th>
-                                                                <th style="text-align:center;">Nama</th>
+                                                                <th style="text-align:center;">Nama Kategori</th>
                                                                 <th style="text-align:center;">Aksi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
                                                                 $no=1;
-                                                                foreach ($kategori as $b) {
+                                                                foreach ($size as $b) {
                                                             ?>
                                                             <tr>
                                                                 <td width="5%" style="vertical-align:center;"><?php echo $no++ ?></td>
-                                                                <td width="5%" style="vertical-align:center;"><?php echo $b->id_kategori ?></td>
-                                                                <td width="30%" style="vertical-align:center;"><?php echo $b->alt_kategori ?></td>
-                                                                <td width="30%" style="vertical-align:center;"><?php echo $b->nm_kategori ?></td>
+                                                                <td width="5%" style="vertical-align:center;"><?php echo $b->id_size ?></td>
+                                                                <td width="30%" style="vertical-align:center;"><?php echo $b->nm_size ?></td>
                                                                 <td width="30%" style="vertical-align:center; text-align:center;">
                                                                     <!--Update-->
-                                                                    <a href="<?php echo site_url('admin/C_MasterKategori/edit/'.$b->id_kategori) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
+                                                                    <a href="<?php echo site_url('admin/C_MasterSize/edit/'.$b->id_size) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
 
                                                                     <!--Delete-->
-                                                                    <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterKategori/delete/'.$b->id_kategori) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
+                                                                    <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterSize/delete/'.$b->id_size) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
                                                                 </td>
                                                             </tr>
                                                             <?php

@@ -12,11 +12,12 @@
                         <!--Master-->
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Master </span></a>
                             <ul aria-expanded="false" class="collapse  first-level" style="padding-left: 20px;">
-                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_MasterBarang') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Barang </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_MasterProduct') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Product </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_MasterKategori') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Kategori </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_MasterSize') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Size </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/dashboard') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Customer </span></a></li>
-                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/dashboard') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Jasa Kirim </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/dashboard') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Bank </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/dashboard') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Admin </span></a></li>
 
                             </ul>
                         </li>

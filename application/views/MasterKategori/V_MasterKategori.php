@@ -61,13 +61,7 @@
                                                 </div>
                                             </div>
                                         <?php } ?>
-                                        <!--Buttton
-                                        <div class="row">
-                                            <div class="col-md-2" style="padding-left:40px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterBarang/add') ?>" ><button class="btn btn-primary btn-lg" ><i class="mdi mdi-plus-box"></i> Tambah</button></a></div>
 
-                                            <div class="col-md-2" style="padding-left:0px; padding-top:10px;"><a href="<?php echo base_url('MasterBarang/V_TambahMasterBarang') ?>" ><button class="btn btn-secondary btn-lg" ><i class="mdi mdi-printer"></i></button></a></div>
-                                        </div>
-                                        Button-->
                                         <div class="row">
                                             <!--Form-->
                                             <div class="col-md-4">
@@ -83,8 +77,17 @@
                                                                         <div class="col-md-12">
                                                                                 
                                                                             <div class="form-group">
-                                                                                <label for="kd_kategori" class="control-label">Kode</label>
-                                                                                <input type="text" name="kd_kategori" id="kd_kategori" class="form-control" readonly="" value="<?php  echo $autonumber; ?>">
+                                                                                <label for="id_kategori" class="control-label">Kode</label>
+                                                                                <input type="text" name="id_kategori" id="id_kategori" class="form-control" readonly="" value="<?php  echo $autonumber; ?>">
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="alt_kategori" class="control-label">Nama Alternatif</label>
+                                                                                <input type="text" name="alt_kategori" id="alt_kategori" class="form-control <?php echo form_error('alt_kategori') ? 'is-invalid' : '' ?>" placeholder="Nama Alternatif Kategori">
+                                                                                <p class="text-danger" style="font-size:8pt;">Pisahkan dengan , dan - Contoh baju-anak, baju-anak-murah</p>
+                                                                                <div class="invalid-feedback">
+                                                                                    <?php form_error('alt_kategori') ?>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="form-group">
@@ -119,7 +122,8 @@
                                                             <tr>
                                                                 <th style="text-align:center;">No</th>
                                                                 <th style="text-align:center;">Kode</th>
-                                                                <th style="text-align:center;">Nama Kategori</th>
+                                                                <th style="text-align:center;">Alt</th>
+                                                                <th style="text-align:center;">Nama</th>
                                                                 <th style="text-align:center;">Aksi</th>
                                                             </tr>
                                                         </thead>
@@ -130,14 +134,15 @@
                                                             ?>
                                                             <tr>
                                                                 <td width="5%" style="vertical-align:center;"><?php echo $no++ ?></td>
-                                                                <td width="5%" style="vertical-align:center;"><?php echo $b->kd_kategori ?></td>
-                                                                <td width="60%" style="vertical-align:center;"><?php echo $b->nm_kategori ?></td>
+                                                                <td width="5%" style="vertical-align:center;"><?php echo $b->id_kategori ?></td>
+                                                                <td width="30%" style="vertical-align:center;"><?php echo $b->alt_kategori ?></td>
+                                                                 <td width="30%" style="vertical-align:center;"><?php echo $b->nm_kategori ?></td>
                                                                 <td width="30%" style="vertical-align:center; text-align:center;">
                                                                     <!--Update-->
-                                                                    <a href="<?php echo site_url('admin/C_MasterKategori/edit/'.$b->kd_kategori) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
+                                                                    <a href="<?php echo site_url('admin/C_MasterKategori/edit/'.$b->id_kategori) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
 
                                                                     <!--Delete-->
-                                                                    <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterKategori/delete/'.$b->kd_kategori) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
+                                                                    <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterKategori/delete/'.$b->id_kategori) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
                                                                 </td>
                                                             </tr>
                                                             <?php

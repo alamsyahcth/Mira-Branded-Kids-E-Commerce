@@ -1,0 +1,80 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class C_MasterProduct extends CI_Controller {
+
+	public function __construct(){
+        parent::__construct();
+        $this->load->model('M_MasterProduct');
+        $this->load->library('form_validation');
+        $this->load->library('pdf');
+
+        //Cek Login
+        if ($this->session->userdata('masuk') != TRUE) {
+            redirect('admin/login/logout');
+        }
+    }
+
+    public function index(){
+        $data['autonumber'] = $this->M_MasterProduct->autonumber();
+        $data['product'] = $this->M_MasterProduct->getAll();
+        $this->load->view('MasterProduct/V_MasterProduct', $data);
+    }
+
+    public function add(){
+        $table = $this->M_MasterProduct;
+        $validation = $this->form_validation;
+        $validation->set_rules($table->rules());
+        $data['autonumber'] = $table->autonumber();
+
+        if ($validation->run()) {
+            $table->save();
+            $this->session->set_flashdata('tambah_sukses', 'Data Berhasil Disimpan');
+            redirect('admin/C_MasterProduct/index');
+        }
+
+        $this->load->view('MasterProduct/V_MasterTambahProduct', $data);
+    }
+
+    public function edit($id=null) {
+        if(!isset($id)) {redirect('admin/C_MasterProduct/index');}
+
+        $table = $this->M_MasterProduct;
+        $validation = $this->form_validation;
+        $validation->set_rules($table->rules());
+
+        if ($validation->run()) {
+            $table->update();
+            $this->session->set_flashdata('edit_sukses', 'Data Berhasil Diupdate');
+            redirect('admin/C_MasterProduct/index');
+        }
+
+        $data['product'] = $table->getById($id);
+        //if (!data['barang']) show_404();
+
+        $this->load->view('MasterProduct/V_MasterUpdateBarang', $data);
+    }
+
+    public function delete($id=null) {
+        if(!isset($id)) {show_404();}
+
+        if($this->M_MasterProduct->delete($id)) {
+            $this->session->set_flashdata('del_sukses', 'Data Berhasil Dihapus');
+            redirect('admin/C_MasterProduct/index');
+        }
+    }
+    
+    public function pdf() {
+        ob_start();
+        $data['product'] = $this->M_MasterProduct->getAll();
+        $this->load->view('MasterProduct/V_MasterCetakProduct', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        require_once('./Assets/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('L','A4','en');
+        $pdf->WriteHTML($html);
+        $pdf->output('DataProduct'.microtime().'.pdf','D');
+    }
+    
+}
