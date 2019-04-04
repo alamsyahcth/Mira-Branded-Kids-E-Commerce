@@ -26,13 +26,15 @@ class C_MasterProduct extends CI_Controller {
         $validation = $this->form_validation;
         $validation->set_rules($table->rules());
         $data['autonumber'] = $table->autonumber();
+        $data['kategori'] = $table->getKategori();
+        $data['size'] = $table->getSize();
 
         if ($validation->run()) {
             $table->save();
             $this->session->set_flashdata('tambah_sukses', 'Data Berhasil Disimpan');
             redirect('admin/C_MasterProduct/index');
         }
-
+        
         $this->load->view('MasterProduct/V_MasterTambahProduct', $data);
     }
 
@@ -55,13 +57,23 @@ class C_MasterProduct extends CI_Controller {
         $this->load->view('MasterProduct/V_MasterUpdateBarang', $data);
     }
 
-    public function delete($id=null) {
-        if(!isset($id)) {show_404();}
+    public function delete($id_product, $id_size=array()) {
 
-        if($this->M_MasterProduct->delete($id)) {
+        if($this->M_MasterProduct->delete($id_product, $id_size)) {
             $this->session->set_flashdata('del_sukses', 'Data Berhasil Dihapus');
             redirect('admin/C_MasterProduct/index');
         }
+    }
+
+    public function view($id) {
+        if(!isset($id)) {show_404();}
+
+        $table = $this->M_MasterProduct;
+        $data['product'] = $table->getById($id);
+        $data['kategori'] = $table->getKategoriWhere($data['product']->id_kategori);
+        $data['size'] = $table->getDetilSize($id);
+
+        $this->load->view('MasterProduct/V_ViewProduct', $data);
     }
     
     public function pdf() {

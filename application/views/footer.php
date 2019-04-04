@@ -48,6 +48,7 @@
     <script src="<?php echo base_url('Assets/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') ?>"></script>
     <script src="<?php echo base_url('Assets/dist/js/pages/chart/chart-page-init.js') ?>"></script>
     <script src="<?php echo base_url('Assets/assets/extra-libs/DataTables/datatables.min.js') ?>"></script>
+    <script src="<?php echo base_url('Assets/froala_editor/js/froala_editor.min.js') ?>"></script>
     
     <!--File Ajax Sistem-->
     <script src="<?php echo base_url('Assets/assets/js_sistem/mKategori.js') ?>"></script>
@@ -74,6 +75,14 @@
          $('#alert_s').fadeIn().delay(3000).fadeOut();
     </script>
     <!--Fade In Alert-->
+
+    <!--Froala Editor-->
+    <script>
+        $(function() {
+            $('textarea#froala-editor').froalaEditor()
+        });
+    </script>
+    <!--Froala Editor-->
 
     <!--Delete Function-->
     <script>

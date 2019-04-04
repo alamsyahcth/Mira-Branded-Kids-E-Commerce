@@ -8,12 +8,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Barang</h4>
+                        <h4 class="page-title">Product</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Master</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Barang</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Product</li>
                                 </ol>
                             </nav>
                         </div>
@@ -63,9 +63,9 @@
                                         <?php } ?>
                                         <!--Buttton-->
                                         <div class="row">
-                                            <div class="col-md-2" style="padding-left:40px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterBarang/add') ?>" ><button class="btn btn-primary btn-lg" ><i class="mdi mdi-plus-box"></i> Tambah</button></a></div>
+                                            <div class="col-md-2" style="padding-left:40px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterProduct/add') ?>" ><button class="btn btn-primary btn-lg" ><i class="mdi mdi-plus-box"></i> Tambah</button></a></div>
 
-                                            <div class="col-md-2" style="padding-left:0px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterBarang/pdf') ?>" target="_blank" ><button class="btn btn-secondary btn-lg" ><i class="mdi mdi-printer"></i></button></a></div>
+                                            <div class="col-md-2" style="padding-left:0px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterProduct/pdf') ?>" target="_blank" ><button class="btn btn-secondary btn-lg" ><i class="mdi mdi-printer"></i></button></a></div>
                                         </div>
                                         <!--Button-->
                                         <div class="table-responsive" style="padding:30px;">
@@ -76,33 +76,31 @@
                                                         <th style="text-align:center;">Kode</th>
                                                         <th style="text-align:center;">Nama Barang</th>
                                                         <th style="text-align:center;">Harga</th>
-                                                        <th style="text-align:center;">Stok</th>
                                                         <th style="text-align:center;">Gambar</th>
-                                                        <th style="text-align:center;">Deskripsi</th>
                                                         <th style="text-align:center;">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                         $no=1;
-                                                        foreach ($barang as $b) {
+                                                        foreach ($product as $b) {
                                                     ?>
                                                     <tr>
-                                                        <td width="5%" style="vertical-align:center;"><?php echo $no++ ?></td>
-                                                        <td width="5%" style="vertical-align:center;"><?php echo $b->id_barang ?></td>
-                                                        <td width="20%" style="vertical-align:center;"><?php echo $b->nm_barang ?></td>
-                                                        <td width="10%" style="vertical-align:center;"><?php echo $b->harga ?></td>
-                                                        <td width="5%" style="vertical-align:center;">
-                                                            <a href="<?php echo site_url('admin/C_MasterBarang/edit/'.$b->id_barang) ?>" data-toggle="tooltip" title="Atur Stok" class="btn btn-warning btn-xs">Data</a>
-                                                        </td>
-                                                        <td width="15%" style="vertical-align:center;"><img src="<?php echo base_url('upload/barang/'.$b->gambar) ?>" width="30%"></td>
-                                                        <td width="20%" style="vertical-align:center;"><?php echo $b->deskripsi ?></td>
-                                                        <td width="10%" style="vertical-align:center; text-align:center;">
+                                                        <td width="5%" style="vertical-align:middle;"><?php echo $no++ ?></td>
+                                                        <td width="10%" style="vertical-align:middle;"><?php echo $b->id_product ?></td>
+                                                        <td width="30%" style="vertical-align:middle;"><?php echo $b->nm_product ?></td>
+                                                        <td width="20%" style="vertical-align:middle;"><?php echo $b->harga ?></td>
+                                                        <td width="15%" style="vertical-align:middle; text-align:center;"><img src="<?php echo base_url('upload/product/'.$b->gambar) ?>" width="80%"></td>
+                                                        <td width="20%" style="vertical-align:middle; text-align:center;">
+
+                                                            <!--View-->
+                                                            <a href="<?php echo site_url('admin/C_MasterProduct/view/'.$b->id_product) ?>" data-toggle="tooltip" title="View" class="btn btn-secondary btn-xs"><i class="mdi mdi-eye"></i></a>
+
                                                             <!--Update-->
-                                                            <a href="<?php echo site_url('admin/C_MasterBarang/edit/'.$b->id_barang) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
+                                                            <a href="<?php echo site_url('admin/C_MasterProduct/edit/'.$b->id_product) ?>" data-toggle="tooltip" title="Update" class="btn btn-info btn-xs"><i class="mdi mdi-pencil"></i></a>
 
                                                             <!--Delete-->
-                                                            <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterBarang/delete/'.$b->id_barang) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
+                                                            <a href="#" onclick="deleteConfirm('<?php echo site_url('admin/C_MasterProduct/delete/'.$b->id_product) ?>')" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="mdi mdi-delete"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php

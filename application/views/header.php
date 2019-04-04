@@ -13,6 +13,10 @@
     <title>Mira Branded Kids- Administrator</title>
     <!-- Custom CSS -->
     <link href="<?php  echo base_url('Assets/assets/libs/flot/css/float-chart.css') ?>" rel="stylesheet">
+
+    <!--Froala Editor-->
+    <link href="<?php  echo base_url('Assets/froala_editor/css/froala_editor.min.css') ?>" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link href="<?php echo base_url('Assets/dist/css/style.min.css') ?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

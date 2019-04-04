@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/tugas/KULIAH/SMT8/TA/ecommerce/Ecommerce/';
+//$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------

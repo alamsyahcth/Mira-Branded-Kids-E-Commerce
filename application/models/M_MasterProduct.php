@@ -3,6 +3,8 @@
 class M_MasterProduct extends CI_Model {
     private $_table="product";
     private $_tableKat="kategori";
+    private $_tableSize="size";
+    private $_tabDetSize="detil_size";
 
     public $id_product;
     public $alt_product;
@@ -11,6 +13,7 @@ class M_MasterProduct extends CI_Model {
     public $berat;
     public $gambar='NOIG.jpg';
     public $deskripsi;
+    public $stok;
     public $id_kategori;
 
     public function rules() {
@@ -48,8 +51,8 @@ class M_MasterProduct extends CI_Model {
     }
 
     public function autonumber() {
-        $this->db->select('RIGHT(id_barang,3) as MaxKode');
-        $this->db->order_by('id_barang','desc');
+        $this->db->select('RIGHT(id_product,3) as MaxKode');
+        $this->db->order_by('id_product','desc');
         $query = $this->db->get($this->_table);
 
         if($query->num_rows()<>0){
@@ -66,13 +69,31 @@ class M_MasterProduct extends CI_Model {
     public function getKategori() {
         return $this->db->get($this->_tableKat)->result();
     }
+
+    public function getKategoriWhere($id) {
+        return $this->db->get_where($this->_tableKat, ['id_kategori'=>$id])->row();
+    }
+
+    public function getSize() {
+        return $this->db->get($this->_tableSize)->result();
+    }
     
     public function getAll() {
         return $this->db->get($this->_table)->result();
     }
 
     public function getById($id) {
-        return $this->db->get_where($this->_table, ['id_barang'=>$id])->row();
+        return $this->db->get_where($this->_table, ['id_product'=>$id])->row();
+    }
+
+    public function getDetilSize($id) {
+        $sql = "SELECT nm_size, stok
+                FROM product a, detil_size b, size c
+                WHERE a.id_product=b.id_product AND b.id_size=c.id_size
+                AND a.id_product='$id'";
+        $query = $this->db->query($sql);
+
+        return $query->result();
     }
 
     public function save() {
@@ -85,7 +106,29 @@ class M_MasterProduct extends CI_Model {
         $this->gambar = $this->_uploadImage();
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['id_kategori'];
-        $this->db->insert($this->_table, $this);
+        $this->stok = $post['stok'];
+
+        //Data Multiple Insert
+        $data = array();
+        $i=0;
+        foreach ($post['id_size'] as $id) {
+            array_push($data, array(
+                'id_product'=>$this->id_product,
+                'id_size'=>$id,
+                'stok'=>$this->stok[$i]
+            ));
+            $i++;
+        }
+        
+        //Insert
+        $returnInsert = $this->db->insert($this->_table, $this);
+        if ($returnInsert) {
+            $this->saveBatch($data);
+        }
+    }
+
+    public function saveBatch($data=array()) {
+        return $this->db->insert_batch($this->_tabDetSize,$data);
     }
 
     public function update() {
@@ -111,9 +154,10 @@ class M_MasterProduct extends CI_Model {
     }
 
     private function _uploadImage() {
+        $date = date("ymdhms");
         $config['upload_path'] = './upload/product/';
         $config['allowed_types'] = 'jpg|png';
-        $config['file_name'] = $this->id_barang.date("ymdhms");
+        $config['file_name'] = $this->id_product.$date;
         $config['overwrite'] = true;
         $config['max_size'] = 1024; //1 MB
         $config['height'] = 700;
