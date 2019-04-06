@@ -5,7 +5,7 @@ class M_FrontProduct extends CI_Model {
         parent::__construct();
 
         $this->proTable = 'product';
-        $this->cusTable = 'customers';
+        $this->cusTable = 'customer';
         $this->ordTable = 'orders';
         $this->ordItemTable = 'order_details';
         $this->katTable = 'kategori';

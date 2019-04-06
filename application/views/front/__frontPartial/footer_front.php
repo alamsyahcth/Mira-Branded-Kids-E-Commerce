@@ -150,9 +150,29 @@
 
     <!--Fade In Alert-->
     <script>
-         $('#alert_success').fadeIn().delay(1000).fadeOut();
+         $('#alert_success').fadeIn().delay(3000).fadeOut();
     </script>
     <!--Fade In Alert-->
+
+    <!--Cek Ketersediaan Email-->
+    <script>
+      $(document).ready(function() {
+        $('#email_customer').change(function() {
+          var email_customer = $('#email_customer').val();
+          if (email_customer != '') {
+            $.ajax({
+              url:"<?php echo base_url(); ?>index.php/SignUp/cekEmail",
+              method:"post",
+              data:{'email_customer':email_customer},
+              success:function(data) {
+                $('#email_result').html(data);
+              }
+            });
+          }
+        });
+      });
+    </script>
+    <!--Cek Ketersediaan Email-->
     
   </body>
 </html>

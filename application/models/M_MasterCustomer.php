@@ -1,0 +1,148 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class M_MasterCustomer extends CI_Model {
+    private $_table = 'customer';
+
+    public $id_customer;
+    public $nm_customer;
+    public $email_customer;
+    public $password_customer;
+    public $alamat_customer;
+    public $kodepos_customer;
+    public $provinsi_customer;
+    public $kota_customer;
+    public $telp_customer;
+    public $status_customer;
+
+   public function rules() {
+       return[
+           [
+               'field'=>'id_customer',
+               'label'=>'ID Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'nm_customer',
+               'label'=>'Nama Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'email_customer',
+               'label'=>'Email Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'password_customer',
+               'label'=>'Password Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'alamat_customer',
+               'label'=>'Alamat Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'kodepos_customer',
+               'label'=>'Kode Pos Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'provinsi_customer',
+               'label'=>'Provinsi Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'kota_customer',
+               'label'=>'Kota Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'telp_customer',
+               'label'=>'No Handphone Customer',
+               'rules'=>'required'
+           ],
+
+           [
+               'field'=>'status_customer',
+               'label'=>'Status Customer',
+               'rules'=>'required'
+           ],
+        ];
+    }
+   
+    public function customerID() {
+        $this->db->select('RIGHT(id_customer,1) as MaxKode');
+        $this->db->order_by('id_customer','desc');
+        $query = $this->db->get($this->_table);
+
+        if($query->num_rows()<>0){
+            $data = $query->row();
+            $kode = intval($data->MaxKode)+1;
+        } else {
+            $kode = 1;
+        }
+        $date = date("ymd");
+        $kodeMax = $date.str_pad($kode,3,"0", STR_PAD_LEFT);
+        return $kodeMax;
+    }
+
+   public function getAll() {
+       return $this->db->get($this->_table)->result();
+   }
+
+   public function getById($id) {
+        return $this->db->get_where($this->_table, ['id_kategori'=>$id])->row();
+   }
+
+   public function getEmailCustomer($email) {
+       $this->db->where('email_customer',$email);
+       $query = $this->db->get($this->_table);
+
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+   
+   public function save() {
+        $post = $this->input->post();
+        $this->id_customer = $post['id_customer'];
+        $this->nm_customer = $post['nm_customer'];
+        $this->email_customer = $post['email_customer'];
+        $this->password_customer = md5($post['password_customer']);
+        $this->alamat_customer = $post['alamat_customer'];
+        $this->kodepos_customer = $post['kodepos_customer'];
+        $this->provinsi_customer = $post['provinsi_customer'];
+        $this->kota_customer = $post['kota_customer'];
+        $this->telp_customer = $post['telp_customer'];
+        $this->status_customer = $post['status_customer'];
+        $this->db->insert($this->_table, $this);
+   }
+
+   public function konfirmasi($id_customer) {
+        $post = $this->input->post();
+        $this->status_customer = '1';
+        $this->db->update($this->_table, $this, $id_customer);
+   }
+
+   public function update() {
+        $post = $this->input->post();
+        $this->id_kategori = $post['id_kategori'];
+        $this->alt_kategori = $post['alt_kategori'];
+        $this->nm_kategori = $post['nm_kategori'];
+        $this->db->update($this->_table, $this, array('id_kategori'=>$post['id_kategori']));
+   }
+
+   public function delete($id) {
+       return $this->db->delete($this->_table, array('id_kategori'=>$id));
+   }
+}
