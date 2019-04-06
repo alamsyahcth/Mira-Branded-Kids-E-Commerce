@@ -68,9 +68,8 @@ class SignUp extends CI_Controller {
         $this->email->subject('Konfirmasi Email');
         $this->email->message(
             '
-            <img src="'.site_url('index.php/Assets/assets/images/logo.jpg').'">
-            <h4>Hai, Selamat akun anda berhasil dibuat</h4>
-            <h4>Konfirmasikan email kamu dengan klik disini <a href="'.site_url('SignUp/konfirmasi/'.$id_customer).'">Konfirmasi</a></h4>
+            <h1 style="font-face:sans-serif; color:#7971ea;">Mira Branded Kids</h1>
+            <h4>Hai, Selamat akun anda berhasil dibuat. Konfirmasikan email kamu dengan klik disini <a href="'.site_url('SignUp/konfirmasi/'.$id_customer).'">Konfirmasi</a></h4>
             '
         );
 
@@ -78,7 +77,7 @@ class SignUp extends CI_Controller {
     }
 
     public function konfirmasi($id_customer) {
-        $konfirmasi = $this->M_MasterCustomer->konfirmasi($id_customer);
+        $konfirmasi = $this->M_MasterCustomer->konfirmasiAkun($id_customer);
 
         if($konfirmasi) {
             $this->session->set_flashdata('confirm_success','Konfirmasi akun berhasil silahkan login');

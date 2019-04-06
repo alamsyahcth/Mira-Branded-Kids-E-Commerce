@@ -6,6 +6,10 @@ class Konfirmasi extends CI_Controller {
         parent::__construct();
         $this->load->model('M_FrontProduct');
         $this->load->library('pagination');
+
+        if($this->session->userdata('on') != TRUE) {
+            redirect('Login/logout');
+        }
     }
 
     public function index(){

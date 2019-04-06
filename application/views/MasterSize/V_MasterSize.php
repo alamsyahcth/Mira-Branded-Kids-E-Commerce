@@ -39,24 +39,24 @@
                                     
                                     <div class="card">
                                          <?php if($this->session->flashdata('tambah_sukses')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert" role="alert" style="background:#32ff7e;">
                                                     <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('tambah_sukses') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
 
                                         <?php if($this->session->flashdata('edit_sukses')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert" role="alert" style="background:#32ff7e;">
                                                    <h4 style="color:#3d3d3d"> <?php echo $this->session->flashdata('edit_sukses') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
 
                                         <?php if($this->session->flashdata('del_sukses')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert" role="alert" style="background:#32ff7e;">
                                                     <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_sukses') ?></h4>
                                                 </div>
                                             </div>

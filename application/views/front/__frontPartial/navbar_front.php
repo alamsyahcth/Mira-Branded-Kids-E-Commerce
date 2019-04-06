@@ -20,8 +20,12 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="<?php echo base_url('index.php/login') ?>"> (Logout) </a></li>
-                  <li><a href="<?php echo base_url('index.php/login') ?>"><span class="icon icon-person"></span></a></li>
+                  <?php if ($this->session->userdata('on') == TRUE) { ?>
+                    <li><a href="<?php echo base_url('index.php/login/logout') ?>"> (Logout) </a></li>
+                    <li><a href="<?php echo base_url('index.php/akun') ?>" dat-toggle="tooltip" title="<?php echo $this->session->userdata('nm_customer') ?>"><span class="icon icon-person"></span></a></li>
+                  <?php } else { ?>
+                    <li><a href="<?php echo base_url('index.php/login') ?>"><span class="icon icon-person"></span></a></li>
+                    <?php } ?>
                   <li>
                     <a href="<?php echo base_url('index.php/cart') ?>" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>

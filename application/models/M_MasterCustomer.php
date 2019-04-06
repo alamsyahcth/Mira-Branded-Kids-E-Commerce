@@ -128,10 +128,14 @@ class M_MasterCustomer extends CI_Model {
         $this->db->insert($this->_table, $this);
    }
 
-   public function konfirmasi($id_customer) {
-        $post = $this->input->post();
-        $this->status_customer = '1';
-        $this->db->update($this->_table, $this, $id_customer);
+   public function konfirmasiAkun($id_customer) {
+        $data = array(
+            'status_customer'=>'1'
+        );
+        $this->db->where('id_customer', $id_customer);
+        $this->db->update($this->_table, $data);
+
+        return true;
    }
 
    public function update() {

@@ -20,44 +20,38 @@
           <div class="col-md-3"></div>
           <div class="col-md-6">
 
-            <form action="#" method="post">
+            <form action="<?php echo base_url('index.php/Login/auth') ?>" method="post">
               
               <div class="p-3 p-lg-8 border">
                  <?php if($this->session->flashdata('signup_success')) { ?>
-                  <div class="card" style="padding:10px;" id="alert_success">
-                    <div class="alert alert-primary" role="alert">
+                    <div class="alert alert-primary" role="alert" id="alert_success">
                       <h6 style="color:#3d3d3d"><?php echo $this->session->flashdata('signup_success') ?></h6>
                     </div>
-                  </div>
                 <?php } ?>
 
                 <?php if($this->session->flashdata('confirm_success')) { ?>
-                  <div class="card" style="padding:10px;" id="alert_success">
-                    <div class="alert alert-primary" role="alert">
+                    <div class="alert alert-primary" role="alert" id="alert_success">
                       <h6 style="color:#3d3d3d"><?php echo $this->session->flashdata('confirm_success') ?></h6>
                     </div>
-                  </div>
                 <?php } ?>
                 
                  <?php if($this->session->flashdata('login_fail')) { ?>
-                  <div class="card" style="padding:10px;" id="alert_success">
-                    <div class="alert alert-primary" role="alert">
+                    <div class="alert alert-primary" role="alert" id="alert_success">
                       <h6 style="color:#3d3d3d"><?php echo $this->session->flashdata('login_fail') ?></h6>
                     </div>
-                  </div>
                 <?php } ?>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_email" class="text-black">Email</label>
-                    <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                    <label for="email_customer" class="text-black">Email</label>
+                    <input type="email" class="form-control" id="email_customer" name="email_customer" placeholder="">
                   </div>
                 </div>
                 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_email" class="text-black">Password</label>
-                    <input type="password" class="form-control" id="c_email" name="c_email" placeholder="">
+                    <label for="password_customer" class="text-black">Password</label>
+                    <input type="password" class="form-control" id="password_customer" name="password_customer" placeholder="">
                   </div>
                 </div>
 

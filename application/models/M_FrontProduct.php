@@ -40,6 +40,10 @@ class M_FrontProduct extends CI_Model {
         return $this->db->get_where($this->sizeTable, ['id_size'=>$id])->row_array();
     }
 
+    public function authentication($email, $password) {
+        return $this->db->query("SELECT * FROM customer WHERE email_customer='$email' AND password_customer=md5('$password') AND status_customer='1' LIMIT 1");
+    }
+
     public function getDetilSize($id) {
         $sql = "SELECT b.id_size, nm_size, stok
                 FROM product a, detil_size b, size c
