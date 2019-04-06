@@ -9,7 +9,7 @@ class Kategori extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index(){
+    public function index($id){
 
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
@@ -17,7 +17,7 @@ class Kategori extends CI_Controller {
         //Pagination
         $config['base_url'] = site_url('kategori/index');
         $config['total_rows'] = $this->M_FrontProduct->countData();
-        $config['per_page'] = 6;
+        $config['per_page'] = 12;
         $config['uri_segment'] = 3;
         $choice = $config['total_rows']/$config['per_page'];
         $config['num_links'] = floor($choice);
@@ -43,30 +43,10 @@ class Kategori extends CI_Controller {
         $config['last_tagl_close']  = '</span></li>';
 
         $data['page'] = $this->pagination->initialize($config) ? $this->uri->segment(3) : 0;
-        $data['data'] = $this->M_FrontProduct->getAllForPage($config['per_page'], $data['page']);
+        $data['data'] = $this->M_FrontProduct->getForPageKategori($id, $config['per_page'], $data['page']);
 
         $data['pagination'] = $this->pagination->create_links();
         $this->load->view('Front/V_FrontKategori', $data);
     }
 
-    public function addToCart($id) {
-        $pro = $this->M_FrontProduct->getRows($id);
-
-        $data = array(
-            'id'=>$pro['id_barang'],
-            'qty'=>1,
-            'name'=>$pro['nm_barang'],
-            'price'=>$pro['harga'],
-            'Size'=>'L',
-            'image'=>$pro['gambar'],
-            'weight'=>1
-        );
-
-        $this->cart->insert($data);
-        redirect('cart');
-
-    }
-
 }
-
-?>

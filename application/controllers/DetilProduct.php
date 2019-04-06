@@ -12,23 +12,27 @@ class DetilProduct extends CI_Controller {
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['product'] = $this->M_FrontProduct->getById($id);
+        $data['size'] = $this->M_FrontProduct->getDetilSize($id);
         $this->load->view('Front/V_FrontDetilProduct', $data);
     }
 
     public function addToCart() {
-        $id_barang = $this->input->post('id');
+        $id_product = $this->input->post('id');
         $qty = $this->input->post('qty');
         $ukuran = $this->input->post('ukuran');
-        $id=$id_barang.$ukuran;
-        $pro = $this->M_FrontProduct->getRows($id_barang);
+        $berat = $this->input->post('berat');
+        $id=$id_product.$ukuran;
+        $nm_ukuran = $this->M_FrontProduct->getSize($ukuran);
+        $pro = $this->M_FrontProduct->getRows($id_product);
 
         $data = array(
             'id'=>$id,
-            'id_barang'=>$pro['id_barang'],
+            'id_product'=>$pro['id_product'],
             'qty'=>$qty,
-            'name'=>$pro['nm_barang'],
+            'name'=>$pro['nm_product'],
             'price'=>$pro['harga'],
             'Size'=>$ukuran,
+            'nm_size'=>$nm_ukuran['nm_size'],
             'image'=>$pro['gambar'],
             'weight'=>1
         );

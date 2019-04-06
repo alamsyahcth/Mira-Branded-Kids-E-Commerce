@@ -52,9 +52,11 @@ class C_MasterProduct extends CI_Controller {
         }
 
         $data['product'] = $table->getById($id);
+        $data['kategori'] = $table->getKategori();
+        $data['size'] = $table->getDetilSize($id);
         //if (!data['barang']) show_404();
 
-        $this->load->view('MasterProduct/V_MasterUpdateBarang', $data);
+        $this->load->view('MasterProduct/V_MasterUpdateProduct', $data);
     }
 
     public function delete($id_product, $id_size=array()) {

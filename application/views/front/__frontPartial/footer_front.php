@@ -27,7 +27,7 @@
               <div class="col-md-12 col-lg-12">
                 <ul class="list-unstyled">
                 <?php foreach($kategori as $items) { ?>
-                  <li><a href="<?php echo base_url('index.php/kategori/'.$items->kd_kategori) ?>"><?php echo $items->nm_kategori; ?></a></li>
+                  <li><a href="<?php echo base_url('index.php/kategori/'.$items->id_kategori) ?>"><?php echo $items->nm_kategori; ?></a></li>
                 <?php } ?>
                 </ul>
               </div>

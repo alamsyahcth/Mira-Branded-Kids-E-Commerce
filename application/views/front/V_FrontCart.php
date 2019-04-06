@@ -34,7 +34,7 @@
                     <!--Cart Isi-->
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="<?php echo base_url('upload/barang/'.$items['image']) ?>" alt="Image" class="img-fluid">
+                      <img src="<?php echo base_url('upload/product/'.$items['image']) ?>" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black"><?php echo $items["name"]; ?></h2>
@@ -53,7 +53,7 @@
                     <!--Tambah Kurang-->
 
                     <td>
-                      <?php echo $items["Size"]; ?>
+                      <?php echo $items["nm_size"]; ?>
                     </td>
 
                     <td>

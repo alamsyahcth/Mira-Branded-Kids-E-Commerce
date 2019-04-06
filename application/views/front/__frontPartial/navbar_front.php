@@ -44,7 +44,7 @@
               <a href="#">Kategori</a>
               <ul class="dropdown">
                 <?php foreach($kategori as $items) { ?>
-                <li><a href="<?php echo base_url('index.php/kategori/'.$items->kd_kategori) ?>"><?php echo $items->nm_kategori; ?></a></li>
+                <li><a href="<?php echo base_url('index.php/Kategori/index/'.$items->id_kategori) ?>"><?php echo $items->nm_kategori; ?></a></li>
                 <?php } ?>
                 <!--<li class="has-children">
                   <a href="<?php echo base_url('index.php/kategori') ?>">Sub Menu</a>

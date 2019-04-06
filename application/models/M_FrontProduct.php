@@ -4,11 +4,12 @@ class M_FrontProduct extends CI_Model {
     public function __construct() {
         parent::__construct();
 
-        $this->proTable = 'barang';
+        $this->proTable = 'product';
         $this->cusTable = 'customers';
         $this->ordTable = 'orders';
         $this->ordItemTable = 'order_details';
         $this->katTable = 'kategori';
+        $this->sizeTable = 'size';
     }
 
     //get Kategori
@@ -21,12 +22,32 @@ class M_FrontProduct extends CI_Model {
         return $this->db->get($this->proTable,$limit,$start);
     }
 
+    //Pagination Function Kategori
+    public function getForPageKategori($id,$limit,$start) {
+        $this->db->where(['id_kategori'=>$id]);
+        return $this->db->get($this->proTable,$limit,$start);
+    }
+
     public function countData() {
         return $this->db->count_all($this->proTable);
     }
 
     public function getById($id) {
-        return $this->db->get_where($this->proTable, ['id_barang'=>$id])->row();
+        return $this->db->get_where($this->proTable, ['id_product'=>$id])->row();
+    }
+
+    public function getSize($id) {
+        return $this->db->get_where($this->sizeTable, ['id_size'=>$id])->row_array();
+    }
+
+    public function getDetilSize($id) {
+        $sql = "SELECT b.id_size, nm_size, stok
+                FROM product a, detil_size b, size c
+                WHERE a.id_product=b.id_product AND b.id_size=c.id_size
+                AND a.id_product='$id'";
+        $query = $this->db->query($sql);
+
+        return $query->result();
     }
 
     public function orderID() {
@@ -50,11 +71,11 @@ class M_FrontProduct extends CI_Model {
         $this->db->select('*');
         $this->db->from($this->proTable);
         if ($id) {
-            $this->db->where('id_barang', $id);
+            $this->db->where('id_product', $id);
             $query = $this->db->get();
             $result = $query->row_array();
         } else {
-            $this->db->order_by('nm_barang', 'asc');
+            $this->db->order_by('nm_product', 'asc');
             $query = $this->db->get();
             $result = $query->result_array();
         }

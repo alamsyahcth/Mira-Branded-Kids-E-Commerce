@@ -87,7 +87,7 @@ class M_MasterProduct extends CI_Model {
     }
 
     public function getDetilSize($id) {
-        $sql = "SELECT nm_size, stok
+        $sql = "SELECT b.id_size, nm_size, stok
                 FROM product a, detil_size b, size c
                 WHERE a.id_product=b.id_product AND b.id_size=c.id_size
                 AND a.id_product='$id'";
@@ -145,7 +145,27 @@ class M_MasterProduct extends CI_Model {
         }
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['id_kategori'];
-        $this->db->insert($this->_table, $this);
+        $this->stok = $post['stok'];
+
+        //Data Multiple Insert
+        $data = array();
+        $i=0;
+        foreach ($post['id_size'] as $id) {
+            array_push($data, array(
+                'id_product'=>$this->id_product,
+                'id_size'=>$id,
+                'stok'=>$this->stok[$i]
+            ));
+            $i++;
+        }
+        $returnUpdate = $this->db->update($this->_table, $this, array('id_product'=>$post['id_product']));
+        if ($returnUpdate) {
+            $this->updateBatch($data);
+        }
+    }
+
+    public function updateBatch($data=array()) {
+        return $this->db->update_batch($this->_tabDetSize,$data, array(array($this->_table=>'id_product', $this->_tabDetSize=>'id_size')));
     }
 
     public function delete($id) {

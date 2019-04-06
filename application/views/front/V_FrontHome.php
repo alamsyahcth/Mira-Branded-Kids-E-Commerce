@@ -13,17 +13,16 @@
           <div class="col-md-10 order-2">
             <h1 style="text-align:center;">Produk Kami</h1>
             <div class="row mb-5">
-              <?php foreach ($data->result() as $b) { ?>
+              <?php foreach ($data->result() as $p) { ?>
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="<?php echo base_url('index.php/DetilProduct') ?>"><img src="<?php echo base_url('upload/barang/'.$b->gambar) ?>" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="<?php echo base_url('index.php/DetilProduct') ?>"><img src="<?php echo base_url('upload/product/'.$p->gambar) ?>" alt="Image placeholder" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
-                    <h2><a href="<?php echo base_url('index.php/DetilProductdata/'.$b->id_barang) ?>"><?php echo $b->nm_barang ?></a></h3>
-                    <?php echo date("ymdhms"); ?>
-                    <h5 class="text-primary font-weight-bold">Rp.<?php echo $b->harga ?></h4><br>
-                    <a href="<?php echo base_url('index.php/DetilProduct/data/'.$b->id_barang) ?>"><button type="button" class="btn btn-primary btn-block">Detail</button></a>
+                    <h2><a href="<?php echo base_url('index.php/DetilProductdata/'.$p->id_product) ?>"><?php echo $p->nm_product ?></a></h3>
+                    <h5 class="text-primary font-weight-bold">Rp.<?php echo $p->harga ?></h4><br>
+                    <a href="<?php echo base_url('index.php/DetilProduct/data/'.$p->id_product) ?>"><button type="button" class="btn btn-primary btn-block">Detail</button></a>
                   </div>
                 </div>
               </div>
