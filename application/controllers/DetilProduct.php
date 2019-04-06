@@ -34,7 +34,7 @@ class DetilProduct extends CI_Controller {
             'Size'=>$ukuran,
             'nm_size'=>$nm_ukuran['nm_size'],
             'image'=>$pro['gambar'],
-            'weight'=>1
+            'weight'=>$berat
         );
 
         $this->cart->insert($data);

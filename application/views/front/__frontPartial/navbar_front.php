@@ -22,7 +22,7 @@
                 <ul>
                   <?php if ($this->session->userdata('on') == TRUE) { ?>
                     <li><a href="<?php echo base_url('index.php/login/logout') ?>"> (Logout) </a></li>
-                    <li><a href="<?php echo base_url('index.php/akun') ?>" dat-toggle="tooltip" title="<?php echo $this->session->userdata('nm_customer') ?>"><span class="icon icon-person"></span></a></li>
+                    <li><a href="<?php echo base_url('index.php/akun') ?>" data-toggle="tooltip" title="<?php echo $this->session->userdata('nm_customer') ?>"><span class="icon icon-person"></span></a></li>
                   <?php } else { ?>
                     <li><a href="<?php echo base_url('index.php/login') ?>"><span class="icon icon-person"></span></a></li>
                     <?php } ?>

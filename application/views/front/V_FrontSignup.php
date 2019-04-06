@@ -31,7 +31,7 @@
                   </div>
                 <?php } ?>
 
-                <input type="text" class="form-control" id="id_customer" name="id_customer" value="<?php echo $autonumber ?>" placeholder="">
+                <input type="hidden" class="form-control" id="id_customer" name="id_customer" value="<?php echo $autonumber ?>" placeholder="">
 
                 <div class="form-group row">
                   <div class="col-md-12">
@@ -65,14 +65,14 @@
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="provinsi_customer" class="text-black">Provinsi</label>
-                    <select onChange="getKotaTujuan()" id="provinsi_tujuan" class="form-control provinsi" name="provinsi_customer" required="">
+                    <select onChange="getDataKota()" id="dataprovinsi" class="form-control tampilprovinsi" name="provinsi_customer" required="">
                     
                     </select>
                   </div>
 
                   <div class="col-md-4">
                     <label for="kota_customer" class="text-black">Kota</label>
-                    <select name="kota_customer" id="kota_tujuan" class="form-control kota" required="">
+                    <select name="kota_customer" id="datakota" class="form-control tampilkota" required="">
                       <option>Pilih Kota</option>
                     </select>
                   </div>

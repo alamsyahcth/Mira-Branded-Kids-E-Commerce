@@ -1,0 +1,1 @@
+<?php echo $k->nm_customer ?>

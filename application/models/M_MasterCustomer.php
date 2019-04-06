@@ -99,7 +99,7 @@ class M_MasterCustomer extends CI_Model {
    }
 
    public function getById($id) {
-        return $this->db->get_where($this->_table, ['id_kategori'=>$id])->row();
+        return $this->db->get_where($this->_table, ['id_customer'=>$id])->row();
    }
 
    public function getEmailCustomer($email) {
@@ -140,9 +140,15 @@ class M_MasterCustomer extends CI_Model {
 
    public function update() {
         $post = $this->input->post();
-        $this->id_kategori = $post['id_kategori'];
-        $this->alt_kategori = $post['alt_kategori'];
-        $this->nm_kategori = $post['nm_kategori'];
+        $this->id_customer = $post['id_customer'];
+        $this->nm_customer = $post['nm_customer'];
+        $this->email_customer = $post['email_customer'];
+        $this->password_customer = md5($post['password_customer']);
+        $this->alamat_customer = $post['alamat_customer'];
+        $this->kodepos_customer = $post['kodepos_customer'];
+        $this->provinsi_customer = $post['provinsi_customer'];
+        $this->kota_customer = $post['kota_customer'];
+        $this->telp_customer = $post['telp_customer'];
         $this->db->update($this->_table, $this, array('id_kategori'=>$post['id_kategori']));
    }
 

@@ -22,15 +22,15 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_fname" class="text-black">Nama <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo !empty($custData['name'])?$custData['name']:''; ?>" placeholder="Nama Anda">
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $customer['nm_customer'] ?>" placeholder="Nama Anda">
                     <?php echo form_error('name','<p class="help-block error">','</p>'); ?>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_address" class="text-black">Alamat <span class="text-danger">*</span></label>
-                    <textarea type="textarea" class="form-control" id="address" name="address" value="<?php echo !empty($custData['address'])?$custData['address']:''; ?>" placeholder="Street address"></textarea>
+                    <label for="alamat_customer" class="text-black">Alamat <span class="text-danger">*</span></label>
+                    <textarea type="textarea" class="form-control" id="address" name="address" placeholder="Street address"><?php echo $customer['alamat_customer'] ?></textarea>
                     <?php echo form_error('address','<p class="help-block error">','</p>'); ?>
                   </div>
                 </div>
@@ -38,13 +38,15 @@
                 <!--Data Hidden Kota Asal-->
                   <!--457 Kode Tangerang Selatan-->
                   <input type="hidden" id="kota_asal" name="kota_asal" value="457" class="form-control kota">
+                  <input type="hidden" id="provinsi_selected" name="provinsi_selected" value="<?php echo $customer['provinsi_customer'] ?>" class="form-control kota">
+                  <input type="hidden" id="kota_selected" name="kota_selected" value="<?php echo $customer['kota_customer'] ?>" class="form-control kota">
                 <!--Data Hidden Kota Asal-->
 
                 <div class="form-group row">
                   <div class="col-md-4">
                     <label for="c_state_country" class="text-black">Provinsi <span class="text-danger">*</span></label>
                       <select onChange="getKotaTujuan()" id="provinsi_tujuan" name="provinsi_tujuan" class="form-control provinsi">
-  
+
                       </select>
                   </div>
                   <div class="col-md-4">
@@ -56,28 +58,37 @@
                   </div>
 
                   <div class="col-md-4">
-                    <label for="c_fname" class="text-black">Kode Pos <span class="text-danger">*</span></label>
-                    <input type="number" min="1" max="5" class="form-control" id="c_fname" name="c_fname" placeholder="kode pos">
+                    <label for="kodepos_customer" class="text-black">Kode Pos <span class="text-danger">*</span></label>
+                    <input type="number" min="1" max="6" class="form-control" id="kodepos_customer" name="kodepos_customer" value="<?php echo $customer['kodepos_customer'] ?>" placeholder="kode pos">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo !empty($custData['email'])?$custData['email']:''; ?>" placeholder="Your Email">
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $customer['email_customer'] ?>" placeholder="Your Email">
                     <?php echo form_error('email','<p class="help-block error">','</p>'); ?>
                   </div>
                   <div class="col-md-6">
                     <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="phone" name="phone" <?php echo !empty($custData['phone'])?$custData['phone']:''; ?> placeholder="Phone Number">
+                    <input type="number" class="form-control" id="phone" name="phone" value="<?php echo $customer['telp_customer'] ?>" placeholder="Phone Number">
                     <?php echo form_error('phone','<p class="help-block error">','</p>'); ?>
                   </div>
                 </div>
                 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Berat <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="berat" name="berat" value="1" readonly="">
+                    <label for="c_fname" class="text-black">Berat (Gram) <span class="text-danger">*</span></label>
+                    <?php 
+                      $berat = 0;
+                      $hasil = 0;
+                      foreach ($this->cart->contents() as $data) {
+                        $nilai = (int) $data['weight']*$data['qty'];
+                        $hasil = $nilai+$hasil;
+                      }
+                      $berat=$hasil;
+                    ?>
+                    <input type="number" class="form-control" id="berat" name="berat" value="<?php echo $berat; ?>" readonly="">
                   </div>
                 </div>
                 
@@ -121,7 +132,8 @@
                   <table class="table site-block-order-table table-hover mb-5">
                     <thead>
                       <th><p class="text-primary">Product</p></th>
-                      <th><p class="text-primary">qty</p></th>
+                      <th><p class="text-primary">Qty</p></th>
+                      <th><p class="text-primary">Ukuran</p></th>
                       <th><p class="text-primary">Total</p></th>
                     </thead>
                     <tbody>
@@ -129,6 +141,7 @@
                       <tr>
                         <td><?php echo $items['name'] ?></td>
                         <td><?php echo $items['qty'] ?></td>
+                        <td><?php echo $items['nm_size'] ?></td>
                         <td>Rp.<?php echo $items['subtotal'] ?></td>
                       </tr>
                     <?php } ?>
@@ -144,13 +157,23 @@
                   </table>
 
                   <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0 text-primary">Metode Pembayaran</h3>
-
+                    <h2 class="h4 mb-0 text-primary">Metode Pembayaran</h2>
+                    <p>Pembayaran Dapat dilakukan dengan cara transfer bank dengan detail dibawah ini</p><br><br>
+                    
+                    <?php foreach($bank as $b) { ?>
                     <div id="collapsebank">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3"><img src="<?php echo base_url('upload/bank/'.$b->logo_bank) ?>" width="40"></div>
+                        <div class="col-md-7">
+                          <h5 class="mb-1">Bank <?php echo $b->nm_bank ?></h5>
+                          <p class="mb-1">No Rekening : <?php echo $b->no_rektoko ?></p>
+                          <p class="mb-1">Atas Nama : <?php echo $b->atas_nama ?></p>
+                        </div>
+                        <div class="col-md-1"></div>
                       </div>
-                    </div>
+                    </div><br>
+                    <?php } ?>
                   </div>
 
                  

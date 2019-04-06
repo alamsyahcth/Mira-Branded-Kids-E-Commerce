@@ -7,14 +7,14 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="h3 mb-3 text-black">Hai Tahta</h2>
+            <h2 class="h3 mb-3 text-black">Hai <?php echo $this->session->userdata('nm_customer') ?></h2>
           </div>
 
             <!--History-->
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Histori</h5>
+                        <h5 class="card-title">Data Transaksi</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-stripted table-hover" style="color:#000000;">
@@ -51,7 +51,7 @@
                         <h4>Data Akun</h4>
                     </div>
                     <div class="col-md-2">
-                        <a href="#" class="btn btn-outline-primary btn-xs">Edit</a>
+                        <a href="<?php echo base_url('index.php/Akun/edit/'.$customer->id_customer) ?>" class="btn btn-outline-primary btn-xs">Edit</a>
                     </div>
                 </div>
                 <br>
@@ -59,22 +59,22 @@
                     <tr>
                         <td>Nama</td>
                         <td>:</td>
-                        <td>Alamsyah Catur Tahta Hartono</td>
+                        <td><?php echo $customer->nm_customer ?></td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
                         <td>:</td>
-                        <td>Jalan Mede No.23 RT.005 RW.04 Petukangan Utara Jakarta Selatan</td>
+                        <td><?php echo $customer->alamat_customer ?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>:</td>
-                        <td>acthdesign@gmail.com</td>
+                        <td><?php echo $customer->email_customer ?></td>
                     </tr>
                     <tr>
                         <td>No Handphone</td>
                         <td>:</td>
-                        <td>089670465244</td>
+                        <td><?php echo $customer->telp_customer ?></td>
                     </tr>
                 </table>
             </div>

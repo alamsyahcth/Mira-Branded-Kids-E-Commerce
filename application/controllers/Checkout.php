@@ -8,6 +8,10 @@ class Checkout extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('rajaongkir');
 		$this->load->helper('form');
+
+		if($this->session->userdata('on') != TRUE) {
+            redirect('Login');
+        }
 	}
 
 	public function index(){
@@ -52,6 +56,8 @@ class Checkout extends CI_Controller {
 				}
 			}
 			
+			$data['bank'] = $this->M_FrontProduct->getBank();
+			$data['customer'] = $this->M_FrontProduct->getCustomer($this->session->userdata('id_customer'));
 			$data['custData'] = $custData;
 			$data['kategori'] = $this->M_FrontProduct->getKategori();
 			$this->load->view('Front/V_FrontCheckout', $data);

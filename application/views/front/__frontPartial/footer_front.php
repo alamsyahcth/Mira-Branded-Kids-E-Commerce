@@ -104,6 +104,35 @@
                     output+=`<option value="${val.province_id}">${val.province}</option>`
                 })
 
+                $('.tampilprovinsi').html(output);
+            })
+        });
+
+        function getDataKota() {
+            let id_provinsi = $('#dataprovinsi').val();
+            $.get("<?php echo site_url('Checkout/getKota/') ?>"+id_provinsi,{},(response)=>{
+                let output='';
+                let kota = response.rajaongkir.results
+                console.log(response)
+                kota.map((val,i)=>{
+                    output+=`<option value="${val.city_id}">${val.city_name}</option>`
+                })
+
+                $('#datakota').html(output);
+            })
+        }
+
+         $(function () {
+           //let provinsi_selected = $('#provinsi_selected').val();
+            $.get("<?php echo site_url('Checkout/getProvinsi') ?>",{},(response)=>{
+                let output='';
+                let provinsi = response.rajaongkir.results
+                console.log(response)
+
+                provinsi.map((val,i)=>{
+                    output+=`<option value="${val.province_id}">${val.province}</option>`
+                })
+
                 $('.provinsi').html(output);
             })
         });
@@ -173,6 +202,14 @@
       });
     </script>
     <!--Cek Ketersediaan Email-->
+
+    <!--Tooltip-->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+    <!--Tooltip-->
     
   </body>
 </html>
