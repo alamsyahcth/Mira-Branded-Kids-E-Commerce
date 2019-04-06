@@ -51,7 +51,7 @@
                         <h4>Data Akun</h4>
                     </div>
                     <div class="col-md-2">
-                        <a href="<?php echo base_url('index.php/Akun/edit/'.$customer->id_customer) ?>" class="btn btn-outline-primary btn-xs">Edit</a>
+                        <a href="<?php echo base_url('index.php/akun/edit/') ?>" class="btn btn-outline-primary btn-xs">Edit</a>
                     </div>
                 </div>
                 <br>

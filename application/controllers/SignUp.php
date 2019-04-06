@@ -47,7 +47,6 @@ class SignUp extends CI_Controller {
 
     public function konfirmasiEmail($email,$id_customer) {
         $from = 'mirabrandedkids@gmail.com';
-        $to = $email;
         //$isi = $this->input->post('isi');
 
         //Konfigurasi Email
@@ -64,7 +63,7 @@ class SignUp extends CI_Controller {
         $this->email->initialize($config);
 
         $this->email->from($from,'Mira Branded Kids');
-        $this->email->to($to);
+        $this->email->to($email);
         $this->email->subject('Konfirmasi Email');
         $this->email->message(
             '

@@ -23,21 +23,27 @@ class Akun extends CI_Controller {
         $this->load->view('Front/V_FrontAkun', $data);
     }
 
-    public function edit($id=null) {
-        if ($id=null) {redirect('Akun');}
-        
+    public function edit() { 
         $table = $this->M_MasterCustomer;
         $validation = $this->form_validation;
         $validation->set_rules($table->rules());
 
         if ($validation->run()) {
-            $table->update();
-            $this->session->set_flashdata('update_success','Data berhasil di update');
-            redirect('Akun');
+            if($this->M_MasterCustomer->getEmailCustomerById($_POST['email_customer'],$_POST['id_customer'])) {
+                $this->session->set_flashdata('Fail','Maaf email sudah terdaftar');
+                redirect('Akun/edit');
+            } else if ($this->M_MasterCustomer->getPasswordCustomer($_POST['password_lama'])) {
+                $this->session->set_flashdata('Fail_Password','Maaf Password yang anda masukkan salah');
+                redirect('Akun/edit');
+            } else {
+                $table->update();
+                $this->session->set_flashdata('update_success','Data berhasil di update');
+                redirect('Akun');
+            }
         }
 
         $data['kategori'] = $this->M_FrontProduct->getKategori();
-        $data['k'] = $table->getById($id);
+        $data['k'] = $table->getById($this->session->userdata('id_customer'));
         $this->load->view('Front/V_FrontEditAkun',$data);
     }
 

@@ -63,21 +63,21 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-md-4">
+                  <!--<div class="col-md-4">
                     <label for="provinsi_customer" class="text-black">Provinsi</label>
-                    <select onChange="getDataKota()" id="dataprovinsi" class="form-control tampilprovinsi" name="provinsi_customer" required="">
+                    <select onChange="getKotaTujuan()" id="provinsi_tujuan" name="provinsi_customer" class="form-control provinsi" required="">
                     
                     </select>
                   </div>
 
                   <div class="col-md-4">
                     <label for="kota_customer" class="text-black">Kota</label>
-                    <select name="kota_customer" id="datakota" class="form-control tampilkota" required="">
+                    <select id="kota_tujuan" name="kota_customer" class="form-control kota" required="">
                       <option>Pilih Kota</option>
                     </select>
-                  </div>
+                  </div>-->
 
-                  <div class="col-md-4">
+                  <div class="col-md-12">
                     <label for="kodepos_customer" class="text-black">Kode Pos</label>
                     <input type="number" class="form-control" id="kodepos_customer" name="kodepos_customer" placeholder="Kode Pos" maxlength="6" required="">
                   </div>
