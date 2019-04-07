@@ -102,7 +102,7 @@
                       </select>
                   </div>
                 </div>
-                
+                <input type="hidden" name="total_cart" id="total_cart" value="<?php echo $this->cart->total(); ?>">
                 <div class="form-group row">
                   <div class="col-md-12">
                   <label for="c_postal_zip" class="text-black">Services <span class="text-danger">*</span></label>
@@ -118,6 +118,9 @@
                   <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
                 </div>
 
+                
+                <input type="hidden" name="grand_total" id="gtotal">
+
                 <div class="form-group">
                       <input type="submit" name="placeOrder" id="placeOrder" value="Place Order" class="btn btn-primary btn-lg py-3 btn-block">
                 </div>
@@ -131,27 +134,29 @@
                 <div class="p-3 p-lg-5 border">
                   <table class="table site-block-order-table table-hover mb-5">
                     <thead>
-                      <th><p class="text-primary">Product</p></th>
-                      <th><p class="text-primary">Qty</p></th>
-                      <th><p class="text-primary">Ukuran</p></th>
-                      <th><p class="text-primary">Total</p></th>
+                      <th><p class="text-primary" style="text-align:center;">Product</p></th>
+                      <th><p class="text-primary" style="text-align:center;">Qty</p></th>
+                      <th><p class="text-primary" style="text-align:center;">Ukuran</p></th>
+                      <th><p class="text-primary" style="text-align:center;">Total</p></th>
                     </thead>
                     <tbody>
                     <?php foreach ($this->cart->contents() as $items) { ?>
                       <tr>
-                        <td><?php echo $items['name'] ?></td>
-                        <td><?php echo $items['qty'] ?></td>
-                        <td><?php echo $items['nm_size'] ?></td>
-                        <td>Rp.<?php echo $items['subtotal'] ?></td>
+                        <td style="text-align:center;"><?php echo $items['name'] ?></td>
+                        <td style="text-align:center;"><?php echo $items['qty'] ?></td>
+                        <td style="text-align:center;"><?php echo $items['nm_size'] ?></td>
+                        <td style="text-align:center;">Rp.<?php echo $items['subtotal'] ?></td>
                       </tr>
                     <?php } ?>
                       <tr>
-                        <td class="text-primary font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black" colspan="2">Rp.<?php echo $this->cart->total() ?></td>
+                        <td class="text-primary font-weight-bold" style="vertical-align:middle"><strong>Cart Subtotal</strong></td>
+                        <td class="text-black" style="font-size:20pt; text-align:right;">Rp.</td>
+                        <td class="text-black" colspan="3" style="font-size:20pt;"><?php echo $this->cart->total() ?></td>
                       </tr>
                       <tr>
-                        <td class="text-primary font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"colspan="2"><strong>$350.00</strong></td>
+                        <td class="text-primary font-weight-bold" style="vertical-align:middle"><strong>Order Total</strong></td>
+                        <td class="text-black" style="font-size:20pt; text-align:right;">Rp.</td>
+                        <td class="text-black" colspan="3" style="font-size:20pt;"><strong><div id="dataGtotal"><?php echo $this->cart->total() ?></div></strong></td>
                       </tr>
                     </tbody>
                   </table>

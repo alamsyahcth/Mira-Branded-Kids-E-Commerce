@@ -96,7 +96,7 @@
     <script>
          $(function () {
             $.get("<?php echo site_url('Checkout/getProvinsi') ?>",{},(response)=>{
-                let output='';
+                let output='<option>Pilih Provinsi Pengiriman</option>';
                 let provinsi = response.rajaongkir.results
                 console.log(response)
 
@@ -111,7 +111,7 @@
         function getKotaTujuan() {
             let id_provinsi = $('#provinsi_tujuan').val();
             $.get("<?php echo site_url('Checkout/getKota/') ?>"+id_provinsi,{},(response)=>{
-                let output='';
+                let output='<option>Pilih Kota Pengiriman</option>';
                 let kota = response.rajaongkir.results
                 console.log(response)
                 kota.map((val,i)=>{
@@ -127,7 +127,7 @@
             let kurir = $('#kurir').val();
             let kotaAsal = $('#kota_asal').val();
             let kotaTujuan = $('#kota_tujuan').val();
-            let output='';
+            let output='<option>Pilih Service</option>';
 
              $.get("<?php echo site_url('Checkout/getOngkir/') ?>"+`${kotaAsal}/${kotaTujuan}/${berat}/${kurir}`,{},(response)=>{
                 let biaya = response.rajaongkir.results
@@ -182,5 +182,20 @@
     </script>
     <!--Tooltip-->
     
+    <!--Grand_total-->
+    <script>
+      $(document).ready(function() {
+        $('#services').change(function() {
+          var services = parseInt($('#services').val());
+          var total_cart = parseInt($('#total_cart').val());
+          
+          var data = services+total_cart;
+          
+          $('#gtotal').val(data);
+          $('#dataGtotal').html(data);
+        });
+      });
+    </script>
+    <!--Grand_Total-->
   </body>
 </html>

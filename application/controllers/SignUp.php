@@ -47,7 +47,6 @@ class SignUp extends CI_Controller {
 
     public function konfirmasiEmail($email,$id_customer) {
         $from = 'mirabrandedkids@gmail.com';
-        //$isi = $this->input->post('isi');
 
         //Konfigurasi Email
         $this->load->library('email');
