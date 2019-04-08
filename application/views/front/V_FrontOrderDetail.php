@@ -32,38 +32,41 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <table class="table">
+            <h5 class="text-primary" style="text-align:center;">Data Pengiriman</h5>
+            <table class="table table-bordered">
               <?php foreach($customer as $data) { ?>
               <tr>
                 <td width="20%">Nama</td>
-                <td width="10%">:</td>
-                <td width="70%" style="font-weight: bold;"><?php echo $data->name ?></td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->nm_customer ?></td>
               </tr>
               <tr>
                 <td width="20%">Alamat</td>
-                <td width="10%">:</td>
-                <td width="70%" style="font-weight: bold;"><?php echo $data->address ?></td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->alamat_customer ?></td>
               </tr>
               <tr>
                 <td width="20%">Email</td>
-                <td width="10%">:</td>
-                <td width="70%" style="font-weight: bold;"><?php echo $data->email ?></td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->email_customer ?></td>
               </tr>
               <tr>
                 <td width="20%">No.Handphone</td>
-                <td width="10%">:</td>
-                <td width="70%" style="font-weight: bold;"><?php echo $data->phone ?></td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->telp_customer ?></td>
               </tr>
               <?php } ?>
             </table>
           </div>
 
           <div class="col-md-6">
+            <h5 class="text-primary" style="text-align:center;">Data Pembayaran</h5>
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Kode Barang</th>
-                    <th>Nama Barang</th>
+                    <th>Kode Product</th>
+                    <th>Nama Product</th>
+                    <th>Size</th>
                     <th>Quantity</th>
                     <th>Sub Total</th>
                   </tr>
@@ -71,14 +74,15 @@
                 <tbody>
                   <?php foreach($order as $item) { ?>
                   <tr>
-                    <td><?php echo $item->id_barang ?></td>
-                    <td><?php echo $item->nm_barang ?></td>
-                    <td><?php echo $item->quantity ?></td>
+                    <td><?php echo $item->id_product ?></td>
+                    <td><?php echo $item->nm_product ?></td>
+                    <td><?php echo $item->nm_size ?></td>
+                    <td><?php echo $item->qty ?></td>
                     <td><?php echo $item->sub_total ?></td>
                   </tr>
                   <?php } ?>
                   <tr>
-                    <td colspan="3">Total</td>
+                    <td colspan="4">Total</td>
                     <?php foreach($gtotal as $item) { ?>
                     <td><?php echo $item->grand_total ?></td>
                     <?php } ?>

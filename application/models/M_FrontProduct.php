@@ -7,7 +7,7 @@ class M_FrontProduct extends CI_Model {
         $this->proTable = 'product';
         $this->cusTable = 'customer';
         $this->ordTable = 'orders';
-        $this->ordItemTable = 'order_details';
+        $this->ordItemTable = 'detil_orders';
         $this->katTable = 'kategori';
         $this->sizeTable = 'size';
         $this->bankTable = 'bank';
@@ -64,10 +64,10 @@ class M_FrontProduct extends CI_Model {
     }
 
     public function orderID() {
-        $this->db->select('RIGHT(orders_id,4) as MaxKode');
-        $this->db->order_by('orders_id','desc');
+        $this->db->select('RIGHT(id_order,4) as MaxKode');
+        $this->db->order_by('id_order','desc');
         $query = $this->db->get($this->ordTable);
-
+        $date = date("ymd");
         if($query->num_rows()<>0){
             $data = $query->row();
             $kode = intval($data->MaxKode)+1;
@@ -75,7 +75,7 @@ class M_FrontProduct extends CI_Model {
             $kode = 1;
         }
 
-        $kodeMax = str_pad($kode,4,"0", STR_PAD_LEFT);
+        $kodeMax = 'O'.$date.str_pad($kode,4,"0", STR_PAD_LEFT);
         return $kodeMax;
     }
 
@@ -96,42 +96,20 @@ class M_FrontProduct extends CI_Model {
         return !empty($result)?$result:false;
     }
 
-    public function insertCustomer($data) {
-        if (!array_key_exists("created", $data)) {
-            $data["created"] = date('Y-m-d H:i:s');
-        }
-        if (!array_key_exists("modified", $data)) {
-            $data["modified"] = date('Y-m-d H:i:s');
-        }
-
-        $insert = $this->db->insert($this->cusTable, $data);
-
-        return $insert?$this->db->insert_id():false;
-    }
-
     public function insertOrder($data) {
-        if (!array_key_exists("orders_created", $data)) {
-            $data["orders_created"] = date('Y-m-d H:i:s');
-        }
-        if (!array_key_exists("orders_modified", $data)) {
-            $data["orders_modified"] = date('Y-m-d H:i:s');
-        }
-
         $insert = $this->db->insert($this->ordTable, $data);
-
         return $insert?$this->db->insert_id():false;
     }
 
     public function insertOrderItems($data=array()) {
         $insert = $this->db->insert_batch($this->ordItemTable, $data);
-
         return $insert?true:false;
     }
 
     public function getDataCustomers($ordID) {
-        $sql = "SELECT a.customer_id, name, address, email, phone
-                FROM customers a, orders b
-                WHERE a.customer_id=b.customer_id AND b.orders_id='$ordID'";
+        $sql = "SELECT a.id_customer, nm_customer, alamat_customer, email_customer, telp_customer
+                FROM customer a, orders b
+                WHERE a.id_customer=b.id_customer AND b.id_order='$ordID'";
         $query = $this->db->query($sql);
 
         return $query->result();
@@ -139,17 +117,17 @@ class M_FrontProduct extends CI_Model {
     }
 
     public function getDataOrder($ordID) {
-        $sql =  "SELECT a.id_barang, nm_barang, quantity, sub_total, grand_total
-                 FROM barang a, order_details b, orders c
-                 WHERE a.id_barang=b.id_barang AND b.orders_id=c.orders_id AND c.orders_id='$ordID'
-                 ORDER BY a.id_barang asc";
+        $sql =  "SELECT a.id_product, nm_product, qty, nm_size, sub_total, grand_total
+                 FROM product a, detil_orders b, orders c, size d
+                 WHERE a.id_product=b.id_product AND b.id_order=c.id_order AND b.id_size=d.id_size AND c.id_order='$ordID'
+                 ORDER BY a.id_product asc";
         $query = $this->db->query($sql);
 
         return $query->result();
     }
 
     public function getGrandTotal($ordID) {
-        $sql =  "SELECT grand_total FROM orders WHERE orders_id='$ordID'";
+        $sql =  "SELECT grand_total FROM orders WHERE id_order='$ordID'";
         $query = $this->db->query($sql);
 
         return $query->result();

@@ -19,18 +19,20 @@
             <h2 class="h3 mb-3 text-black">Detail Pengiriman</h2>
             <div class="p-3 p-lg-5 border">
               <form method="post" action="<?php echo base_url('index.php/Checkout') ?>">
+                <input type="hidden" name="id_order" value="<?php echo $orderId ?>">
+                <input type="hidden" name="tanggal_order" value="<?php echo date("Y-m-d") ?>">
+                <input type="hidden" name="id_customer" value="<?php  echo $customer['id_customer'] ?>">
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_fname" class="text-black">Nama <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $customer['nm_customer'] ?>" placeholder="Nama Anda">
-                    <?php echo form_error('name','<p class="help-block error">','</p>'); ?>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $customer['nm_customer'] ?>" placeholder="Nama Anda" readonly="">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="alamat_customer" class="text-black">Alamat <span class="text-danger">*</span></label>
-                    <textarea type="textarea" class="form-control" id="address" name="address" placeholder="Street address"><?php echo $customer['alamat_customer'] ?></textarea>
+                    <label for="alamat_kirim" class="text-black">Alamat Kirim <span class="text-danger">*</span></label>
+                    <textarea type="textarea" class="form-control" id="address" name="alamat_kirim" placeholder="Street address"><?php echo $customer['alamat_customer'] ?></textarea>
                     <?php echo form_error('address','<p class="help-block error">','</p>'); ?>
                   </div>
                 </div>
@@ -38,8 +40,6 @@
                 <!--Data Hidden Kota Asal-->
                   <!--457 Kode Tangerang Selatan-->
                   <input type="hidden" id="kota_asal" name="kota_asal" value="457" class="form-control kota">
-                  <input type="hidden" id="provinsi_selected" name="provinsi_selected" value="<?php echo $customer['provinsi_customer'] ?>" class="form-control kota">
-                  <input type="hidden" id="kota_selected" name="kota_selected" value="<?php echo $customer['kota_customer'] ?>" class="form-control kota">
                 <!--Data Hidden Kota Asal-->
 
                 <div class="form-group row">
@@ -51,7 +51,7 @@
                   </div>
                   <div class="col-md-4">
                     <label for="c_postal_zip" class="text-black">Kota <span class="text-danger">*</span></label>
-                      <select id="kota_tujuan" name="kota_tujuan" class="form-control kota">
+                      <select id="kota_tujuan" name="kota" class="form-control kota">
                         <option>Pilih Kota Tujuan</option>
 
                       </select>
@@ -59,20 +59,18 @@
 
                   <div class="col-md-4">
                     <label for="kodepos_customer" class="text-black">Kode Pos <span class="text-danger">*</span></label>
-                    <input type="number" min="1" max="6" class="form-control" id="kodepos_customer" name="kodepos_customer" value="<?php echo $customer['kodepos_customer'] ?>" placeholder="kode pos">
+                    <input type="number" class="form-control" id="kodepos_customer" name="kode_pos" value="<?php echo $customer['kodepos_customer'] ?>" placeholder="kode pos">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $customer['email_customer'] ?>" placeholder="Your Email">
-                    <?php echo form_error('email','<p class="help-block error">','</p>'); ?>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $customer['email_customer'] ?>" placeholder="Your Email" readonly="">
                   </div>
                   <div class="col-md-6">
                     <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="phone" name="phone" value="<?php echo $customer['telp_customer'] ?>" placeholder="Phone Number">
-                    <?php echo form_error('phone','<p class="help-block error">','</p>'); ?>
+                    <input type="number" class="form-control" id="phone" name="phone" value="<?php echo $customer['telp_customer'] ?>" placeholder="Phone Number" readonly="">
                   </div>
                 </div>
                 
@@ -88,7 +86,7 @@
                       }
                       $berat=$hasil;
                     ?>
-                    <input type="number" class="form-control" id="berat" name="berat" value="<?php echo $berat; ?>" readonly="">
+                    <input type="number" class="form-control" id="berat" name="total_berat" value="<?php echo $berat; ?>" readonly="">
                   </div>
                 </div>
                 
@@ -106,7 +104,7 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                   <label for="c_postal_zip" class="text-black">Services <span class="text-danger">*</span></label>
-                      <select name="services" id="services" class="form-control">
+                      <select name="ongkir" id="services" class="form-control">
                           <option>Pilih Services</option>    
     
                       </select>
@@ -114,11 +112,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="c_order_notes" class="text-black">Order Notes</label>
-                  <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+                  <label for="c_order_notes" class="text-black">Catatan untuk pengiriman</label>
+                  <textarea name="catatan" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
                 </div>
 
-                
+                <input type="hidden" name="status" value="1">
                 <input type="hidden" name="grand_total" id="gtotal">
 
                 <div class="form-group">
