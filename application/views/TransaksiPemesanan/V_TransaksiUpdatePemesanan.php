@@ -93,7 +93,7 @@
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td width="5%" style="vertical-align:center; text-align:center;">
-                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/index/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
+                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/edit/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
                                                                 </td>
                                                             
                                                             </tr>
@@ -112,62 +112,69 @@
                                                         <h4>Data Pemesanan</h4>
                                                     </div>
                                                     <table class="table table-hover">
+                                                        <?php foreach($orderId as $data) { ?>
                                                         <tr>
                                                             <td width="25%">No Invoice</td>
                                                             <td width="5%">:</td>
-                                                            <td width="70%"></td>
+                                                            <td width="70%"><?php echo $data->id_order ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td width="25%">Nama Customer</td>
                                                             <td width="5%">:</td>
-                                                            <td width="70%"></td>
+                                                            <td width="70%"><?php echo $data->nm_customer ?></td>
                                                         </tr>
                                                          <tr>
                                                             <td width="25%">Alamat Pengiriman</td>
                                                             <td width="5%">:</td>
-                                                            <td width="70%"></td>
+                                                            <td width="70%"><?php echo $data->alamat_customer ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td width="25%">Kurir</td>
                                                             <td width="5%">:</td>
-                                                            <td width="70%"></td>
+                                                            <td width="70%"><?php echo $data->kurir ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td width="25%">Ongkos Kirim</td>
                                                             <td width="5%">:</td>
-                                                            <td width="70%"></td>
+                                                            <td width="70%"><?php echo $data->ongkir ?></td>
                                                         </tr>
+                                                    </table>
+                                                    <?php } ?>
                                                     </table>
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
                                                                 <th width="30%">Id Product</th>
-                                                                <th width="20%">Ukuran</th>
                                                                 <th width="20%">Size</th>
+                                                                <th width="20%">Harga</th>
                                                                 <th width="5%">qty</th>
                                                                 <th width="25%">Total</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php foreach($detil_order as $data) { ?>
                                                             <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td><?php echo $data->id_product ?></td>
+                                                                <td><?php echo $data->nm_size ?></td>
+                                                                <td><?php echo $data->harga ?></td>
+                                                                <td><?php echo $data->qty ?></td>
+                                                                <td><?php echo $data->sub_total ?></td>
                                                             </tr>
+                                                            <?php } ?>
                                                             <tr>
                                                                 <td colspan="3">Ongkir</td>
                                                                 <td>:</td>
-                                                                <td></td>
+                                                                <td><?php foreach($orderId as $data) {echo $data->ongkir;} ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">Grand Total</td>
                                                                 <td>:</td>
-                                                                <td></td>
+                                                                <td><?php foreach($orderId as $data) {echo $data->grand_total;} ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="6"><button class="btn btn-primary btn-block" disabled>Konfirmasi</button></td>
+                                                                <?php foreach($orderId as $data) { ?>
+                                                                <td colspan="6"><a href="<?php echo base_url('index.php/admin/C_TransaksiPemesanan/'.$data->id_order) ?>" class="btn btn-primary btn-block">Konfirmasi</a></td>
+                                                                <?php } ?>
                                                             </tr>
                                                         </tbody>
                                                     </table>
