@@ -27,7 +27,8 @@
     
     <div class="card" style="margin:40px; padding:10px; background:none; color:#303030;">
       <div class="card-header" style="background:none;">
-        <h4 style="text-align:center;">Detail Order</h4>
+        <h4 style="text-align:center; font-weight:bold;">Detail Order</h4>
+        <h6 style="text-align:center;">Order ID : <?php  foreach($customer as $data) {echo $data->id_order;} ?></h6>
       </div>
       <div class="card-body">
         <div class="row">
@@ -46,6 +47,11 @@
                 <td width="70%"><?php echo $data->alamat_customer ?></td>
               </tr>
               <tr>
+                <td width="20%">Kode Pos</td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->kode_pos ?></td>
+              </tr>
+              <tr>
                 <td width="20%">Email</td>
                 <td width="10%" style="text-align:center;">:</td>
                 <td width="70%"><?php echo $data->email_customer ?></td>
@@ -54,6 +60,16 @@
                 <td width="20%">No.Handphone</td>
                 <td width="10%" style="text-align:center;">:</td>
                 <td width="70%"><?php echo $data->telp_customer ?></td>
+              </tr>
+              <tr>
+                <td width="20%">Kurir</td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->kurir ?></td>
+              </tr>
+              <tr>
+                <td width="20%">Ongkos Kirim</td>
+                <td width="10%" style="text-align:center;">:</td>
+                <td width="70%"><?php echo $data->ongkir ?></td>
               </tr>
               <?php } ?>
             </table>
@@ -89,12 +105,32 @@
                   </tr>
                 </tbody>
             </table>
+            <h5 class="text-primary" style="text-align:center;">Metode Pembayaran</h5>
+            <table class="table table-bordered">
+              <tr>
+                <td colspan="2">Nama Bank</td>
+                 <td>No Rekening</td>
+                  <td colspan="2">Atas Nama</td>
+              </tr>
+                <?php foreach($bank as $b) { ?>
+                <tr>
+                  <td width="10%"><img src="<?php echo base_url('upload/bank/'.$b->logo_bank) ?>" width="30px"></td>
+                  <td width="20%"><?php echo $b->nm_bank ?></td>
+                  <td width="15%"><?php echo $b->no_rektoko ?></td>
+                  <td width="35%"><?php echo $b->atas_nama ?></td>
+                </tr>
+                <?php } ?>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12"><p style="text-align:center;"><a href="shop.html" class="btn btn-sm btn-primary">Kembali Belanja</a></p></div>
-
+    <div class="col-md-12"><p style="text-align:center;"><a href="<?php echo base_url('index.php/home') ?>" class="btn btn-sm btn-primary">Kembali Belanja</a>
+    <?php foreach($customer as $data) { ?>
+      <a href="<?php echo base_url('index.php/orderDetail/cetakInvoice/'.$data->id_order) ?>" target="_blank" class="btn btn-sm btn-secondary">Cetak Invoice</a>
+    <?php } ?>
+    </p></div>
+    
 <!--Load View-->
 <?php $this->load->view('front/__frontpartial/service_front.php') ?>
 <?php $this->load->view('front/__frontpartial/footer_front.php') ?>

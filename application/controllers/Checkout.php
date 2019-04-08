@@ -58,20 +58,10 @@ class Checkout extends CI_Controller {
 			if ($this->form_validation->run() == true) {
 				$insert = $this->M_FrontProduct->insertOrder($ordData);
 				$order = $this->insertItemData($_POST['id_order']);
-				/*if ($insert) {
-					
-
-					if ($order) {
-						//$this->buatInvoice($_POST['id_order']);
-						//$this->emailInvoice($_POST['email'],$_POST['id_order']);
-						redirect('OrderDetail/index/'.$ordID);
-					} else {
-						$data['error_msg'] = 'Order Gagal';
-					}
-				
-				} else {
-					$data['error_msg'] = 'Order Gagal';
-				}*/
+				$this->emailInvoice($_POST['email'],$_POST['id_order']);
+				$this->cart->destroy();
+				$this->session->set_flashdata('msg','success');
+				redirect('OrderDetail/index/'.$_POST['id_order']);
 			}
 		}
 		
@@ -99,9 +89,6 @@ class Checkout extends CI_Controller {
 		$insertOrderItems = $this->M_FrontProduct->insertOrderItems($ordItemData);
 
 		if ($insertOrderItems) {
-			$this->cart->destroy();
-			$this->session->set_flashdata('msg','success');
-			redirect('OrderDetail/index/'.$ordID);
 			return $insertOrderItems;
 		}
 	}
@@ -125,19 +112,6 @@ class Checkout extends CI_Controller {
         $ongkir = $this->rajaongkir->cost($origin,$destination,$weight,$courier);
         $this->output->set_content_type('aplication/json')->set_output($ongkir);
 	}
-
-	public function cetakInvoice() {
-        ob_start();
-        $data['product'] = $this->M_MasterProduct->getAll();
-        $this->load->view('MasterProduct/V_MasterCetakProduct', $data);
-        $html = ob_get_contents();
-        ob_end_clean();
-
-        require_once('./Assets/html2pdf/html2pdf.class.php');
-        $pdf = new HTML2PDF('L','A4','en');
-        $pdf->WriteHTML($html);
-        $pdf->output('DataProduct'.microtime().'.pdf','D');
-    }
 	
 	public function emailInvoice($email,$id_order) {
         $from = 'mirabrandedkids@gmail.com';
@@ -155,12 +129,12 @@ class Checkout extends CI_Controller {
         
 		$this->email->initialize($config);
 		
-		$dataOrder = $this->m_FrontProduct->getOrder($id_order);
-		$dataBank = $this->M_FrontProduct->getBank();
+		//$dataOrder = $this->M_FrontProduct->getOrder($id_order);
+		//$dataBank = $this->M_FrontProduct->getBank();
 
         $this->email->from($from,'Mira Branded Kids');
         $this->email->to($email);
-        $this->email->subject('Konfirmasi Email');
+        $this->email->subject('Data Order');
         $this->email->message(
             '
             <table border="0" width="40%" style="text-align:center; padding: 10px; border: 1px solid #f5f6fa; border-collapse: collapse; background: #f5f6fa;">

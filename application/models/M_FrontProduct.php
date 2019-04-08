@@ -107,7 +107,7 @@ class M_FrontProduct extends CI_Model {
     }
 
     public function getDataCustomers($ordID) {
-        $sql = "SELECT a.id_customer, nm_customer, alamat_customer, email_customer, telp_customer
+        $sql = "SELECT a.id_customer, nm_customer, alamat_customer, email_customer, telp_customer, kurir, ongkir, kode_pos, b.id_order
                 FROM customer a, orders b
                 WHERE a.id_customer=b.id_customer AND b.id_order='$ordID'";
         $query = $this->db->query($sql);
