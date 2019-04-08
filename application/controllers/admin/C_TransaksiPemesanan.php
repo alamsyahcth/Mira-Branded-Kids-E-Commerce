@@ -15,16 +15,21 @@ class C_TransaksiPemesanan extends CI_Controller {
         }
     }
 
-    public function index($id=null){
-        if(!empty($id)) {
-            $data['order'] = $this->M_TransaksiPemesanan->getOrder();
-            $data['orderId'] = $this->M_TransaksiPemesanan->getOrder($id);
-            $data['detil_order'] = $this->M_TransaksiPemesanan->getDetilOrder($id);
-            $this->load->view('TransaksiPemesanan/V_TransaksiUpdatePemesanan', $data);
-        } else {
-            $data['order'] = $this->M_TransaksiPemesanan->getOrder();
-            $this->load->view('TransaksiPemesanan/V_TransaksiPemesanan', $data);
-        }
+    public function index(){
+        $data['order'] = $this->M_TransaksiPemesanan->getOrder();
+        $this->load->view('TransaksiPemesanan/V_TransaksiPemesanan', $data);
+    }
+
+    public function dataOrder($id) {
+        $data['order'] = $this->M_TransaksiPemesanan->getOrder();
+        $data['orderId'] = $this->M_TransaksiPemesanan->getOrderById($id);
+        $data['detil_order'] = $this->M_TransaksiPemesanan->getDetilOrder($id);
+        $this->load->view('TransaksiPemesanan/V_TransaksiUpdatePemesanan', $data);
+    }
+    public function edit($id) {
+        $this->M_TransaksiPemesanan->updateStatus($id);
+        $this->session->set_flashdata('success','Status berhasil diubah');
+        redirect('admin/C_TransaksiPemesanan');
     }
     
 }

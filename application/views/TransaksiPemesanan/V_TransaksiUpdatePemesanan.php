@@ -93,7 +93,7 @@
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td width="5%" style="vertical-align:center; text-align:center;">
-                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/edit/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
+                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/dataOrder/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
                                                                 </td>
                                                             
                                                             </tr>
@@ -139,7 +139,8 @@
                                                             <td width="70%"><?php echo $data->ongkir ?></td>
                                                         </tr>
                                                     </table>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                   
                                                     </table>
                                                     <table class="table table-bordered">
                                                         <thead>
@@ -172,9 +173,11 @@
                                                                 <td><?php foreach($orderId as $data) {echo $data->grand_total;} ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <?php foreach($orderId as $data) { ?>
-                                                                <td colspan="6"><a href="<?php echo base_url('index.php/admin/C_TransaksiPemesanan/'.$data->id_order) ?>" class="btn btn-primary btn-block">Konfirmasi</a></td>
-                                                                <?php } ?>
+                                            
+                                                            <?php foreach($orderId as $data) { ?>
+                                                            <td colspan="6"><a href="<?php echo base_url('index.php/admin/C_TransaksiPemesanan/edit/'.$data->id_order) ?>" class="btn btn-primary btn-block">Konfirmasi</a></td>
+                                                            <?php } ?>
+                                                               
                                                             </tr>
                                                         </tbody>
                                                     </table>

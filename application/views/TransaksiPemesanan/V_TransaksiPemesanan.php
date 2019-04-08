@@ -38,30 +38,13 @@
                                 <div id="view" class="col-md-12">
                                     
                                     <div class="card">
-                                        <?php if($this->session->flashdata('tambah_sukses')) { ?>
+                                        <?php if($this->session->flashdata('success')) { ?>
                                             <div class="card" style="padding:10px;">
                                                 <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('tambah_sukses') ?></h4>
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('success') ?></h4>
                                                 </div>
                                             </div>
                                         <?php } ?>
-
-                                        <?php if($this->session->flashdata('edit_sukses')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                   <h4 style="color:#3d3d3d"> <?php echo $this->session->flashdata('edit_sukses') ?></h4>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-
-                                        <?php if($this->session->flashdata('del_sukses')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_sukses') ?></h4>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-
                                         
                                         <div class="row">
                                             <!--Table-->
@@ -93,7 +76,7 @@
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td width="5%" style="vertical-align:center; text-align:center;">
-                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/index/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
+                                                                    <a href="<?php echo site_url('admin/C_TransaksiPemesanan/dataOrder/'.$b->id_order) ?>" data-toggle="tooltip" title="Detail" class="btn btn-info btn-sm">Detail</a>
                                                                 </td>
                                                             
                                                             </tr>
