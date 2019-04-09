@@ -18,6 +18,7 @@ class Akun extends CI_Controller {
 
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
+        $data['order'] = $this->M_FrontProduct->getOrderCustomer($this->session->userdata('id_customer'));
         $data['customer'] = $this->M_MasterCustomer->getById($this->session->userdata('id_customer'));
         
         $this->load->view('Front/V_FrontAkun', $data);

@@ -27,20 +27,21 @@
             <form method="post" action="<?php echo base_url('index.php/DetilProduct/addToCart') ?>">
               <div class="row">
 
-                <input type="hidden" name="id" value="<?php echo $product->id_product ?>">
+                <input type="hidden" name="id" id="id_productdetil" value="<?php echo $product->id_product ?>">
                 <input type="hidden" name="berat" value="<?php echo $product->berat ?>">
                 <div class="col-md-2">
                   <label>Ukuran</label>
                 </div>
                 <div class="col-md-4">
-                  <select name="ukuran" class="form-control text-center">
+                  <select name="ukuran" id="ukuranProduct" class="form-control text-center">
+                    <option>Pilih Size</option>
                     <?php foreach($size as $s) { ?>
                     <option value="<?php echo $s->id_size ?>" style="text-align:center;"><?php echo $s->nm_size ?></option>
                     <?php } ?>
                   </select>
                 </div>
               </div><br>
-              
+              <input type="text" name="dataStok" id="dataStok">
               <div class="row">
                 <div class="col-md-2">
                   <label>Jumlah</label>

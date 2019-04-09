@@ -59,7 +59,7 @@ class C_MasterProduct extends CI_Controller {
         $this->load->view('MasterProduct/V_MasterUpdateProduct', $data);
     }
 
-    public function delete($id_product, $id_size=array()) {
+    public function delete($id_product) {
 
         if($this->M_MasterProduct->delete($id_product, $id_size)) {
             $this->session->set_flashdata('del_sukses', 'Data Berhasil Dihapus');
@@ -76,6 +76,17 @@ class C_MasterProduct extends CI_Controller {
         $data['size'] = $table->getDetilSize($id);
 
         $this->load->view('MasterProduct/V_ViewProduct', $data);
+    }
+
+    public function stok($id) {
+        $data['detil_size'] = $this->M_MasterProduct->getDetilSize($id);
+        $this->load->view('MasterProduct/V_MasterStokProduct', $data);
+    }
+
+    public function editStok() {
+        $this->M_MasterProduct->updateStok();
+        $this->session->set_flashdata('edit_sukses','Stok Berhasil di Update');
+        redirect('admin/C_MasterProduct');
     }
     
     public function pdf() {

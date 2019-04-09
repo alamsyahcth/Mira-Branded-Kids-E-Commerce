@@ -16,6 +16,11 @@ class DetilProduct extends CI_Controller {
         $this->load->view('Front/V_FrontDetilProduct', $data);
     }
 
+    public function cekProduct() {
+        $this->M_FrontProduct->getStok($this->input->post('id'),$this->input->post('ukuran'));
+        //$this->load->view('Front/V_FrontDetilProduct', $data);
+    }
+
     public function addToCart() {
         $id_product = $this->input->post('id');
         $qty = $this->input->post('qty');

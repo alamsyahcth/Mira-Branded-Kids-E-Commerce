@@ -77,6 +77,7 @@
                                                         <th style="text-align:center;">Nama Barang</th>
                                                         <th style="text-align:center;">Harga</th>
                                                         <th style="text-align:center;">Gambar</th>
+                                                        <th style="text-align:center;">Stok</th>
                                                         <th style="text-align:center;">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -88,9 +89,12 @@
                                                     <tr>
                                                         <td width="5%" style="vertical-align:middle;"><?php echo $no++ ?></td>
                                                         <td width="10%" style="vertical-align:middle;"><?php echo $b->id_product ?></td>
-                                                        <td width="30%" style="vertical-align:middle;"><?php echo $b->nm_product ?></td>
+                                                        <td width="25%" style="vertical-align:middle;"><?php echo $b->nm_product ?></td>
                                                         <td width="20%" style="vertical-align:middle;"><?php echo $b->harga ?></td>
                                                         <td width="15%" style="vertical-align:middle; text-align:center;"><img src="<?php echo base_url('upload/product/'.$b->gambar) ?>" width="80%"></td>
+                                                        <td width="5%" style="vertical-align:middle; text-align:center;">
+                                                            <a href="<?php echo site_url('admin/C_MasterProduct/stok/'.$b->id_product) ?>" data-toggle="tooltip" title="Data Stok" class="btn btn-success btn-xs">Stok</a>
+                                                        </td>
                                                         <td width="20%" style="vertical-align:middle; text-align:center;">
 
                                                             <!--View-->

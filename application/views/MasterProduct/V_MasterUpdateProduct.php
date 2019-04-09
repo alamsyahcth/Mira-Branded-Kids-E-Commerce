@@ -124,26 +124,6 @@
                                                                     <?php form_error('deskripsi') ?>
                                                                 </div>
                                                             </div>
-                                                            
-                                                            <div class="card">
-                                                                <div class="card-header">
-                                                                    <div class="card-title">Data Stok</div>
-                                                                </div>
-                                                                <div class="card-body">
-                                                                    <?php foreach($size as $s) { ?>
-                                                                    <div class="row">
-                                                                        <div class="col-md-8">
-                                                                            <input type="hidden" name="id_size[]" id="size[]" value="<?php echo $s->id_size ?>" required="">
-                                                                            <input type="text" value="<?php echo $s->nm_size ?>" class="form-control" readonly="">
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <input type="number" name="stok[]" id="stok[]" value="<?php echo $s->stok ?>" class="form-control" required="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <br>
-                                                                    <?php } ?>
-                                                                </div>
-                                                            </div>
                                                         </div>
 
                                                     </div>

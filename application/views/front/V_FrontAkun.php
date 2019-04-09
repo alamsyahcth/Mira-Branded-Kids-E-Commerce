@@ -20,21 +20,45 @@
                         <table class="table table-stripted table-hover" style="color:#000000;">
                             <thead>
                                 <tr>
-                                    <th>No Invoice</th>
-                                    <th>Tanggal</th>
-                                    <th>Status</th>
-                                    <th>Total</th>
-                                    <th>No Resi</th>
+                                    <th style="text-align:center;">Id Order</th>
+                                    <th style="text-align:center;">Tanggal</th>
+                                    <th style="text-align:center;">Status</th>
+                                    <th style="text-align:center;">Total</th>
+                                    <th style="text-align:center;">No Resi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for ($i=0; $i < 4; $i++) { ?>
+                                <?php foreach($order as $data) { ?>
                                 <tr>
-                                    <td>0001</td>
-                                    <td>21-04-2019</td>
-                                    <td>Belum Bayar</td>
-                                    <td>RP.100000</td>
-                                    <td>1267362516283725</td>
+                                    <td style="text-align:center;"><?php echo $data->id_order ?></td>
+                                    <td style="text-align:center;"><?php echo $data->tanggal_order ?></td>
+                                    <td style="text-align:center;">
+                                        <?php if($data->status == '1') { ?>
+                                             <p class="text-danger" style="font-weight:bold;">Belum Di Konfirmasi</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status == '2') { ?>
+                                             <p class="text-primary" style="font-weight:bold;">Sudah Di Konfirmasi</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status == '3') { ?>
+                                             <p class="text-primary" style="font-weight:bold;">Sudah Bayar</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status == '4') { ?>
+                                             <p class="text-primary" style="font-weight:bold;">Dikirim</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status == '5') { ?>
+                                             <p class="text-success" style="font-weight:bold;">Selesai</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status == '6') { ?>
+                                             <p class="text-danger" style="font-weight:bold;">Batal</p>
+                                        <?php } ?>
+                                    </td>
+                                    <td style="text-align:center;"><?php echo $data->grand_total ?></td>
+                                    <td style="text-align:center;">1267362516283725</td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

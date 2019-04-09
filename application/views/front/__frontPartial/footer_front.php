@@ -197,5 +197,23 @@
       });
     </script>
     <!--Grand_Total-->
+    <script>
+      $(document).ready(function() {
+        $('#ukuranProduct').change(function() {
+          var ukuranProduct = $('#ukuranProduct').val();
+          var id_productdetil = $('#id_productdetil').val();
+          $.ajax({
+            url:"<?php echo base_url() ?>index.php/DetilProduct/cekProduct",
+            method:"post",
+            data:{'id_product':id_productdetil,'id_size':ukuranProduct},
+            success:function(response){
+              alert(response);
+              ('#dataStok').val(result);
+            }
+          });
+        });
+      });
+    </script>
+    <!--Data Stok-->
   </body>
 </html>

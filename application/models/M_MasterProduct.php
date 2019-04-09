@@ -13,7 +13,6 @@ class M_MasterProduct extends CI_Model {
     public $berat;
     public $gambar='NOIG.jpg';
     public $deskripsi;
-    public $stok;
     public $id_kategori;
 
     public function rules() {
@@ -87,7 +86,7 @@ class M_MasterProduct extends CI_Model {
     }
 
     public function getDetilSize($id) {
-        $sql = "SELECT b.id_size, nm_size, stok
+        $sql = "SELECT a.id_product, b.id_size, nm_size, stok
                 FROM product a, detil_size b, size c
                 WHERE a.id_product=b.id_product AND b.id_size=c.id_size
                 AND a.id_product='$id'";
@@ -106,7 +105,6 @@ class M_MasterProduct extends CI_Model {
         $this->gambar = $this->_uploadImage();
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['id_kategori'];
-        $this->stok = $post['stok'];
 
         //Data Multiple Insert
         $data = array();
@@ -115,7 +113,7 @@ class M_MasterProduct extends CI_Model {
             array_push($data, array(
                 'id_product'=>$this->id_product,
                 'id_size'=>$id,
-                'stok'=>$this->stok[$i]
+                'stok'=>$post['stok'][$i]
             ));
             $i++;
         }
@@ -145,31 +143,26 @@ class M_MasterProduct extends CI_Model {
         }
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['id_kategori'];
-        $this->stok = $post['stok'];
-
-        //Data Multiple Insert
-        $data = array();
-        $i=0;
-        foreach ($post['id_size'] as $id) {
-            array_push($data, array(
-                'id_product'=>$this->id_product,
-                'id_size'=>$id,
-                'stok'=>$this->stok[$i]
-            ));
-            $i++;
-        }
         $returnUpdate = $this->db->update($this->_table, $this, array('id_product'=>$post['id_product']));
-        if ($returnUpdate) {
-            $this->updateBatch($data);
-        }
     }
 
-    public function updateBatch($data=array()) {
-        return $this->db->update_batch($this->_tabDetSize,$data, array(array($this->_table=>'id_product', $this->_tabDetSize=>'id_size')));
+    public function updateStok() {
+        $post = $this->input->post();
+        $i=0;
+        foreach ($post['id_product'] as $id) {
+            $data = array(
+                'stok'=>$post['stok'][$i]
+            );
+            $this->db->where('id_product',$post['id_product'][$i]);
+            $this->db->where('id_size',$post['id_size'][$i]);
+            $this->db->update($this->_tabDetSize,$data);
+            $i++;
+        }
     }
 
     public function delete($id) {
         $this->_delImage($id);
+        $this->db->delete($this->_tabDetSize, array('id_product'=>$id));
         return $this->db->delete($this->_table, array('id_product'=>$id));
     }
 

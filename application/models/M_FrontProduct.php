@@ -11,6 +11,7 @@ class M_FrontProduct extends CI_Model {
         $this->katTable = 'kategori';
         $this->sizeTable = 'size';
         $this->bankTable = 'bank';
+        $this->detSizeTabele = 'detil_size';
     }
 
     //get Kategori
@@ -45,6 +46,11 @@ class M_FrontProduct extends CI_Model {
         return $this->db->get_where($this->cusTable, ['id_customer'=>$id])->row_array();
     }
 
+    public function getOrderCustomer($id) {
+        $this->db->where('id_customer',$id);
+        return $this->db->get($this->ordTable)->result();
+    }
+
     public function getBank() {
         return $this->db->get($this->bankTable)->result();
     }
@@ -61,6 +67,13 @@ class M_FrontProduct extends CI_Model {
         $query = $this->db->query($sql);
 
         return $query->result();
+    }
+
+    public function getStok($id,$size) {
+        $this->db->select('stok');
+        $this->db->where('id_product', $id);
+        $this->db->where('id_size', $size);
+        return $this->db->get($this->detSizeTabele)->result();
     }
 
     public function orderID() {
