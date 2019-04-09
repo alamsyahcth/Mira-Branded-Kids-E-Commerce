@@ -1,7 +1,6 @@
 <!--Load View-->
 <?php $this->load->view('front/__frontpartial/header_front.php') ?>
 <?php $this->load->view('front/__frontpartial/navbar_front.php') ?>
-<?php $this->load->view('front/__frontpartial/slider_front.php') ?>
 <!--Load View-->
 <div class="bg-light py-3">
 
@@ -11,13 +10,13 @@
         <div class="row mb-5">
           <div class="col-md-1"></div>
           <div class="col-md-10 order-2">
-            <h1 style="text-align:center;">Produk Kami</h1>
+            <h1 style="text-align:center;">Kategori</h1>
             <div class="row mb-5">
               <?php foreach ($data->result() as $p) { ?>
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="<?php echo base_url('index.php/DetilProduct') ?>"><img src="<?php echo base_url('upload/product/'.$p->gambar) ?>" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="<?php echo base_url('index.php/DetilProduct/data/'.$p->id_product) ?>"><img src="<?php echo base_url('upload/product/'.$p->gambar) ?>" alt="Image placeholder" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
                     <h2><a href="<?php echo base_url('index.php/DetilProductdata/'.$p->id_product) ?>"><?php echo $p->nm_product ?></a></h3>
