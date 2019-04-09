@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_TransaksiPemesanan extends CI_Model {
+class M_TransaksiStatusPemesanan extends CI_Model {
     private $_tableOrder = 'orders';
     private $_tableDetilOrder = 'detil_orders';
     private $_tableCustomer = 'customers';
@@ -10,8 +10,7 @@ class M_TransaksiPemesanan extends CI_Model {
    public function getOrder() {
         $sql = "SELECT *
                 FROM customer a, orders b
-                WHERE a.id_customer=b.id_customer AND b.status='1' OR b.status='2'
-                GROUP BY b.id_order
+                WHERE a.id_customer=b.id_customer
                 ORDER BY b.id_order DESC";
        return $this->db->query($sql)->result();
    }

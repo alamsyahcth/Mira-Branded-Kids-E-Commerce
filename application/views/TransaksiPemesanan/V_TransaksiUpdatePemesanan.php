@@ -12,8 +12,8 @@
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">Master</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Barang</li>
+                                    <li class="breadcrumb-item">Transaksi</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Pemesanan</li>
                                 </ol>
                             </nav>
                         </div>

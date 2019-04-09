@@ -25,6 +25,7 @@
                                     <th style="text-align:center;">Status</th>
                                     <th style="text-align:center;">Total</th>
                                     <th style="text-align:center;">No Resi</th>
+                                    <th style="text-align:center;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +43,7 @@
                                         <?php } ?>
 
                                         <?php if($data->status == '3') { ?>
-                                             <p class="text-primary" style="font-weight:bold;">Sudah Bayar</p>
+                                             <p class="text-primary" style="font-weight:bold;">Konfirmasi Pembayaran</p>
                                         <?php } ?>
 
                                         <?php if($data->status == '4') { ?>
@@ -59,6 +60,7 @@
                                     </td>
                                     <td style="text-align:center;"><?php echo $data->grand_total ?></td>
                                     <td style="text-align:center;">1267362516283725</td>
+                                    <td style="text-align:center;"><a href="#" class="btn btn-primary btn-xs">Selesai</a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
