@@ -131,7 +131,7 @@
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url('Assets/assets/images/users/1.jpg') ?>" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>Kelola Akun <?php echo $this->session->userdata('username') ?></a>
+                                <a class="dropdown-item" href="<?php echo base_url('index.php/admin/C_MasterAdmin/edit') ?>"><i class="ti-settings m-r-5 m-l-5"></i>Kelola Akun <?php echo $this->session->userdata('username') ?></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo base_url('index.php/admin/login/logout') ?>"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                             </div>

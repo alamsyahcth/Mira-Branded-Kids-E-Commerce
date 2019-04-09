@@ -164,6 +164,26 @@
         }
     </script>
     <!--rajaongkir-->
+
+     <!--Cek Ketersediaan Email-->
+    <script>
+      $(document).ready(function() {
+        $('#username').change(function() {
+          var username = $('#username').val();
+          if (username != '') {
+            $.ajax({
+              url:"<?php echo base_url(); ?>index.php/admin/C_MasterAdmin/cekUsername/",
+              method:"post",
+              data:{'username':username},
+              success:function(data) {
+                $('#pesanUsername').html(data);
+              }
+            });
+          }
+        });
+      });
+    </script>
+    <!--Cek Ketersediaan Email-->
 </body>
 
 </html>
