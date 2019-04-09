@@ -36,50 +36,87 @@
                             <div class="row">
                                 <!--Start Table-->
                                 <div id="view" class="col-md-12">
-                                    
-                                    <div class="card">
-                                        <?php if($this->session->flashdata('tambah_sukses')) { ?>
-                                            <div class="card" style="padding:10px;" id="alert_s">
-                                                <div class="alert" role="alert" style="background:#32ff7e;">
-                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('tambah_sukses') ?></h4>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 style="text-align:center;">Data Stok</h4>
+                                                    </div>
+                                                    <div class="card-body"> 
+                                                        <div class="row">
+                                                            <form clas="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterProduct/editStok') ?>" method="post">
+                                                                <table>
+                                                                    <tr>
+                                                                        <td style="text-align:center">Size</td>
+                                                                        <td style="text-align:center">Stok</td>
+                                                                    </tr>
+                                                                    
+                                                                    <?php foreach($detil_size as $data) { ?>
+                                                                    <tr>
+                                                                        <td style="text-align:center">
+                                                                            <input type="hidden" name="id_product[]" value="<?php echo $data->id_product ?>">
+                                                                            <input type="hidden" name="id_size[]" value="<?php echo $data->id_size ?>" class="form-control" readonly>
+                                                                            <input type="text" class="form-control" value="<?php echo $data->nm_size ?>" readonly>
+                                                                        </td>
+                                                                        <td style="text-align:center">
+                                                                            <input type="number" name="stok[]" value="<?php echo $data->stok ?>" class="form-control">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php } ?>
+                                                                    <tr>
+                                                                        <td colspan="2"><input type="submit" value="Update" name="update" class="btn btn-md btn-primary btn-block"></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        <?php } ?>
-
-                                         <div class="card">
-                                            <div class="card-header">
-                                                <h4 style="text-align:center;">Data Stok</h4>
-                                            </div>
-                                            <div class="card-body"> 
-                                                <div class="row">
-                                                    <div class="col-md-4"></div>
-                                                    <div class="col-md-4">
-                                                        <form clas="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterProduct/editStok') ?>" method="post">
-                                                            <table>
-                                                                <tr>
-                                                                    <td style="text-align:center">Size</td>
-                                                                    <td style="text-align:center">Stok</td>
-                                                                </tr>
-                                                               
-                                                                <?php foreach($detil_size as $data) { ?>
-                                                                <tr>
-                                                                    <td style="text-align:center">
-                                                                        <input type="hidden" name="id_product[]" value="<?php echo $data->id_product ?>">
-                                                                        <input type="hidden" name="id_size[]" value="<?php echo $data->id_size ?>" class="form-control" readonly>
-                                                                        <input type="text" class="form-control" value="<?php echo $data->nm_size ?>" readonly>
-                                                                    </td>
-                                                                    <td style="text-align:center">
-                                                                        <input type="number" name="stok[]" value="<?php echo $data->stok ?>" class="form-control">
-                                                                    </td>
-                                                                </tr>
-                                                                <?php } ?>
-                                                                <tr>
-                                                                    <td colspan="2"><input type="submit" value="Update" name="update" class="btn btn-md btn-primary btn-block"></td>
-                                                                </tr>
-                                                            </table>
-                                                        </form>
+                                        </div>
+                                        <!--End Table-->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <?php if($this->session->flashdata('tambah_sukses')) { ?>
+                                                    <div class="card" style="padding:10px;" id="alert_s">
+                                                        <div class="alert" role="alert" style="background:#32ff7e;">
+                                                            <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('tambah_sukses') ?></h4>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-4"></div>
+                                                <?php } ?>
+
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 style="text-align:center;">Data Size Baru</h4>
+                                                    </div>
+                                                    <div class="card-body"> 
+                                                        <div class="row">
+                                                            <form clas="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterProduct/tambahStok') ?>" method="post">
+                                                                <table width="100%">
+                                                                    <tr>
+                                                                        <td width="50%" style="text-align:center; width:50%;">Size</td>
+                                                                        <td width="50%" style="text-align:center; width:50%;">Stok</td>
+                                                                    </tr>
+                                                                
+                                                                    <?php foreach($sizeBaru as $data) { ?>
+                                                                    <tr>
+                                                                        <td style="text-align:center">
+                                                                            <input type="hidden" name="id_product[]" value="<?php echo $id ?>">
+                                                                            <input type="hidden" name="id_size[]" value="<?php echo $data->id_size ?>" class="form-control" readonly>
+                                                                            <input type="text" class="form-control" value="<?php echo $data->nm_size ?>" readonly>
+                                                                        </td>
+                                                                        <td style="text-align:center">
+                                                                            <input type="number" name="stok[]" value="0" class="form-control">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php } ?>
+                                                                    <tr>
+                                                                        <td colspan="2"><input type="submit" value="Tambah" name="tambah" class="btn btn-md btn-primary btn-block"></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -95,6 +95,18 @@ class M_MasterProduct extends CI_Model {
         return $query->result();
     }
 
+     public function getSizeBaru($id) {
+        $sql = "SELECT id_size, nm_size
+                FROM size 
+                WHERE id_size != ALL(
+							SELECT b.id_size
+							FROM product a, size b, detil_size c
+							WHERE a.id_product=c.id_product AND b.id_size=c.id_size AND a.id_product='$id')";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
     public function save() {
         $post = $this->input->post();
         $this->id_product = $post['id_product'];
@@ -156,6 +168,20 @@ class M_MasterProduct extends CI_Model {
             $this->db->where('id_product',$post['id_product'][$i]);
             $this->db->where('id_size',$post['id_size'][$i]);
             $this->db->update($this->_tabDetSize,$data);
+            $i++;
+        }
+    }
+
+    public function addStok() {
+        $post = $this->input->post();
+        $i=0;
+        foreach ($post['id_product'] as $id) {
+            $data = array(
+                'id_product'=>$id,
+                'id_size'=>$post['id_size'][$i],
+                'stok'=>$post['stok'][$i]
+            );
+            $this->db->insert($this->_tabDetSize,$data);
             $i++;
         }
     }

@@ -79,13 +79,21 @@ class C_MasterProduct extends CI_Controller {
     }
 
     public function stok($id) {
+        $data['id'] = $id;
         $data['detil_size'] = $this->M_MasterProduct->getDetilSize($id);
+        $data['sizeBaru'] = $this->M_MasterProduct->getSizeBaru($id);
         $this->load->view('MasterProduct/V_MasterStokProduct', $data);
     }
 
     public function editStok() {
         $this->M_MasterProduct->updateStok();
         $this->session->set_flashdata('edit_sukses','Stok Berhasil di Update');
+        redirect('admin/C_MasterProduct');
+    }
+
+    public function tambahStok() {
+        $this->M_MasterProduct->addStok();
+        $this->session->set_flashdata('tambah_sukses','Stok Berhasil di Update');
         redirect('admin/C_MasterProduct');
     }
     
