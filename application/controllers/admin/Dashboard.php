@@ -5,7 +5,7 @@ class Dashboard extends CI_Controller {
 
 	public function __construct(){
         parent::__construct();
-        //$this->load->model('M_MasterBarang');
+        $this->load->model('M_Dashboard');
         $this->load->library('form_validation');
 
         //Cek Login
@@ -15,6 +15,12 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function index() {
-		$this->load->view('dashboard');
+        $data['totalCustomer'] = $this->M_Dashboard->getTotalCustomer();
+        $data['pesananTerbaru'] = $this->M_Dashboard->getPesananTerbaru();
+        $data['totalTransaksi'] = $this->M_Dashboard->getTotalTransaksi();
+        $data['transaksiSelesai'] = $this->M_Dashboard->getTransaksiSelesai();
+        $data['transaksiBatal'] = $this->M_Dashboard->getTransaksiBatal();
+        $data['jumlahProduct'] = $this->M_Dashboard->getJumlahProduct();
+        $this->load->view('dashboard', $data);
 	}
 }

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('Assets/assets/images/favicon.png')  ?>">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>Login</title>
     <!-- Custom CSS -->
     <link href="<?php echo base_url('Assets/dist/css/style.min.css')  ?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

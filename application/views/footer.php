@@ -5,7 +5,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                Copyright &copy; liberoslc 2019
+                Copyright &copy; Mira Branded Kids 2019
                 <!--All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.-->
             </footer>
             <!-- ============================================================== -->

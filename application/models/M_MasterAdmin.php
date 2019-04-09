@@ -47,7 +47,8 @@ class M_MasterAdmin extends CI_Model {
    public function update() {
         $post = $this->input->post();
         $this->username = $post['username'];
-        $this->password = $post['password'];
+        $this->password = md5($post['password']);
+        $this->level = '1';
         $this->db->update($this->_table, $this, array('username'=>$post['username']));
    }
 
