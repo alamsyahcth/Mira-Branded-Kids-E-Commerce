@@ -101,6 +101,11 @@
                                                             <td width="70%"></td>
                                                         </tr>
                                                         <tr>
+                                                            <td width="25%">Tanggal Order</td>
+                                                            <td width="5%">:</td>
+                                                            <td width="70%"></td>
+                                                        </tr>
+                                                        <tr>
                                                             <td width="25%">Nama Customer</td>
                                                             <td width="5%">:</td>
                                                             <td width="70%"></td>

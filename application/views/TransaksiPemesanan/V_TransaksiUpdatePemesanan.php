@@ -118,6 +118,11 @@
                                                             <td width="5%">:</td>
                                                             <td width="70%"><?php echo $data->id_order ?></td>
                                                         </tr>
+                                                         <tr>
+                                                            <td width="25%">Tanggal Order</td>
+                                                            <td width="5%">:</td>
+                                                            <td width="70%"><?php echo $data->tanggal_order ?></td>
+                                                        </tr>
                                                         <tr>
                                                             <td width="25%">Nama Customer</td>
                                                             <td width="5%">:</td>

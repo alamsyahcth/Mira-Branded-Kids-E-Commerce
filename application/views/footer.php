@@ -58,7 +58,10 @@
 
     <!--Data Table-->
     <script>
-        $('#dataTableConfig').DataTable();        
+        $('#dataTableConfig').DataTable(); 
+        $('#tableSort').DataTable({
+            "order":[[1,"desc"]]
+        });        
     </script>
     <!--Data Table-->
 

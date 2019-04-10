@@ -32,9 +32,9 @@ class M_TransaksiStatusPemesanan extends CI_Model {
         return $this->db->query($sql)->result();
    }
 
-   public function updateStatus($id) {
+   public function batalOrder($id) {
         $data = array(
-            'status'=>'2'
+            'status'=>'6'
         );
         $this->db->where('id_order',$id);
         $this->db->update($this->_tableOrder, $data);

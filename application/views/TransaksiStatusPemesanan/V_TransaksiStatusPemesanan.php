@@ -39,19 +39,18 @@
                                     
                                     <div class="card">
                                         <?php if($this->session->flashdata('success')) { ?>
-                                            <div class="card" style="padding:10px;">
-                                                <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
-                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('success') ?></h4>
-                                                </div>
+                                            <div class="alert" role="alert" id="alert_s" style="background:#32ff7e;">
+                                                <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('success') ?></h4>
                                             </div>
                                         <?php } ?>
 
                                         <div class="card-body">
-                                            <table class="table table-hover">
+                                            <table id="tableSort" class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th width="10%" style="text-align:center;">Order Id</th>
-                                                        <th width="80%" style="text-align:center;">Status Pemesanan</th>
+                                                        <th width="10%" style="text-align:center;">Tanggal</th>
+                                                        <th width="70%" style="text-align:center;">Status Pemesanan</th>
                                                         <th width="5%" style="text-align:center;">Detail</th>
                                                         <th width="5%" style="text-align:center;">Batal</th>
                                                     </tr>
@@ -60,6 +59,8 @@
                                                     <?php foreach($order as $data) { ?>
                                                     <tr>
                                                         <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_order ?></td>
+
+                                                        <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_order ?></td>
 
                                                         <td style="text-align:center; vertical-align:middle;">
 
@@ -120,10 +121,24 @@
                                                              
                                                         </td>
                                                         <td style="text-align:center; vertical-align:middle;">
-                                                            <a href="#" class="btn btn-primary btn-xs">Detail</a>
+                                                            <?php if($data->status == '1' || $data->status == '2') { ?>
+                                                                <a href="<?php echo base_url('index.php/admin/C_TransaksiPemesanan/dataOrder/'.$data->id_order) ?>" class="btn btn-primary btn-xs">Detail</a>
+                                                            <?php } ?>
+
+                                                            <?php if($data->status == '3' || $data->status == '4') { ?>
+                                                                <a href="<?php echo base_url('index.php/admin/C_TransaksiPembayaran/dataOrder/'.$data->id_order) ?>" class="btn btn-primary btn-xs">Detail</a>
+                                                            <?php } ?>
+
+                                                            <?php if($data->status == '5' || $data->status == '6') { ?>
+                                                                <button class="btn btn-primary btn-xs" disabled>Detail</button>
+                                                            <?php } ?>
                                                         </td>
                                                         <td style="text-align:center; vertical-align:middle;">
-                                                            <a href="#" class="btn btn-secondary btn-xs">Batal</a>
+                                                            <?php if($data->status == '6') { ?>
+                                                            <button class="btn btn-secondary btn-xs" disabled>Batal</button>
+                                                            <?php } else { ?>
+                                                            <a href="<?php echo base_url('index.php/admin/C_TransaksiStatusPemesanan/batal/'.$data->id_order) ?>" class="btn btn-secondary btn-xs">Batal</a>
+                                                            <?php } ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>

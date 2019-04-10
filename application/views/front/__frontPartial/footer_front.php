@@ -48,7 +48,7 @@
               <ul class="list-unstyled">
                 <li class="address">Vila Mutiara, Blok F4 No.3 Pondok Jagung Timur, Serpong, Tangerang Selatan</li>
                 <li class="phone">0817 1430 41</li>
-                <li class="email">mirabrandedkidsgmail.com</li>
+                <li class="email">mirabrandedkids@gmail.com</li>
               </ul>
             </div>
 

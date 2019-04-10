@@ -19,11 +19,11 @@ class C_TransaksiStatusPemesanan extends CI_Controller {
         $data['order'] = $this->M_TransaksiStatusPemesanan->getOrder();
         $this->load->view('TransaksiStatusPemesanan/V_TransaksiStatusPemesanan', $data);
     }
-    
-    public function edit($id) {
-        $this->M_TransaksiPemesanan->updateStatus($id);
-        $this->session->set_flashdata('success','Status berhasil diubah');
-        redirect('admin/C_TransaksiPemesanan');
+
+    public function batal($id) {
+        $this->M_TransaksiStatusPemesanan->batalOrder($id);
+        $this->session->set_flashdata('success','Data order dibatalkan');
+        redirect('admin/C_TransaksiStatusPemesanan');
     }
     
 }
