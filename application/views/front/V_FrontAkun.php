@@ -17,23 +17,23 @@
                         <h5 class="card-title">Data Transaksi</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table table-stripted table-hover" style="color:#000000;">
+                        <table class="table table-stripted table-hover" style="color:#000000;" width="100%">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center;">Id Order</th>
-                                    <th style="text-align:center;">Tanggal</th>
-                                    <th style="text-align:center;">Status</th>
-                                    <th style="text-align:center;">Total</th>
-                                    <th style="text-align:center;">No Resi</th>
-                                    <th style="text-align:center;">Aksi</th>
+                                    <th width="15%" style="text-align:center;">Id Order</th>
+                                    <th width="20%" style="text-align:center;">Tanggal</th>
+                                    <th width="20%" style="text-align:center;">Status</th>
+                                    <th width="10%" style="text-align:center;">Total</th>
+                                    <th width="20%" style="text-align:center;">No Resi</th>
+                                    <th width="5%" style="text-align:center;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach($order as $data) { ?>
                                 <tr>
-                                    <td style="text-align:center;"><?php echo $data->id_order ?></td>
-                                    <td style="text-align:center;"><?php echo $data->tanggal_order ?></td>
-                                    <td style="text-align:center;">
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_order ?></td>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_order ?></td>
+                                    <td style="text-align:center; vertical-align:middle;">
                                         <?php if($data->status == '1') { ?>
                                              <p class="text-danger" style="font-weight:bold;">Belum Di Konfirmasi</p>
                                         <?php } ?>
@@ -58,9 +58,9 @@
                                              <p class="text-danger" style="font-weight:bold;">Batal</p>
                                         <?php } ?>
                                     </td>
-                                    <td style="text-align:center;"><?php echo $data->grand_total ?></td>
-                                    <td style="text-align:center;">1267362516283725</td>
-                                    <td style="text-align:center;"><a href="#" class="btn btn-primary btn-xs">Selesai</a></td>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->grand_total ?></td>
+                                    <td style="text-align:center; vertical-align:middle;">1267362516283725</td>
+                                    <td style="text-align:center; vertical-align:middle;"><a href="#" class="btn btn-primary btn-xs">Selesai</a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

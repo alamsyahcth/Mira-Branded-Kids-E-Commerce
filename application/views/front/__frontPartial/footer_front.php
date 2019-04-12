@@ -198,22 +198,52 @@
     </script>
     <!--Grand_Total-->
     <script>
+      function getStok() {
+        var ukuranProduct = $('#ukuranProduct').val();
+        var id_productdetil = $('#id_productdetil').val();
+        $.ajax({
+          
+        })
+      } 
       $(document).ready(function() {
         $('#ukuranProduct').change(function() {
           var ukuranProduct = $('#ukuranProduct').val();
           var id_productdetil = $('#id_productdetil').val();
           $.ajax({
-            url:"<?php echo base_url() ?>index.php/DetilProduct/cekProduct",
+            url:"<?php echo base_url() ?>index.php/DetilProduct/cekProduct/",
             method:"post",
+            dataType: "JSON",
             data:{'id_product':id_productdetil,'id_size':ukuranProduct},
-            success:function(response){
-              alert(response);
-              ('#dataStok').val(result);
+            success:function(data){
+              //alert(data);
+              $('#dataStok').val(data.length);
+              
             }
           });
         });
       });
     </script>
     <!--Data Stok-->
+
+    <!--Cek Ketersediaan Order ID-->
+    <script>
+      $(document).ready(function() {
+        $('#id_orderData').change(function() {
+          var id_order = $('#id_orderData').val();
+          var id_customer = $('#id_customerData').val();
+          if (id_order != ''  && id_customer != '') {
+            $.ajax({
+              url:"<?php echo base_url(); ?>index.php/Konfirmasi/cekOrder",
+              method:"post",
+              data:{'id_order':id_order,'id_customer':id_customer},
+              success:function(data) {
+                $('#order_result').html(data);
+              }
+            });
+          }
+        });
+      });
+    </script>
+    <!--Cek Ketersediaan Order ID-->
   </body>
 </html>

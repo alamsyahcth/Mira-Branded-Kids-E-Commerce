@@ -17,7 +17,8 @@ class DetilProduct extends CI_Controller {
     }
 
     public function cekProduct() {
-        $this->M_FrontProduct->getStok($this->input->post('id'),$this->input->post('ukuran'));
+        $getStok = $this->M_FrontProduct->getStok($this->input->post('id'),$this->input->post('ukuran'));
+        echo json_encode($getStok);
         //$this->load->view('Front/V_FrontDetilProduct', $data);
     }
 

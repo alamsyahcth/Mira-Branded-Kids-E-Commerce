@@ -70,10 +70,15 @@ class M_FrontProduct extends CI_Model {
     }
 
     public function getStok($id,$size) {
-        $this->db->select('stok');
-        $this->db->where('id_product', $id);
-        $this->db->where('id_size', $size);
-        return $this->db->get($this->detSizeTabele)->result();
+        //$this->db->select('stok');
+        //$this->db->where('id_product', $id);
+        //$this->db->where('id_size', $size);
+        $sql = "SELECT stok FROM detil_size WHERE id_product='$id' AND id_size='$size'";
+        $data['tahta'] = $this->db->query($sql)->result();
+        foreach ($tahta as $t) {
+            return $t->stok;
+        }
+        //return $this->db->get('detil_size')->result();
     }
 
     public function orderID() {
