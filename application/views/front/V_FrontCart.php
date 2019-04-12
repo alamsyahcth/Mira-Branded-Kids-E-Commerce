@@ -20,11 +20,12 @@
                 <thead>
                   <tr>
                     <th class="product-thumbnail" width="20%">Foto</th>
-                    <th class="product-name" width="40%">Product</th>
+                    <th class="product-name" width="35%">Product</th>
                     <th class="product-price" width="20%">Harga</th>
                     <th class="product-quantity" width="5%">Quantity</th>
                     <th class="product-quantity" width="5%">Ukuran</th>
                     <th class="product-total" width="20%">Total</th>
+                    <th class="product-remove" width="5%">Tambah</th>
                     <th class="product-remove" width="5%">Hapus</th>
                   </tr>
                 </thead>
@@ -58,6 +59,10 @@
 
                     <td>
                       Rp.<?php echo $items["subtotal"]; ?>
+                    </td>
+
+                    <td>
+                      <a href="<?php echo base_url('index.php/DetilProduct/data/'.$items['id_product']) ?>" class="btn btn-primary btn-sm">Tambah</a>
                     </td>
                     <td>
                       <a href="<?php echo base_url('index.php/cart/removeCart/'.$items['rowid']) ?>" class="btn btn-primary btn-sm">X</a>

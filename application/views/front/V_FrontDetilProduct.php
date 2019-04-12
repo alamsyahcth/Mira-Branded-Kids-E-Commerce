@@ -33,7 +33,7 @@
                   <label>Ukuran</label>
                 </div>
                 <div class="col-md-4">
-                  <select name="ukuran" id="ukuranProduct" class="form-control text-center">
+                  <select name="ukuran" id="ukuranProduct" class="form-control text-center" style="text-align:center;">
                     <option>Pilih Size</option>
                     <?php foreach($size as $s) { ?>
                     <option value="<?php echo $s->id_size ?>" style="text-align:center;"><?php echo $s->nm_size ?></option>
@@ -41,7 +41,7 @@
                   </select>
                 </div>
               </div><br>
-              <input type="text" name="dataStok" id="dataStok">
+              <!--<input type="text" name="dataStok" id="dataStok">-->
               <div class="row">
                 <div class="col-md-2">
                   <label>Jumlah</label>

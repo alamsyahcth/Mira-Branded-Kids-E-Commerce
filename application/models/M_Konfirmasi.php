@@ -136,7 +136,7 @@ class M_Konfirmasi extends CI_Model {
 
     private function _uploadImage() {
         $date = date("ymd");
-        $config['upload_path'] = './upload/bank/';
+        $config['upload_path'] = './upload/confirm/';
         $config['allowed_types'] = 'jpg|png';
         $config['file_name'] = $this->id_confirm.$date;
         $config['overwrite'] = true;

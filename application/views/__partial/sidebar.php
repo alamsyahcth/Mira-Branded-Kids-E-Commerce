@@ -28,7 +28,7 @@
                             <ul aria-expanded="false" class="collapse  first-level" style="padding-left: 20px;">
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_TransaksiStatusPemesanan') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Status Pesanan </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_TransaksiPemesanan') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pemesanan </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pembayaran </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_TransaksiPembayaran') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Pembayaran </span></a></li>
                                 <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Retur </span></a></li>
 
                             </ul>
