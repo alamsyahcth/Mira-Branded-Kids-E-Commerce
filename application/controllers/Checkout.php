@@ -141,6 +141,23 @@ class Checkout extends CI_Controller {
         $this->email->message($this->load->view('front/V_FrontEmailInvoice',$data, TRUE));
 
         return $this->email->send();
-    }
+	}
+	
+	public function cekStok() {
+		$dataProduct = array();
+		foreach($this->cart->content() as $data) {
+			$dataProduct[$i]['id_product'] = $item['id_product'];
+			$dataProduct[$i]['id_size'] = $item['Size'];
+			$dataProduct[$i]['qty'] = $item['qty'];
+			$i++;
+		}
+
+		if ($this->M_FrontProduct->cekSisaStok($dataProduct)) {
+			redirect('Checkout');
+		} else {
+			$this->session->set_Flashdata('fail','Maaf stok tidak mencukupi');
+			redirect('Cart');
+		}
+	}
 
 }

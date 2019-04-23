@@ -59,8 +59,22 @@
                                         <?php } ?>
                                     </td>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->grand_total ?></td>
-                                    <td style="text-align:center; vertical-align:middle;">1267362516283725</td>
-                                    <td style="text-align:center; vertical-align:middle;"><a href="#" class="btn btn-primary btn-xs">Selesai</a></td>
+                                    <td style="text-align:center; vertical-align:middle;">
+                                        <?php 
+                                            foreach($resi as $r) {
+                                                if ($r->id_order == $data->id_order) {
+                                                    echo $r->no_resi;
+                                                }
+                                            } 
+                                        ?>
+                                    </td>
+                                    <td style="text-align:center; vertical-align:middle;">
+                                        <?php if ($data->status == '4') { ?>
+                                        <a href="<?php echo base_url('index.php/Akun/ubahStatus/'.$data->id_order) ?>" class="btn btn-primary btn-xs">Selesai</a>
+                                        <?php } else { ?>
+                                        <button class="btn btn-primary btn-xs" disabled>Selesai</button>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

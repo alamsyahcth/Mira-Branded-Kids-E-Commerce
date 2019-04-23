@@ -10,8 +10,8 @@
             <p style="color: #868686; font-family:Helvetica; font-size: 14pt; margin:10px; text-align: center;">Terima Kasih atas pemesanan anda !</p>
             <p style="color: #868686; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: center;">Hai <?php foreach($customer as $data) {echo $data->nm_customer;} ?>, pesanan kamu akan dikirim setelah kamu melakukan konfirmasi pembayaran !</p>
             <p style="color: #868686; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: center;">Silahkan konfirmasi pembayaran disini</p>
-            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="#" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Konfirmasi Pembayaran</a></p>
-            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="#" style="background: #4b4b4b; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Invoice</a></p>
+            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="<?php echo base_url('index.php/Konfirmasi') ?>" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Konfirmasi Pembayaran</a></p>
+            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="<?php echo base_url('index.php/OrderDetail/cetakInvoice/'.$data->id_order) ?>" style="background: #4b4b4b; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Invoice</a></p>
         </td>
     </tr>
     <tr>

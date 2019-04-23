@@ -19,6 +19,7 @@ class Akun extends CI_Controller {
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['order'] = $this->M_FrontProduct->getOrderCustomer($this->session->userdata('id_customer'));
+        $data['resi'] = $this->M_FrontProduct->getResi($this->session->userdata('id_customer'));
         $data['customer'] = $this->M_MasterCustomer->getById($this->session->userdata('id_customer'));
         
         $this->load->view('Front/V_FrontAkun', $data);
@@ -46,6 +47,11 @@ class Akun extends CI_Controller {
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['k'] = $table->getById($this->session->userdata('id_customer'));
         $this->load->view('Front/V_FrontEditAkun',$data);
+    }
+
+    public function ubahStatus($id) {
+        $this->M_FrontProduct->ubahStatusOrder($id);
+        redirect('Akun');
     }
 
 }

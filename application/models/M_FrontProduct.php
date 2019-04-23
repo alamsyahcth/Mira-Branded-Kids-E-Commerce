@@ -12,6 +12,7 @@ class M_FrontProduct extends CI_Model {
         $this->sizeTable = 'size';
         $this->bankTable = 'bank';
         $this->detSizeTabele = 'detil_size';
+        $this->resiTable = 'detil_size';
     }
 
     //get Kategori
@@ -49,6 +50,14 @@ class M_FrontProduct extends CI_Model {
     public function getOrderCustomer($id) {
         $this->db->where('id_customer',$id);
         return $this->db->get($this->ordTable)->result();
+    }
+
+    public function getResi($id) {
+        $sql = "SELECT a.id_order, tanggal_order, status, grand_total, no_resi
+                FROM orders a, resi b, customer c
+                WHERE a.id_order=b.id_order AND a.id_customer=c.id_customer AND c.id_customer='$id'
+                ORDER BY a.id_order DESC";
+        return $this->db->query($sql)->result();
     }
 
     public function getBank() {
@@ -149,6 +158,22 @@ class M_FrontProduct extends CI_Model {
         $query = $this->db->query($sql);
 
         return $query->result();
+    }
+
+    public function orderUpdate($id_order) {
+        $data = array(
+            'status'=>'3'
+        );
+        $this->db->where('id_order', $id_order);
+        return $this->db->update($this->_tableOrder,$data);
+    }
+
+    public function ubahStatusOrder($id) {
+        $data = array(
+            'status'=>'5'
+        );
+        $this->db->where('id_order', $id);
+        return $this->db->update($this->ordTable,$data);
     }
 
 }
