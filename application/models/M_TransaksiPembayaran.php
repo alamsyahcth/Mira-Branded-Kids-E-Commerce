@@ -74,6 +74,7 @@ class M_TransaksiPembayaran extends CI_Model {
         $data = array(
             'id_resi'=>$this->input->post('id_resi'),
             'no_resi'=>$this->input->post('no_resi'),
+            'tanggal_resi'=>$this->input->post('tanggal_resi'),
             'id_order'=>$this->input->post('id_order')
         );
         return $this->db->insert($this->_tableResi,$data);

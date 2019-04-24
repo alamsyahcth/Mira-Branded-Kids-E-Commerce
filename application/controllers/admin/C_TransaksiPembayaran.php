@@ -74,7 +74,7 @@ class C_TransaksiPembayaran extends CI_Controller {
             <h4>Dikirim menggunakan jasa pengiriman'.$kurir.'</h4>
             <h4>Untuk melacak pesanan kamu, bisa dengan menggunakan nomor resi dibawah ini pada web jasa pengiriman yang kamu pilih, berikut nomor resi kamu</h4>
             <h2>'.$no_resi.'</h2><br>
-            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="'.site_url('Pengiriman/faktur/'.$id_order).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Faktur</a></p>
+            <p style="font-family:Helvetica; margin:10px; text-align: left;"><a href="'.site_url('Pengiriman/faktur/'.$id_order).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Faktur</a></p>
             '
         );
 

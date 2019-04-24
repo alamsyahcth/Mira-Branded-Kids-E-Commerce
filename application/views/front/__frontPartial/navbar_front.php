@@ -62,7 +62,7 @@
               </ul>
             </li>
             <li><a href="<?php echo base_url('index.php/Konfirmasi') ?>">Konfirmasi Pembayaran</a></li>
-            <li><a href="<?php echo base_url('index.php/Konfirmasi') ?>">Retur</a></li>
+            <li><a href="<?php echo base_url('index.php/Retur') ?>">Retur</a></li>
             <li><a href="<?php echo base_url('CaraOrder') ?>">Cara Order</a></li>
           </ul>
         </div>
