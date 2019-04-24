@@ -36,7 +36,7 @@ class C_TransaksiPembayaran extends CI_Controller {
         } else {
             $this->M_TransaksiPembayaran->save();
             $this->M_TransaksiPembayaran->updateStatus($this->input->post('id_order'));
-            $this->emailResi($_POST['email_customer'],$_POST['id_order'],$_POST['no_resi']);
+            $this->emailResi($_POST['email_customer'],$_POST['id_order'],$_POST['no_resi'],$_POST['id_resi'],$_POST['kurir']);
             $this->session->set_flashdata('success','Status berhasil diubah');
             redirect('admin/C_TransaksiPembayaran');
         }
@@ -47,7 +47,7 @@ class C_TransaksiPembayaran extends CI_Controller {
         $this->load->view('TransaksiPembayaran/V_TransaksiBuktiPembayaran', $data);
     }
 
-    public function emailResi($email, $id_order, $no_resi) {
+    public function emailResi($email, $id_order, $no_resi, $id_resi, $kurir) {
          $from = 'mirabrandedkids@gmail.com';
 
         //Konfigurasi Email
@@ -70,8 +70,11 @@ class C_TransaksiPembayaran extends CI_Controller {
             '
             <h1 style="font-face:sans-serif; color:#7971ea;">Mira Branded Kids</h1>
             <h4>Hai, Selamat pesanan kamu dengan ID Order '.$id_order.' sudah dikirim</h4>
+            <h2 style="font-weight:bold;">Berikut No.Faktur anda : '.$id_resi.'</h2>
+            <h4>Dikirim menggunakan jasa pengiriman'.$kurir.'</h4>
             <h4>Untuk melacak pesanan kamu, bisa dengan menggunakan nomor resi dibawah ini pada web jasa pengiriman yang kamu pilih, berikut nomor resi kamu</h4>
-            <h2>'.$no_resi.'</h2>
+            <h2>'.$no_resi.'</h2><br>
+            <p style="font-family:Helvetica; margin:10px; text-align: center;"><a href="'.site_url('Pengiriman/faktur/'.$id_order).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Faktur</a></p>
             '
         );
 

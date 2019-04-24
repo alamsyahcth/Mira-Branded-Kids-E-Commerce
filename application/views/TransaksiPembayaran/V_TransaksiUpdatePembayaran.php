@@ -191,6 +191,7 @@
                                                         <input type="hidden" name="id_resi" value="<?php echo $resiId ?>">
                                                         <input type="hidden" name="id_order" value="<?php echo $data->id_order ?>">
                                                         <input type="hidden" name="email_customer" value="<?php echo $data->email_customer ?>">
+                                                        <input type="hidden" name="kurir" value="<?php echo $data->kurir ?>">
                                                         <label for="no_resi" class="control-label">No Resi</label>
                                                         <input type="number" name="no_resi" class="form-control" placeholder="Masukkan Nomor Resi" required><br>
                                                         <input type="submit" name="simpan" id="simpan" value="Konfirmasi" class="btn btn-primary btn-md btn-block">

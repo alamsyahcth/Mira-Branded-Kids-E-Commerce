@@ -46,7 +46,7 @@
                                                     <div class="card-body"> 
                                                         <div class="row">
                                                             <form clas="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterProduct/editStok') ?>" method="post">
-                                                                <table>
+                                                                <table class="table">
                                                                     <tr>
                                                                         <td style="text-align:center">Size</td>
                                                                         <td style="text-align:center">Stok</td>
@@ -92,7 +92,7 @@
                                                     <div class="card-body"> 
                                                         <div class="row">
                                                             <form clas="form-horizontal" action="<?php echo base_url('index.php/admin/C_MasterProduct/tambahStok') ?>" method="post">
-                                                                <table width="100%">
+                                                                <table class="table">
                                                                     <tr>
                                                                         <td width="50%" style="text-align:center; width:50%;">Size</td>
                                                                         <td width="50%" style="text-align:center; width:50%;">Stok</td>

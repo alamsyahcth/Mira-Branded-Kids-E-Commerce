@@ -16,17 +16,28 @@
                 <td style="text-align: center;"><p style="color: #7971ea; font-family:Helvetica; font-weight: bold; font-size: 30pt; margin:15px;" colspan="3">Mira Branded Kids</p></td>
             </tr>
             <tr>
-                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 18pt; margin:10px; text-align: center; font-weight:bold;">INVOICE</p></td>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 18pt; margin:10px; text-align: center; font-weight:bold;">FAKTUR</p></td>
+            </tr>
+            <?php foreach($resi as $r) {?>
+            <tr>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 16pt; margin:10px; text-align: center;">Faktur Id :  <?php echo $r->id_resi ?></p></td>
             </tr>
             <tr>
-                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 16pt; margin:10px; text-align: center;">Order Id :  <?php  foreach($customer as $data) {echo $data->id_order;} ?></p></td>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: left;">Nomor Resi :  <?php echo $r->no_resi ?></p></td>
             </tr>
             <tr>
-                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 16pt; margin:10px; text-align: center;"> <?php echo date("D, d-M-Y"); ?></p></td>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: left;"> <?php echo date("D, d-M-Y"); ?></p></td>
             </tr>
-            <?php foreach($customer as $data) ?>
+             <?php } ?>
+
+             <?php foreach($customer as $data) {?>
+             <tr>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: left;">Dikirim menggunakan jasa pengiriman <?php echo $data->kurir ?></p></td>
+            </tr>
             <tr>
                 <td>
+                    <br><br>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: center;"><b>Detil Alamat Pengiriman</b></p>
                     <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>Nama : </b><br><?php echo $data->nm_customer ?></p>
                 </td>
             </tr>
@@ -80,17 +91,10 @@
                             <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;" colspan="4">Grand Total</td>
                             <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;">Rp. <?php foreach($gtotal as $data) {echo $data->grand_total;} ?></td>
                         </tr>
+                        <?php } ?>
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td><br><p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: center;">Pembayaran dapat dilakukan dengan cara transfer bank:</p></td>
-            </tr>
-            <?php foreach($bank as $data) { ?>
-            <tr>
-                <td><p style="color: #868686; font-family:Helvetica; font-weight:bold; font-size: 10pt; margin:10px; text-align: center;"><?php echo $data->nm_bank ?> : No Rekening <?php echo $data->no_rektoko ?> atas nama <?php echo $data->atas_nama ?></p></td>
-            </tr>
-            <?php } ?>
         </table>
     </div>
         

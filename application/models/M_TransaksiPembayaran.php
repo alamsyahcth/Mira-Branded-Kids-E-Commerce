@@ -88,4 +88,40 @@ class M_TransaksiPembayaran extends CI_Model {
 
         return true;
     }
+
+    public function getDataCustomers($ordID) {
+        $sql = "SELECT a.id_customer, nm_customer, alamat_customer, email_customer, telp_customer, kurir, ongkir, kode_pos, b.id_order
+                FROM customer a, orders b
+                WHERE a.id_customer=b.id_customer AND b.id_order='$ordID'";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+        //return !empty($result)?$result:false;
+    }
+
+    public function getDataOrder($ordID) {
+        $sql =  "SELECT a.id_product, nm_product, qty, nm_size, sub_total, grand_total
+                 FROM product a, detil_orders b, orders c, size d
+                 WHERE a.id_product=b.id_product AND b.id_order=c.id_order AND b.id_size=d.id_size AND c.id_order='$ordID'
+                 ORDER BY a.id_product asc";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    public function getGrandTotal($ordID) {
+        $sql =  "SELECT grand_total FROM orders WHERE id_order='$ordID'";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    public function getResi($ordID) {
+        $sql =  "SELECT *
+                 FROM orders a, resi b
+                 WHERE a.id_order=b.id_order AND a.id_order='$ordID'";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
 }

@@ -144,11 +144,13 @@ class Checkout extends CI_Controller {
 	}
 	
 	public function cekStok() {
-		$dataProduct = array();
-		foreach($this->cart->content() as $data) {
-			$dataProduct[$i]['id_product'] = $item['id_product'];
-			$dataProduct[$i]['id_size'] = $item['Size'];
-			$dataProduct[$i]['qty'] = $item['qty'];
+		foreach($this->cart->content() as $c) {
+			$data = array(
+				'id_product'=>$c['id_product'];
+				'id_size'=>$c['id_size'];
+				'stok'=>$c['qty'];
+			);
+			$this->M_FrontProduct->cekSisaStok($data);
 			$i++;
 		}
 
