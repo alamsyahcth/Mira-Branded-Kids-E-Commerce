@@ -34,7 +34,6 @@
                 </div>
                 <div class="col-md-4">
                   <select name="ukuran" id="ukuranProduct" class="form-control text-center" style="text-align:center;">
-                    <option>Pilih Size</option>
                     <?php foreach($size as $s) { ?>
                     <option value="<?php echo $s->id_size ?>" style="text-align:center;"><?php echo $s->nm_size ?></option>
                     <?php } ?>
@@ -56,6 +55,39 @@
                 <button type"submit" name="add" id="add" value="Add To Cart" class="btn btn-sm btn-primary">Add To Cart</button>
               </div>
             </form>
+            
+            <br>
+            <div class="row">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Komentar</h5>
+                </div>
+                <div class="card-body" style="overflow-y: scroll; height:500px;">
+                  <div class="media border p-3">
+                    <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                    <div class="media-body">
+                      <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="media border p-3">
+                    <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                    <div class="media-body">
+                      <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <form method="post">
+                    <textarea type="textarea" name="comment" class="form-control" placeholder="Tuliskan komentar anda tentang produk ini"></textarea><br>
+                    <input type="submit" name="kirim" value="Kirim Komentar" class="btn btn-md btn-primary">
+                  </form>
+                </div>
+              </div>
+              
+            </div>
 
           </div>
         </div>

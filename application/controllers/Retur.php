@@ -17,10 +17,40 @@ class Retur extends CI_Controller {
 
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
-        $data['confirmId'] = $this->M_Retur->confirmID();
         $data['order'] = $this->M_Retur->getOrder($this->session->userdata('id_customer'));
+        $data['retur'] = $this->M_Retur->cekRetur($this->session->userdata('id_customer'));
 
         $this->load->view('Front/V_FrontRetur', $data);
+    }
+
+    public function aksi($id) {
+        //$data['detil_order'] = $this->M_Retur->getDetilOrder($id);
+        $data['order'] = $this->M_Retur->getReturOrder($id);
+        $data['kategori'] = $this->M_FrontProduct->getKategori();
+        $data['returId'] = $this->M_Retur->returID();
+        //$returId = $this->M_Retur->returID();
+        //$tanggal = date("Y-m-d");
+
+        /*$insertData = array(
+            'id_retur'=>$returId,
+            'tgl_retur'=>$tanggal,
+            'status_retur'=>'1'
+        );
+
+        $this->M_Retur->save($insertData);*/
+
+        $this->load->view('Front/V_FrontAksiRetur', $data);
+    }
+
+    public function addRetur() {
+        $data = array(
+            'id_retur'=>$this->input->post('id_retur'),
+            'id_order'=>$this->input->post('id_order'),
+            'id_product'=>$this->input->post('id_product'),
+            'id_size'=>$this->input->post('id_size'),
+            'alasan'=>$this->input->post('alasan')
+        );
+        $this->M_Retur->saveBatch($data);
     }
 
     /*public function cekOrder() {

@@ -30,7 +30,6 @@
                                 <tr>
                                     <th width="15%" style="text-align:center;">ID Faktur</th>
                                     <th width="20%" style="text-align:center;">Tanggal Kirim</th>
-                                    <th width="20%" style="text-align:center;">Batas Retur</th>
                                     <th width="10%" style="text-align:center;">Status</th>
                                     <th width="20%" style="text-align:center;">No Resi</th>
                                     <th width="5%" style="text-align:center;">Aksi</th>
@@ -42,50 +41,46 @@
                                 <tr>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_resi ?></td>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_resi ?></td>
-                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_akhir ?></td>
+                                    
+                                    <?php if($retur != NULL) {foreach($retur as $r) { ?>
                                     <td style="text-align:center; vertical-align:middle;">
-                                        <!--
-                                        <?php if($data->status == '1') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '1') { ?>
                                              <p class="text-danger" style="font-weight:bold;">Belum Di Konfirmasi</p>
                                         <?php } ?>
 
-                                        <?php if($data->status == '2') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '2') { ?>
                                              <p class="text-primary" style="font-weight:bold;">Sudah Di Konfirmasi</p>
                                         <?php } ?>
 
-                                        <?php if($data->status == '3') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '3') { ?>
                                              <p class="text-primary" style="font-weight:bold;">Konfirmasi Pembayaran</p>
                                         <?php } ?>
 
-                                        <?php if($data->status == '4') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '4') { ?>
                                              <p class="text-primary" style="font-weight:bold;">Dikirim</p>
                                         <?php } ?>
 
-                                        <?php if($data->status == '5') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '5') { ?>
                                              <p class="text-success" style="font-weight:bold;">Selesai</p>
                                         <?php } ?>
 
-                                        <?php if($data->status == '6') { ?>
+                                        <?php if($r->id_order == $data->id_order && $r->status_retur == NULL) { ?>
                                              <p class="text-danger" style="font-weight:bold;">Batal</p>
-                                        <?php } ?>-->
+                                        <?php } ?>
                                     </td>
                                     <td style="text-align:center; vertical-align:middle;">
-                                        <!--
                                         <?php 
-                                            foreach($resi as $r) {
-                                                if ($r->id_order == $data->id_order) {
-                                                    echo $r->no_resi;
-                                                }
-                                            } 
-                                        ?> -->
+                                            if ($r->id_order == $data->id_order) {
+                                                echo $r->resi_retur;
+                                            }
+                                        ?>
                                     </td>
+                                    <?php }} else { ?>
+                                        <td style="text-align:center;">-</td><td style="text-align:center;">-</td>
+                                    <?php } ?>
                                     <td style="text-align:center; vertical-align:middle;">
-                                        <!--
-                                        <?php if ($data->status == '4') { ?>
-                                        <a href="<?php echo base_url('index.php/Akun/ubahStatus/'.$data->id_order) ?>" class="btn btn-primary btn-xs">Selesai</a>
-                                        <?php } else { ?>
-                                        <button class="btn btn-primary btn-xs" disabled>Selesai</button>
-                                        <?php } ?>-->
+                                        <a href="<?php echo base_url('index.php/Retur/aksi/'.$data->id_resi) ?>" class="btn btn-primary btn-xs">Retur</a>
+                                        <!--<button class="btn btn-primary btn-xs" disabled>Selesai</button>-->
                                     </td>
                                 </tr>
                                 <?php } ?> 

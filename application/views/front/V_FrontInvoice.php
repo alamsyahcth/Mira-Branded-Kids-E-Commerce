@@ -22,64 +22,68 @@
                 <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 16pt; margin:10px; text-align: center;">Order Id :  <?php  foreach($customer as $data) {echo $data->id_order;} ?></p></td>
             </tr>
             <tr>
-                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 16pt; margin:10px; text-align: center;"> <?php echo date("D, d-M-Y"); ?></p></td>
+                <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 14pt; margin:10px; text-align: center;"> <?php echo date("D, d-M-Y"); ?></p></td>
             </tr>
-            <?php foreach($customer as $data) ?>
+            <?php foreach($customer as $data) {?>
             <tr>
                 <td>
-                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>Nama : </b><br><?php echo $data->nm_customer ?></p>
+                    <br><br>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;"><b>Detil Alamat Pengiriman</b></p>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;"><br><?php echo $data->nm_customer ?></p>
                 </td>
             </tr>
              <tr>
                 <td>
-                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>Alamat : </b><br><?php echo $data->alamat_customer ?></p>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;"><?php echo $data->alamat_customer ?></p>
                 </td>
             </tr>
              <tr>
                 <td>
                     <br>
-                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>Kode Pos : </b><br><?php echo $data->kode_pos ?></p>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;">Kode Pos <?php echo $data->kode_pos ?></p>
                 </td>
             </tr>
              <tr>
                 <td>
-                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>Email : </b><br><?php echo $data->email_customer ?></p>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;">Email <?php echo $data->email_customer ?></p>
                 </td>
             </tr>
              <tr>
                 <td>
-                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:10px; text-align: left;"><b>HP : </b><br><?php echo $data->telp_customer ?></p>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 10pt; margin:1px; text-align: left;">No Handphone <?php echo $data->telp_customer ?></p>
                 </td>
             </tr>
 
             
             <tr>
-                <td><br><br>
-                    <table width="100%" border="1" style="border: 2px solid #3d3d3d; padding: 10px; border-collapse: collapse; background: #f5f6fa;">
+                <td style="text-align:center;"><br>
+                    <p style="color: #868686; font-family:Helvetica; font-size: 12pt; margin:10px; text-align: left;"><b>Detil Data Order</b></p>
+                    <table width="100%" border="1" style="border: 2px solid #3d3d3d; border-collapse: collapse; background: #f5f6fa;">
                         <tr style="border: 2px solid #5f5f5f; border-collapse: collapse; background: #f5f6fa;">
-                            <td width="5%" style="text-align: center; color: #5f5f5f; font-family: helvetica; font-size:12pt; font-weight:bold;">No</td>
-                            <td width="40%" style="text-align: center; color: #5f5f5f; font-family: helvetica; font-size:12pt; font-weight:bold;">Nama Product</td>
-                            <td width="15%" style="text-align: center; color: #5f5f5f; font-family: helvetica; font-size:12pt; font-weight:bold;">Ukuran</td>
-                            <td width="15%" style="text-align: center; color: #5f5f5f; font-family: helvetica; font-size:12pt; font-weight:bold;">Qty</td>
-                            <td width="25%" style="text-align: center; color: #5f5f5f; font-family: helvetica; font-size:12pt; font-weight:bold;">Sub Total</td>
+                            <td width="5%" style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-size:12pt; font-weight:bold;">No</td>
+                            <td width="40%" style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-size:12pt; font-weight:bold;">Nama Product</td>
+                            <td width="15%" style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-size:12pt; font-weight:bold;">Ukuran</td>
+                            <td width="15%" style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-size:12pt; font-weight:bold;">Qty</td>
+                            <td width="25%" style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-size:12pt; font-weight:bold;">Sub Total</td>
                         </tr>
                         <?php $no = 1; foreach($order as $item) { ?>
                         <tr style="border: 1px solid #5f5f5f; border-collapse: collapse; background: #f5f6fa;">
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica;"><?php echo $no++; ?></td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica;"><?php echo $item->nm_product ?></td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica;"><?php echo $item->nm_size ?></td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica;"><?php echo $item->qty ?></td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica;">Rp. <?php echo $item->sub_total ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica;"><?php echo $no++; ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica;"><?php echo $item->nm_product ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica;"><?php echo $item->nm_size ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica;"><?php echo $item->qty ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica;">Rp. <?php echo $item->sub_total ?></td>
                         </tr>
                         <?php } ?>
                         <tr  style="border: 1px solid #5f5f5f; border-collapse: collapse; background: #f5f6fa;">
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;" colspan="4">Ongkos Kirim</td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;">Rp. <?php  foreach($customer as $data) {echo $data->ongkir;} ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-weight:bold;" colspan="4">Ongkos Kirim</td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-weight:bold;">Rp. <?php  foreach($customer as $data) {echo $data->ongkir;} ?></td>
                         </tr>
                         <tr  style="border: 1px solid #5f5f5f; border-collapse: collapse; background: #f5f6fa;">
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;" colspan="4">Grand Total</td>
-                            <td style="text-align: center; color: #5f5f5f; font-family: helvetica; font-weight:bold;">Rp. <?php foreach($gtotal as $data) {echo $data->grand_total;} ?></td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-weight:bold;" colspan="4">Grand Total</td>
+                            <td style="text-align: center; color: #5f5f5f; margin: 20px; padding: 10px; font-family: helvetica; font-weight:bold;">Rp. <?php foreach($gtotal as $data) {echo $data->grand_total;} ?></td>
                         </tr>
+                        <?php } ?>
                     </table>
                 </td>
             </tr>
