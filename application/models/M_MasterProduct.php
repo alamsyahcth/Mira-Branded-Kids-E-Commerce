@@ -5,6 +5,7 @@ class M_MasterProduct extends CI_Model {
     private $_tableKat="kategori";
     private $_tableSize="size";
     private $_tabDetSize="detil_size";
+    private $_tabReply="reply";
 
     public $id_product;
     public $alt_product;
@@ -65,6 +66,22 @@ class M_MasterProduct extends CI_Model {
         return $kodeMax;
     }
 
+    public function replyID() {
+        $this->db->select('RIGHT(id_reply,4) as MaxKode');
+        $this->db->order_by('id_reply','desc');
+        $query = $this->db->get($this->_tabReply);
+        $date = date("ymd");
+        if($query->num_rows()<>0){
+            $data = $query->row();
+            $kode = intval($data->MaxKode)+1;
+        } else {
+            $kode = 1;
+        }
+
+        $kodeMax = 'B'.$date.str_pad($kode,4,"0", STR_PAD_LEFT);
+        return $kodeMax;
+    }
+
     public function getKategori() {
         return $this->db->get($this->_tableKat)->result();
     }
@@ -107,6 +124,20 @@ class M_MasterProduct extends CI_Model {
         return $query->result();
     }
 
+    public function getComment($id) {
+        $sql = "SELECT *
+                FROM customer a, comment b
+                WHERE a.id_customer=b.id_customer AND b.id_product='$id'";
+        return $this->db->query($sql)->result();
+    }
+
+    public function getReply($id) {
+        $sql = "SELECT *
+                FROM reply a, comment b, product c
+                WHERE a.id_comment=b.id_comment AND b.id_product=c.id_product AND b.id_product='$id'";
+        return $this->db->query($sql)->result();
+    }
+
     public function save() {
         $post = $this->input->post();
         $this->id_product = $post['id_product'];
@@ -139,6 +170,18 @@ class M_MasterProduct extends CI_Model {
 
     public function saveBatch($data=array()) {
         return $this->db->insert_batch($this->_tabDetSize,$data);
+    }
+
+    public function saveReply($id) {
+        $data = array(
+            'id_reply'=>$id,
+            'tanggal_reply'=>$this->input->post('tanggal_reply'),
+            'isi_reply'=>$this->input->post('isi_reply'),
+            'id_comment'=>$this->input->post('id_comment'),
+            'username'=>$this->input->post('username')
+        );
+
+        return $this->db->insert($this->_tabReply,$data);
     }
 
     public function update() {
@@ -217,7 +260,6 @@ class M_MasterProduct extends CI_Model {
             return array_map('unlink', glob(FCPATH."upload/product/$filename.*"));
         }
     }
-
 
 }
 

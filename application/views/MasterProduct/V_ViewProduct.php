@@ -103,6 +103,56 @@
                                                         <td style="text-align:center;"><?php echo $s->stok ?></td>
                                                     </tr>
                                                 <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 style="text-align:center;">Comment Product</h4>
+                                        </div>
+                                        <div class="card-body" style="overflow-y: scroll; height:400px; width:auto;">
+                                            <?php foreach($comment as $c) { ?>
+                                            <div class="media border p-3">
+                                                <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-2 mt-3 rounded-circle" style="width:60px;">
+                                                <div class="media-body">
+                                                    <h4><?php echo $c->nm_customer ?> <small><i>Posted on <?php echo $c->tanggal_comment ?></i></small></h4>
+                                                    <p><?php echo $c->isi_comment ?></p>
+
+                                                    <!--Reply Comment-->
+                                                    <?php 
+                                                        foreach($reply as $p) { 
+                                                             if($p->id_comment == $c->id_comment) {
+                                                    ?>
+                                                    <div class="media p-3">
+                                                        <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-2 mt-3 rounded-circle" style="width:60px;">
+                                                        <div class="media-body">
+                                                            <h4><?php echo $p->username ?> <small><i>Posted on <?php echo $p->tanggal_reply ?></i></small></h4>
+                                                            <p><?php echo $p->isi_reply ?></p>
+                                                        </div>
+                                                    </div>
+                                                    <?php }} ?>
+                                                    <!--Reply Comment-->
+                                                    <div class="card">
+                                                        <div class="card-footer">
+                                                            <form action="<?php echo base_url('index.php/admin/C_MasterProduct/reply') ?>" method="post">
+                                                                <input type="hidden" name="id_comment" value="<?php echo $c->id_comment ?>">
+                                                                <input type="hidden" name="username" value="<?php echo $this->session->userdata('username') ?>">
+                                                                <input type="hidden" name="tanggal_reply" value="<?php echo date('Y-m-d') ?>">
+                                                                <input type="hidden" name="id_product" value="<?php echo $product->id_product ?>">
+                                                                <textarea type="textarea" name="isi_reply" class="form-control" placeholder="Tuliskan balasan anda tentang komentar ini"></textarea><br>
+                                                                <input type="submit" name="kirim" value="Kirim Balasan" class="btn btn-md btn-primary">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
                                                     <tr>
                                                         <td colspan="3">
                                                             <a href="<?php echo site_url('admin/C_MasterProduct/') ?>" data-toggle="tooltip" title="Kembali" class="btn btn-primary btn-md">Kembali</a>

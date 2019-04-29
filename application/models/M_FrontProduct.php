@@ -13,6 +13,7 @@ class M_FrontProduct extends CI_Model {
         $this->bankTable = 'bank';
         $this->detSizeTabele = 'detil_size';
         $this->resiTable = 'detil_size';
+        $this->commentTable = 'comment';
     }
 
     //get Kategori
@@ -45,6 +46,20 @@ class M_FrontProduct extends CI_Model {
 
     public function getCustomer($id) {
         return $this->db->get_where($this->cusTable, ['id_customer'=>$id])->row_array();
+    }
+
+    public function getComment($id) {
+        $sql = "SELECT *
+                FROM customer a, comment b
+                WHERE a.id_customer=b.id_customer AND b.id_product='$id'";
+        return $this->db->query($sql)->result();
+    }
+
+    public function getReply($id) {
+        $sql = "SELECT *
+                FROM reply a, comment b, product c
+                WHERE a.id_comment=b.id_comment AND b.id_product=c.id_product AND b.id_product='$id'";
+        return $this->db->query($sql)->result();
     }
 
     public function getOrderCustomer($id) {
@@ -103,6 +118,22 @@ class M_FrontProduct extends CI_Model {
         }
 
         $kodeMax = 'O'.$date.str_pad($kode,4,"0", STR_PAD_LEFT);
+        return $kodeMax;
+    }
+
+    public function commentID() {
+        $this->db->select('RIGHT(id_comment,4) as MaxKode');
+        $this->db->order_by('id_comment','desc');
+        $query = $this->db->get($this->commentTable);
+        $date = date("ymd");
+        if($query->num_rows()<>0){
+            $data = $query->row();
+            $kode = intval($data->MaxKode)+1;
+        } else {
+            $kode = 1;
+        }
+
+        $kodeMax = 'K'.$date.str_pad($kode,4,"0", STR_PAD_LEFT);
         return $kodeMax;
     }
 
@@ -174,6 +205,18 @@ class M_FrontProduct extends CI_Model {
         );
         $this->db->where('id_order', $id);
         return $this->db->update($this->ordTable,$data);
+    }
+
+    public function saveComment($id) {
+        $data = array(
+            'id_comment'=>$id,
+            'tanggal_comment'=>$this->input->post('tanggal_comment'),
+            'isi_comment'=>$this->input->post('isi_comment'),
+            'id_product'=>$this->input->post('id_product'),
+            'id_customer'=>$this->input->post('id_customer')
+        );
+
+        return $this->db->insert($this->commentTable,$data);
     }
 
 }

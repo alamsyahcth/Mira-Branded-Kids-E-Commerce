@@ -13,6 +13,8 @@ class DetilProduct extends CI_Controller {
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['product'] = $this->M_FrontProduct->getById($id);
         $data['size'] = $this->M_FrontProduct->getDetilSize($id);
+        $data['comment'] = $this->M_FrontProduct->getComment($id);
+        $data['reply'] = $this->M_FrontProduct->getReply($id);
         $this->load->view('Front/V_FrontDetilProduct', $data);
     }
 
@@ -45,6 +47,12 @@ class DetilProduct extends CI_Controller {
 
         $this->cart->insert($data);
         redirect('cart');
+    }
+
+    public function comment() {
+        $id_comment = $this->M_FrontProduct->commentID();
+        $this->M_FrontProduct->saveComment($id_comment);
+        redirect('DetilProduct/data/'.$_POST['id_product']);
     }
 
 }

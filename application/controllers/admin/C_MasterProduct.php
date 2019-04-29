@@ -74,6 +74,8 @@ class C_MasterProduct extends CI_Controller {
         $data['product'] = $table->getById($id);
         $data['kategori'] = $table->getKategoriWhere($data['product']->id_kategori);
         $data['size'] = $table->getDetilSize($id);
+        $data['comment'] = $table->getComment($id);
+        $data['reply'] = $table->getReply($id);
 
         $this->load->view('MasterProduct/V_ViewProduct', $data);
     }
@@ -108,6 +110,12 @@ class C_MasterProduct extends CI_Controller {
         $pdf = new HTML2PDF('L','A4','en');
         $pdf->WriteHTML($html);
         $pdf->output('DataProduct'.microtime().'.pdf','D');
+    }
+
+    public function reply() {
+        $reply_id = $this->M_MasterProduct->replyID();
+        $this->M_MasterProduct->saveReply($reply_id);
+        redirect('admin/C_MasterProduct/view/'.$_POST['id_product']);
     }
     
 }
