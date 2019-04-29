@@ -3,7 +3,7 @@
     <footer class="site-footer border-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 mb-5 mb-lg-0">
+          <div class="col-lg-2 mb-5 mb-lg-0">
             <div class="row">
               <div class="col-md-12">
                 <h3 class="footer-heading mb-4">Menu</h3>
@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 mb-5 mb-lg-0">
+          <div class="col-lg-2 mb-5 mb-lg-0">
             <div class="row">
               <div class="col-md-12">
                 <h3 class="footer-heading mb-4">Kategori</h3>
@@ -34,7 +34,8 @@
 
             </div>
           </div>
-          <div class="col-md-3">
+
+          <div class="col-md-2">
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Social Media</h3>
               <ul class="list-unstyled">
@@ -42,6 +43,21 @@
               </ul>
             </div>
           </div>
+
+          <div class="col-md-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Kritik dan Saran</h3>
+              <form class="form-horizontal" action="<?php echo base_url('index.php/home/saran') ?>" method="post">
+                <textarea type="textarea" name="isi_saran" class="form-control" placeholder="kritik dan saran"></textarea><br>
+                <?php if($this->session->userdata('on') != TRUE) { ?>
+                <button type="button" class="btn btn-primary btn-block" disabled>Kritik dan Saran</button>
+                <?php } else { ?>
+                <input type="submit" name="simpan" value="Kritik dan Saran" class="btn btn-primary btn-block">
+                <?php } ?>
+              </form>
+            </div>
+          </div>
+
           <div class="col-md-3 col-lg-3">
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Info Kontak</h3>

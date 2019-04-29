@@ -49,4 +49,17 @@ class Home extends CI_Controller {
         $this->load->view('Front/V_FrontHome', $data);
     }
 
+    public function saran() {
+        $saran_id = $this->M_FrontProduct->saranID();
+        $date = date("Y-m-d");
+        $data = array(
+            'id_saran'=>$saran_id,
+            'tanggal_saran'=>$date,
+            'isi_saran'=>$this->input->post('isi_saran'),
+            'id_customer'=>$this->session->userdata('id_customer')
+        );
+        $this->M_FrontProduct->saveSaran($data);
+        redirect('home');
+    }
+
 }

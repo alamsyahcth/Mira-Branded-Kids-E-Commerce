@@ -14,6 +14,7 @@ class M_FrontProduct extends CI_Model {
         $this->detSizeTabele = 'detil_size';
         $this->resiTable = 'detil_size';
         $this->commentTable = 'comment';
+        $this->saranTable = 'saran';
     }
 
     //get Kategori
@@ -137,6 +138,22 @@ class M_FrontProduct extends CI_Model {
         return $kodeMax;
     }
 
+    public function saranID() {
+        $this->db->select('RIGHT(id_saran,4) as MaxKode');
+        $this->db->order_by('id_saran','desc');
+        $query = $this->db->get($this->saranTable);
+        $date = date("ymd");
+        if($query->num_rows()<>0){
+            $data = $query->row();
+            $kode = intval($data->MaxKode)+1;
+        } else {
+            $kode = 1;
+        }
+
+        $kodeMax = '0'.$date.str_pad($kode,4,"0", STR_PAD_LEFT);
+        return $kodeMax;
+    }
+
     //get rows untuk mengambil data berasarkan id untuk dimasukkan ke cart
     public function getRows($id='') {
         $this->db->select('*');
@@ -157,6 +174,10 @@ class M_FrontProduct extends CI_Model {
     public function insertOrder($data) {
         $insert = $this->db->insert($this->ordTable, $data);
         return $insert?$this->db->insert_id():false;
+    }
+
+    public function saveSaran($data) {
+        return $this->db->insert($this->saranTable,$data);
     }
 
     public function insertOrderItems($data=array()) {

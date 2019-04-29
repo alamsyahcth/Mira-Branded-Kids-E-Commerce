@@ -96,6 +96,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="text-align:center;">Kritik dan Saran</h4>
+                            </div>
+                            <div class="card-body" style="overflow-y: scroll; height:400px; width:auto;">
+                                <?php foreach($saran as $s) { ?>
+                                <div class="media border p-3">
+                                    <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                                    <div class="media-body">
+                                        <h4><?php echo $s->nm_customer ?> <small><i>Posted on <?php echo $s->tanggal_saran ?></i></small></h4>
+                                        <p><?php echo $s->isi_saran ?></p>
+                                    </div>
+                                </div>
+                                <br>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->

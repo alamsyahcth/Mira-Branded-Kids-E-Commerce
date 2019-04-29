@@ -62,7 +62,7 @@
                 <div class="card-header">
                   <h5 class="card-title">Komentar</h5>
                 </div>
-                <div class="card-body" style="overflow-y: scroll; height:200px; width:500px;">
+                <div class="card-body" style="overflow-y: scroll; height:400px; width:500px;">
                   <?php foreach($comment as $c) { ?>
                   <div class="media border p-3">
                     <img src="<?php echo base_url('upload/1.jpg') ?>" alt="komentar-mira-branded-kids" class="mr-2 mt-3 rounded-circle" style="width:60px;">

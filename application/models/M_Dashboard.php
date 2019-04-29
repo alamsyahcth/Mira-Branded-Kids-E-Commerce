@@ -30,4 +30,12 @@ class M_Dashboard extends CI_Model {
        $sql = "SELECT COUNT(id_customer) AS data FROM customer";
        return $this->db->query($sql)->result();
    }
+
+   public function getSaran() {
+        $sql = "SELECT *
+                FROM customer a, saran b
+                WHERE a.id_customer=b.id_customer
+                GROUP BY b.id_saran DESC";
+        return $this->db->query($sql)->result();
+    }
 }
