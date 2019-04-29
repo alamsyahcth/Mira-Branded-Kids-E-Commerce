@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    
     <img src="<?php echo base_url('Assets/assets/images/toko/KopSurat.jpg') ?>" style="width:40%"><br>
 
     
@@ -37,7 +38,7 @@
             } else if ($bulan == '12') {
                 echo 'DESEMBER';
             }
-        ?>
+        ?> <?php echo $tahun; ?>
     </h6>
     <p style="font-size:12pt;">Tanggal Cetak : <?php echo date("D, d M Y"); ?></p><br>
     <table style="border: 2px solid black; border-collapse: collapse; font-size:10pt;">
@@ -143,48 +144,54 @@
             <td>:</td>
             <?php foreach($pesan as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ea5f40;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ea5f40;"><br></td>-->
+            <?php }} ?>
         </tr>
         <tr>
             <td>Konfirmasi Pemesanan</td>
             <td>:</td>
             <?php foreach($konfirmasi as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ffa658;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ffa658;"><br></td>-->
+            <?php }} ?>
         </tr>
         <tr>
             <td>Pembayaran</td>
             <td>:</td>
             <?php foreach($bayar as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ffdb6a;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#ffdb6a;"><br></td>-->
+            <?php }} ?>
         </tr>
         <tr>
             <td>Pengiriman</td>
             <td>:</td>
             <?php foreach($kirim as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#009cbe;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#009cbe;"><br></td>-->
+            <?php }} ?>
         </tr>
         <tr>
             <td>Order Selesai</td>
             <td>:</td>
             <?php foreach($selesai as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#1f4e5a;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#1f4e5a;"><br></td>-->
+            <?php }} ?>
         </tr>
         <tr>
             <td>Order Batal</td>
             <td>:</td>
             <?php foreach($batal as $data) { ?>
             <td><?php echo $data->status_order; ?> Data </td>
-            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#727171;"><br></td>
-            <?php } ?>
+            <!--<?php if($bulan == NULL && $tahun == NULL) {echo 'Tidak ada data';} else { ?>
+            <td style="width:<?php $hasil = ($data->status_order/$total->data)*100; echo $hasil.'%'; ?>; height:10px; background:#727171;"><br></td>-->
+            <?php }} ?>
         </tr>
         <?php } ?>
     </table><br><br>

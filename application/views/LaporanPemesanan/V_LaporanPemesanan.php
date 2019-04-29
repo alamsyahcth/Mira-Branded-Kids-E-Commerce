@@ -61,6 +61,18 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                 <div class="form-group">
+                                                    <div class="col-md-2"><label class="control-label">Tahun</label></div>
+                                                    <div class="col-md-12">
+                                                        <select name="tahun" class="form-control">
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2022">2022</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <input type="submit" name="cetak" value="cetak" class="btn btn-primary btn-block">
                                             </form>
                                         </div>
