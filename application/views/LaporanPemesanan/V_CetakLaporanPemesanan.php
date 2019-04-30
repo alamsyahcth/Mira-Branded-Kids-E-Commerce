@@ -8,9 +8,9 @@
 </head>
 <body>
     
-    <img src="<?php echo base_url('Assets/assets/images/toko/KopSurat.jpg') ?>" style="width:40%"><br>
+    <img src="<?php echo base_url('Assets/assets/images/toko/KopSurat.jpg') ?>" style="width:40%; text-align:center;"><br>
 
-    
+    <h2 style="text-align:center;">Laporan Data Pemesanan</h2>
     <h6 style="margin-bottom:2px; font-size:12pt">Periode Bulan :
         <?php 
             if ($bulan == '01') {
