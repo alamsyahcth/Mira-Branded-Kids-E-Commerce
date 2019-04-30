@@ -56,6 +56,9 @@ class C_MasterSize extends CI_Controller {
         if ($this->M_MasterSize->delete($id)) {
             $this->session->set_flashdata('del_sukses','Data Berhasil Dihapus');
             redirect('admin/C_MasterSize');
+        } else {
+            $this->session->set_flashdata('del_fail','Data Gagal Dihapus');
+            redirect('admin/C_MasterSize');
         }
     }
 }
