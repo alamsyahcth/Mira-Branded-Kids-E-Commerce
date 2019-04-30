@@ -87,7 +87,7 @@
                 <th style="text-align:center; border: 1px solid black;">ID Product</th>
                 <th style="text-align:center; border: 1px solid black;">Nama Product</th>
                 <th style="text-align:center; border: 1px solid black;">Harga</th>
-                <th style="text-align:center; border: 1px solid black;">Product Di Pesan</th>
+                <th style="text-align:center; border: 1px solid black;">Product Di Beli</th>
                 <th style="text-align:center; border: 1px solid black;">Sub Total</th>
             </tr>
         </thead>

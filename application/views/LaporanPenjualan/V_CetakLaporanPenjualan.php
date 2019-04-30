@@ -111,10 +111,10 @@
                     foreach($detSalesMonth as $d) { 
                         if($d->id_order == $data->id_order) {
                 ?>
-                    <?php echo $d->sub_total ?><br>
+                    Rp.<?php echo $d->sub_total ?><br>
                 <?php }} ?>
                 </td>
-                <td style="text-align:center; border: solid 1px black; width:10%"><?php echo $data->grand_total ?></td>
+                <td style="text-align:center; border: solid 1px black; width:10%">Rp.<?php echo $data->grand_total ?></td>
             </tr>
             <?php
                 }
@@ -122,7 +122,7 @@
             <tr>
                 <td colspan="9"  style="text-align:center; border: solid 1px black; font-size:12pt; font-weight:bold;"> GRAND TOTAL</td>
                 <?php foreach($GTMonth as $data) { ?>
-                <td style="text-align:center; border: solid 1px black; font-size:12pt; font-weight:bold;"><?php echo $data->data_grandtotal ?></td>
+                <td style="text-align:center; border: solid 1px black; font-size:12pt; font-weight:bold;">Rp.<?php echo $data->data_grandtotal ?></td>
                 <?php } ?>
             </tr>
             
