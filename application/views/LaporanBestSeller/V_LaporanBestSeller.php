@@ -8,12 +8,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Laporan Data Penjualan</h4>
+                        <h4 class="page-title">Laporan Rekapitulasi Data Product Best Seller</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">Laporan</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Laporan Data Penjualan</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Laporan Rekapitulasi Data Product Best Seller</li>
                                 </ol>
                             </nav>
                         </div>
@@ -38,10 +38,10 @@
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h6 class="card-title">Cetak Laporan Data Penjualan</h6>
+                                            <h6 class="card-title">Cetak Laporan Rekapitulasi Data Product Best Seller</h6>
                                         </div>
                                         <div class="card-body">
-                                            <form action="<?php echo base_url('index.php/admin/C_LaporanPenjualan/cetak') ?>" method="post">
+                                            <form action="<?php echo base_url('index.php/admin/C_LaporanBestSeller/cetak') ?>" method="post">
                                                 <div class="form-group">
                                                     <div class="col-md-2"><label class="control-label">Bulan</label></div>
                                                     <div class="col-md-12">
