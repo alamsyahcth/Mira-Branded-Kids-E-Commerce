@@ -91,7 +91,7 @@ class M_Konfirmasi extends CI_Model {
         $this->db->where('id_order',$id_order);
         $this->db->where('id_customer',$id_customer);
         $query = $this->db->get($this->_tableOrder);
-        if ($query->num_rows() < 0) {
+        if ($query->num_rows() > 0) {
             return true;
         } else {
             return false;
@@ -99,10 +99,19 @@ class M_Konfirmasi extends CI_Model {
     }
 
     public function cekDataOrderTersedia($id_order,$id_customer) {
+        $sql = "SELECT *
+                FROM orders
+                WHERE id_order='$id_order' AND id_customer='$id_customer' AND status ='2'";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 0) {
+            return true;
+        }
+    }
+
+    public function cekConfirm($id_order) {
         $this->db->where('id_order',$id_order);
-        $this->db->where('id_customer',$id_customer);
-        $query = $this->db->get($this->_tableOrder);
-        if ($query->num_rows() < 1) {
+        $query = $this->db->get($this->_tableConfirm);
+        if ($query->num_rows() == 1) {
             return true;
         }
     }
@@ -123,6 +132,7 @@ class M_Konfirmasi extends CI_Model {
         $this->jumlah_transfer = $post['jumlah_transfer'];
         $this->no_rekening = $post['no_rekening'];
         $this->nm_pengirim = $post['nm_pengirim'];
+        $this->status_confirm = '1';
         $this->id_bank = $post['id_bank'];
         $this->id_order = $post['id_order'];
         $this->bukti_transfer = $this->_uploadImage();

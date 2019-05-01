@@ -5,6 +5,7 @@ class M_TransaksiPembayaran extends CI_Model {
     private $_tableDetilOrder = 'detil_orders';
     private $_tableCustomer = 'customers';
     private $_tableProduct = 'product';
+    private $_tableConfirm = 'confirm';
     private $_tableSize = 'size';
     private $_tableResi = 'resi';
 
@@ -88,6 +89,22 @@ class M_TransaksiPembayaran extends CI_Model {
         $this->db->update($this->_tableOrder, $data);
 
         return true;
+    }
+
+    public function updateTolakPembayaranOrder($id) {
+        $data = array(
+            'status'=>'2'
+        );
+        $this->db->where('id_order',$id);
+        $this->db->update($this->_tableOrder, $data);
+    }
+
+    public function updateTolakPembayaranConfirm($id) {
+        $data = array(
+            'status_confirm'=>'2'
+        );
+        $this->db->where('id_confirm',$id);
+        $this->db->update($this->_tableConfirm, $data);
     }
 
     public function getDataCustomers($ordID) {

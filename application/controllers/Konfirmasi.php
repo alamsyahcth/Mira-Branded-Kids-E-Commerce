@@ -24,7 +24,7 @@ class Konfirmasi extends CI_Controller {
     }
 
     public function cekOrder() {
-        if ($this->M_Konfirmasi->cekDataOrder($_POST['id_order'],$_POST['id_customer'])) {
+        if ($this->M_Konfirmasi->cekDataOrder($this->input->post('id_order'),$this->input->post('id_customer'))) {
             echo '<p class="text-success">Data ditemukan</p>';
         } else {
             echo '<p class="text-danger">Maaf data tidak ditemukan</p>';

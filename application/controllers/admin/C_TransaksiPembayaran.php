@@ -42,6 +42,16 @@ class C_TransaksiPembayaran extends CI_Controller {
         }
     }
 
+    public function tolakPembayaran() {
+        $id_confirm = $this->input->post('id_confirm');
+        $id_order = $this->input->post('id_order');
+        $email = $this->input->post('email_customer');
+        $this->M_TransaksiPembayaran->updateTolakPembayaranOrder($id_order);
+        $this->M_TransaksiPembayaran->updateTolakPembayaranConfirm($id_confirm);
+        $this->emailPenolakan($email,$id_order);
+        redirect('admin/C_TransaksiPembayaran');
+    }
+
     public function viewImage($id) {
         $data['orderId'] = $this->M_TransaksiPembayaran->getOrderById($id);
         $this->load->view('TransaksiPembayaran/V_TransaksiBuktiPembayaran', $data);
@@ -75,6 +85,36 @@ class C_TransaksiPembayaran extends CI_Controller {
             <h4>Untuk melacak pesanan kamu, bisa dengan menggunakan nomor resi dibawah ini pada web jasa pengiriman yang kamu pilih, berikut nomor resi kamu</h4>
             <h2>'.$no_resi.'</h2><br>
             <p style="font-family:Helvetica; margin:10px; text-align: left;"><a href="'.site_url('Pengiriman/faktur/'.$id_order).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Faktur</a></p>
+            '
+        );
+
+        return $this->email->send();
+    }
+
+    public function emailPenolakan($email,$id_order) {
+        $from = 'mirabrandedkids@gmail.com';
+
+        //Konfigurasi Email
+        $this->load->library('email');
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = 'mirabrandedkids@gmail.com';
+        $config['smtp_pass'] = 'mira1234%';
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $config['newline'] = "\r\n";
+        
+        $this->email->initialize($config);
+
+        $this->email->from($from,'Mira Branded Kids');
+        $this->email->to($email);
+        $this->email->subject('Konfirmasi Penolakan Pembayaran');
+        $this->email->message(
+            '
+            <h1 style="font-face:sans-serif; color:#7971ea;">Mira Branded Kids</h1>
+            <h4>Hai, Mohon maaf data pembayaran kamu untuk order dengan ID Order '.$id_order.' tidak valid, mohon untuk mengirim kembali data konfirmasi pembayaran kamu dan pastikan bahwa datanya valid, Terima Kasih</h4>
+            <h4>Regards, Mira Admin</h4>
             '
         );
 

@@ -23,16 +23,16 @@
               <form action="<?php echo base_url('index.php/Konfirmasi/add'); ?>" method="post" enctype="multipart/form-data">
 
                 <?php if($this->session->flashdata('success')) { ?>
-                  <div class="card" style="padding:10px;">
-                    <div class="alert alert-primary" role="alert" id="alert_success">
+                  <div class="card" style="padding:10px;" id="alert_success">
+                    <div class="alert alert-primary" role="alert">
                       <p style="color:#3d3d3d"><?php echo $this->session->flashdata('success') ?></p>
                     </div>
                   </div>
                 <?php } ?>
 
                  <?php if($this->session->flashdata('fail')) { ?>
-                  <div class="card" style="padding:10px;">
-                    <div class="alert alert-danger" role="alert" id="alert_success">
+                  <div class="card" style="padding:10px;" id="alert_success">
+                    <div class="alert alert-danger" role="alert">
                       <p style="color:#3d3d3d"><?php echo $this->session->flashdata('fail') ?></p>
                     </div>
                   </div>
