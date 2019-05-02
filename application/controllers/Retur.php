@@ -21,6 +21,7 @@ class Retur extends CI_Controller {
         $data['retur'] = $this->M_Retur->cekRetur($this->session->userdata('id_customer'));
         $data['id_retur'] = $this->M_Retur->returID();
         $data['orderData'] = $this->M_Retur->getDetilOrder();
+        $data['cekOrder'] = $this->M_Retur->cekOrder();
 
         $this->load->view('Front/V_FrontRetur', $data);
     }
@@ -30,6 +31,11 @@ class Retur extends CI_Controller {
         redirect('Retur/dataRetur/'.$this->input->post('id_retur'));
     }
 
+    public function updateRetur() {
+        $this->M_Retur->update();
+        redirect('Retur');
+    }
+
     public function dataRetur($id) {
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['getRetur'] = $this->M_Retur->getReturOrder($id);
@@ -37,7 +43,7 @@ class Retur extends CI_Controller {
     }
 
     public function deleteData($id_retur,$id_product,$id_size) {
-        $this->M_Retur->delete($id_product,$id_size);
+        $this->M_Retur->delete($id_retur,$id_product,$id_size);
         redirect('Retur/dataRetur/'.$id_retur);
     }
 

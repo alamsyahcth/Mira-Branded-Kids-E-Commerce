@@ -30,7 +30,7 @@ class M_Retur extends CI_Model {
     public function getOrder($id) {
         $sql ="SELECT a.id_order, id_resi, tanggal_order, tanggal_resi, DATE_ADD(tanggal_resi, INTERVAL 3 DAY), CURDATE()
                 FROM detil_orders a, orders b, resi c, customer d
-                WHERE a.id_order=b.id_order AND b.id_order=c.id_order AND b.id_customer=d.id_customer AND b.id_customer='$id' AND CURDATE() < DATE_ADD(tanggal_resi, INTERVAL 4 DAY)
+                WHERE a.id_order=b.id_order AND b.id_order=c.id_order AND b.id_customer=d.id_customer AND status='5' AND b.id_customer='$id' AND CURDATE() < DATE_ADD(tanggal_resi, INTERVAL 4 DAY)
                 GROUP BY a.id_order";
         return $this->db->query($sql)->result();
     }
@@ -47,11 +47,19 @@ class M_Retur extends CI_Model {
                 GROUP BY a.id_retur";
         return $this->db->query($sql)->result();
     }
+
+    public function cekOrder() {
+        $sql ="SELECT a.id_order
+                FROM detil_orders a, detil_retur b
+                WHERE a.id_order=b.id_order
+                GROUP BY a.id_order";
+        return $this->db->query($sql)->result();
+    }
     
     public function getReturOrder($id) {
-        $sql ="SELECT a.id_retur, b.id_order, c.id_product, nm_product, gambar, e.id_size, nm_size, qty, sub_total, alasan 
+        $sql ="SELECT a.id_retur, b.id_order, c.id_product, nm_product, gambar, harga, e.id_size, nm_size, qty, sub_total, alasan 
         FROM retur a, detil_retur b, detil_orders c, product d, size e
-        WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND b.id_product=c.id_product AND b.id_size=c.id_size AND c.id_product=d.id_product AND c.id_size=e.id_size AND a.id_retur='R1905020001'";
+        WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND b.id_product=c.id_product AND b.id_size=c.id_size AND c.id_product=d.id_product AND c.id_size=e.id_size AND a.id_retur='$id'";
         return $this->db->query($sql)->result();
     }
 
@@ -115,8 +123,42 @@ class M_Retur extends CI_Model {
         return true;
     }
 
-    public function delete($id_product,$id_size) {
-        $sql = "DELETE FROM detil_retur WHERE id_product='$id_product' AND id_size='$id_size'";
+    public function update() {
+        $post = $this->input->post();
+        $grand_total=0;
+        $i=0;
+        foreach ($post['id_order'] as $id) {
+            $data = array(
+                'id_retur'=>$post['id_retur'],
+                'id_order'=>$id,
+                'id_product'=>$post['id_product'][$i],
+                'id_size'=>$post['id_size'][$i],
+                'qty_retur'=>$post['qty'][$i],
+                'subtotal_retur'=>$post['qty'][$i]*$post['harga'][$i],
+                'alasan'=>$post['alasan'][$i]
+            );
+            $this->db->where('id_retur',$post['id_retur']);
+            $this->db->where('id_product',$post['id_product'][$i]);
+            $this->db->where('id_size',$post['id_size'][$i]);
+            $this->db->update($this->_tableDetRetur, $data);
+            $sub_total = $post['qty'][$i]*$post['harga'][$i];
+            $grand_total = $grand_total+$sub_total;
+            $i++;
+        }
+
+        $dataOrder = array(
+            'id_retur'=>$post['id_retur'],
+            'grandtotal_retur'=>$grand_total,
+            'bukti_refund'=>'-'
+        );
+
+        $this->db->where('id_retur',$post['id_retur']);
+        $this->db->update($this->_tableRetur, $dataOrder);
+        return true;
+    }
+
+    public function delete($id_retur,$id_product,$id_size) {
+        $sql = "DELETE FROM detil_retur WHERE id_retur='$id_retur' AND id_product='$id_product' AND id_size='$id_size'";
         return $this->db->query($sql);
     }
 

@@ -19,12 +19,12 @@
           </div>
 
             <!--History-->
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Data Transaksi</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-y:scroll; height:300px;">
                         <table class="table table-stripted table-hover" style="color:#000000;" width="100%">
                             <thead>
                                 <tr>
@@ -39,43 +39,6 @@
                                 <tr>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_resi ?></td>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_resi ?></td>
-                                    
-                                    <!--<?php if($retur != NULL) {foreach($retur as $r) { ?>
-                                    <td style="text-align:center; vertical-align:middle;">
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '1') { ?>
-                                             <p class="text-danger" style="font-weight:bold;">Belum Di Konfirmasi</p>
-                                        <?php } ?>
-
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '2') { ?>
-                                             <p class="text-primary" style="font-weight:bold;">Sudah Di Konfirmasi</p>
-                                        <?php } ?>
-
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '3') { ?>
-                                             <p class="text-primary" style="font-weight:bold;">Konfirmasi Pembayaran</p>
-                                        <?php } ?>
-
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '4') { ?>
-                                             <p class="text-primary" style="font-weight:bold;">Dikirim</p>
-                                        <?php } ?>
-
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == '5') { ?>
-                                             <p class="text-success" style="font-weight:bold;">Selesai</p>
-                                        <?php } ?>
-
-                                        <?php if($r->id_order == $data->id_order && $r->status_retur == NULL) { ?>
-                                             <p class="text-danger" style="font-weight:bold;">Batal</p>
-                                        <?php } ?>
-                                    </td>
-                                    <td style="text-align:center; vertical-align:middle;">
-                                        <?php 
-                                            if ($r->id_order == $data->id_order) {
-                                                echo $r->grandtotal_retur;
-                                            }
-                                        ?>
-                                    </td>-->
-                                    <?php }} else { ?>
-                                        <td style="text-align:center;">-</td><td style="text-align:center;">-</td>
-                                    <?php } ?>
                                     <td style="text-align:center; vertical-align:middle;">
                                         <form action="<?php echo base_url('index.php/Retur/aksi') ?>" method="post">
                                             <input type="hidden" name="id_retur" value="<?php echo $id_retur ?>">
@@ -83,6 +46,7 @@
                                             <input type="hidden" name="tgl_retur" value="<?php echo date("Y-m-d") ?>">
                                             <input type="hidden" name="status_retur" value="1">
                                             <input type="submit" name="simpan" value="Retur Order" class="btn btn-primary btn-xs">
+
                                             <?php 
                                                 foreach($orderData as $r) { 
                                                     if($r->id_order == $data->id_order) {
@@ -104,8 +68,58 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div><br><br>
             <!--History-->
+
+            <!--Data Retur-->
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Data Retur</h5>
+                    </div>
+                    <div class="card-body" style="overflow-y:scroll; height:300px;">
+                        <table class="table table-stripted table-bordered table-hover" style="color:#000000;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="20%" style="text-align:center;">ID Retur</th>
+                                    <th width="20%" style="text-align:center;">ID Order</th>
+                                    <th width="20%" style="text-align:center;">Status</th>
+                                    <th width="20%" style="text-align:center;">Jumlah Refund</th>
+                                    <th width="20%" style="text-align:center;">Bukti Refund</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($retur as $data) { ?>
+                                <tr>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_retur ?></td>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_order ?></td>
+                                    <td style="text-align:center; vertical-align:middle;">
+                                        <?php if($data->status_retur=='1') { ?>
+                                        <p class="text-danger">Belum Di Konfirmasi</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status_retur=='2') { ?>
+                                        <p class="text-primary">Sudah Di Konfirmasi</p>
+                                        <?php } ?>
+
+                                        <?php if($data->status_retur=='3') { ?>
+                                        <p class="text-success">Selesai</p>
+                                        <?php } ?>
+
+                                         <?php if($data->status_retur=='4') { ?>
+                                        <p class="text-secondary">Batal</p>
+                                        <?php } ?>
+                                    </td>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->grandtotal_retur ?></td>
+                                    <td style="text-align:center; vertical-align:middle;"><?php echo $data->bukti_refund ?></td>
+                                </tr>
+                                <?php } ?> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--Data Retur-->
 
         </div>
       </div>
