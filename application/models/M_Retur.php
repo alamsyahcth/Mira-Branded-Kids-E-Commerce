@@ -4,6 +4,7 @@ class M_Retur extends CI_Model {
     private $_tableRetur = 'retur';
     private $_tableDetRetur = 'detil_retur';
     private $_tableOrder = 'orders';
+    private $_tableDetOrder = 'detil_orders';
     private $_tableBank = 'bank';
     
     public function returID() {
@@ -34,18 +35,23 @@ class M_Retur extends CI_Model {
         return $this->db->query($sql)->result();
     }
 
+    public function getDetilOrder() {
+        $sql = "SELECT * FROM detil_orders";
+        return $this->db->query($sql)->result();
+    }
+
     public function cekRetur($id) {
         $sql ="SELECT *
                 FROM retur a, detil_retur b, orders c
-                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_customer='$id'";
+                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_customer='$id'
+                GROUP BY a.id_retur";
         return $this->db->query($sql)->result();
     }
     
     public function getReturOrder($id) {
-        $sql ="SELECT d.id_order, a.id_product, gambar, nm_product, b.id_size, nm_size, qty
-                FROM product a, size b, detil_orders c, orders d, resi e
-                WHERE a.id_product=c.id_product AND b.id_size=c.id_size AND d.id_order=c.id_order AND d.id_order=e.id_order AND e.id_resi='$id'
-                ORDER BY a.id_product";
+        $sql ="SELECT a.id_retur, b.id_order, c.id_product, nm_product, gambar, e.id_size, nm_size, qty, sub_total, alasan 
+        FROM retur a, detil_retur b, detil_orders c, product d, size e
+        WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND b.id_product=c.id_product AND b.id_size=c.id_size AND c.id_product=d.id_product AND c.id_size=e.id_size AND a.id_retur='R1905020001'";
         return $this->db->query($sql)->result();
     }
 
@@ -77,17 +83,41 @@ class M_Retur extends CI_Model {
         return $this->db->update($this->_tableOrder,$data);
     }
     
-    public function save($data) {
-        $this->db->insert($this->_tableRetur, $data);
+    public function save() {
+        $post = $this->input->post();
+        $dataOrder = array(
+            'id_retur'=>$post['id_retur'],
+            'tgl_retur'=>$post['tgl_retur'],
+            'status_retur'=>$post['status_retur']
+        );
+
+        $data = array();
+        $i=0;
+        foreach ($post['id_return'] as $id) {
+            array_push($data, array(
+                'id_retur'=>$id,
+                'id_order'=>$post['id_order'][$i],
+                'id_product'=>$post['id_product'][$i],
+                'id_size'=>$post['id_size'][$i],
+                'qty_retur'=>$post['qty_retur'][$i],
+                'subtotal_retur'=>$post['subtotal_retur'][$i],
+                'alasan'=>$post['alasan'][$i]
+            ));
+            $i++;
+        }
+
+        $this->db->insert($this->_tableRetur, $dataOrder);
+        $this->saveBatch($data);
     }
 
-    public function saveBatch($data) {
-        $this->db->insert($this->_tableDetRetur, $data);
+    public function saveBatch($data=array()) {
+        $this->db->insert_batch($this->_tableDetRetur, $data);
+        return true;
     }
 
-    public function delete($id) {
-        $this->_delImage($id);
-        return $this->db->delete($this->_table, array('id_bank'=>$id));
+    public function delete($id_product,$id_size) {
+        $sql = "DELETE FROM detil_retur WHERE id_product='$id_product' AND id_size='$id_size'";
+        return $this->db->query($sql);
     }
 
 }

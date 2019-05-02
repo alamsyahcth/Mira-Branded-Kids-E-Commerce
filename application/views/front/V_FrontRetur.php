@@ -19,7 +19,7 @@
           </div>
 
             <!--History-->
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Data Transaksi</h5>
@@ -30,8 +30,6 @@
                                 <tr>
                                     <th width="15%" style="text-align:center;">ID Faktur</th>
                                     <th width="20%" style="text-align:center;">Tanggal Kirim</th>
-                                    <th width="10%" style="text-align:center;">Status</th>
-                                    <th width="20%" style="text-align:center;">No Resi</th>
                                     <th width="5%" style="text-align:center;">Aksi</th>
                                 </tr>
                             </thead>
@@ -42,7 +40,7 @@
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_resi ?></td>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->tanggal_resi ?></td>
                                     
-                                    <?php if($retur != NULL) {foreach($retur as $r) { ?>
+                                    <!--<?php if($retur != NULL) {foreach($retur as $r) { ?>
                                     <td style="text-align:center; vertical-align:middle;">
                                         <?php if($r->id_order == $data->id_order && $r->status_retur == '1') { ?>
                                              <p class="text-danger" style="font-weight:bold;">Belum Di Konfirmasi</p>
@@ -71,16 +69,34 @@
                                     <td style="text-align:center; vertical-align:middle;">
                                         <?php 
                                             if ($r->id_order == $data->id_order) {
-                                                echo $r->resi_retur;
+                                                echo $r->grandtotal_retur;
                                             }
                                         ?>
-                                    </td>
+                                    </td>-->
                                     <?php }} else { ?>
                                         <td style="text-align:center;">-</td><td style="text-align:center;">-</td>
                                     <?php } ?>
                                     <td style="text-align:center; vertical-align:middle;">
-                                        <a href="<?php echo base_url('index.php/Retur/aksi/'.$data->id_resi) ?>" class="btn btn-primary btn-xs">Retur</a>
-                                        <!--<button class="btn btn-primary btn-xs" disabled>Selesai</button>-->
+                                        <form action="<?php echo base_url('index.php/Retur/aksi') ?>" method="post">
+                                            <input type="hidden" name="id_retur" value="<?php echo $id_retur ?>">
+                                            <input type="hidden" name="id_order" value="<?php echo $data->id_order ?>">
+                                            <input type="hidden" name="tgl_retur" value="<?php echo date("Y-m-d") ?>">
+                                            <input type="hidden" name="status_retur" value="1">
+                                            <input type="submit" name="simpan" value="Retur Order" class="btn btn-primary btn-xs">
+                                            <?php 
+                                                foreach($orderData as $r) { 
+                                                    if($r->id_order == $data->id_order) {
+                                            ?>
+                                                <input type="hidden" name="id_return[]" value="<?php echo $id_retur; ?>">
+                                                <input type="hidden" name="id_order[]" value="<?php echo $r->id_order; ?>">
+                                                <input type="hidden" name="id_product[]" value="<?php echo $r->id_product; ?>">
+                                                <input type="hidden" name="id_size[]" value="<?php echo $r->id_size; ?>">
+                                                <input type="hidden" name="qty_retur[]" value="<?php echo $r->qty; ?>">
+                                                <input type="hidden" name="subtotal_retur[]" value="<?php echo $r->sub_total; ?>">
+                                                <input type="hidden" name="alasan[]" value="<?php echo '-'; ?>"><br>
+                                            <?php }} ?>
+                                           
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php } ?> 
