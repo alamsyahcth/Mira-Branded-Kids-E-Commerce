@@ -34,9 +34,14 @@ class C_TransaksiPembayaran extends CI_Controller {
             $this->session->set_flashdata('fail','Maaf resi sudah pernah diinput');
             redirect('admin/C_TransaksiPembayaran');
         } else {
+            $email_customer = $this->input->post('email_customer');
+            $id_order = $this->input->post('id_order');
+            $no_resi = $this->input->post('no_resi');
+            $id_resi = $this->input->post('id_resi');
+            $kurir = $this->input->post('kurir');
             $this->M_TransaksiPembayaran->save();
             $this->M_TransaksiPembayaran->updateStatus($this->input->post('id_order'));
-            $this->emailResi($_POST['email_customer'],$_POST['id_order'],$_POST['no_resi'],$_POST['id_resi'],$_POST['kurir']);
+            $this->emailResi($email_customer,$id_order,$no_resi,$id_resi,$kurir);
             $this->session->set_flashdata('success','Status berhasil diubah');
             redirect('admin/C_TransaksiPembayaran');
         }

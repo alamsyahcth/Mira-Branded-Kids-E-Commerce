@@ -33,12 +33,12 @@ class SignUp extends CI_Controller {
         $validation->set_rules($table->rules());
 
         if($validation->run()) {
-            if($this->M_MasterCustomer->getEmailCustomer($_POST['email_customer'])) {
+            if($this->M_MasterCustomer->getEmailCustomer($this->input->post('email_customer'))) {
                 $this->session->set_flashdata('Fail','Maaf email sudah terdaftar');
                 redirect('SignUp');
             } else {
                 $table->save();
-                $this->konfirmasiEmail($_POST['email_customer'],$_POST['id_customer']);
+                $this->konfirmasiEmail($this->input->post('email_customer'),$this->input->post('id_customer'));
                 $this->session->set_flashdata('signup_success','Akun berhasil dibuat, silahkan konfirmasi email anda');
                 redirect('Login');
             }
