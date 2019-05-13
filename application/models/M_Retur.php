@@ -88,10 +88,8 @@ class M_Retur extends CI_Model {
                 WHERE a.id_order=b.id_order AND a.id_order='$id_order'
                 GROUP BY a.id_order";
         $query = $this->db->query($sql);
-        if ($query->num_rows() < 0) {
+        if ($query->num_rows() == 1) {
             return true;
-        } else {
-            return false;
         }
     }
 
