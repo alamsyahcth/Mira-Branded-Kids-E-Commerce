@@ -36,9 +36,9 @@ class M_Retur extends CI_Model {
     }
 
     public function getFaktur($id) {
-        $sql ="SELECT a.id_retur, e.id_resi, nm_customer, telp_customer, alamat_kirim, kode_pos,kurir, tanggal_resi
-                FROM retur a, detil_retur b, detil_orders c, orders d, resi e, customer f
-                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_order=d.id_order AND d.id_order=e.id_order AND d.id_customer=f.id_customer AND a.id_retur='$id'
+        $sql ="SELECT a.id_retur, e.id_resi, nm_customer, telp_customer, email_customer, no_rekening, grandtotal_retur, alamat_kirim, kode_pos,kurir, tanggal_resi
+                FROM retur a, detil_retur b, detil_orders c, orders d, resi e, customer f, confirm g
+                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_order=d.id_order AND d.id_order=e.id_order AND d.id_customer=f.id_customer AND d.id_order=g.id_order AND a.id_retur='$id'
                 GROUP BY a.id_retur";
         return $this->db->query($sql)->result();
     }
@@ -65,9 +65,9 @@ class M_Retur extends CI_Model {
     }
     
     public function getReturOrder($id) {
-        $sql ="SELECT a.id_retur, b.id_order, c.id_product, nm_product, gambar, harga, e.id_size, nm_size, qty, sub_total, alasan 
-        FROM retur a, detil_retur b, detil_orders c, product d, size e
-        WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND b.id_product=c.id_product AND b.id_size=c.id_size AND c.id_product=d.id_product AND c.id_size=e.id_size AND a.id_retur='$id'";
+        $sql ="SELECT a.id_retur, b.id_order, c.id_product, nm_product, gambar, harga, e.id_size, nm_size, qty_retur, subtotal_retur, alasan 
+                FROM retur a, detil_retur b, detil_orders c, product d, size e
+                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND b.id_product=c.id_product AND b.id_size=c.id_size AND c.id_product=d.id_product AND c.id_size=e.id_size AND a.id_retur='$id'";
         return $this->db->query($sql)->result();
     }
 
@@ -75,6 +75,19 @@ class M_Retur extends CI_Model {
         $this->db->where('id_order',$id_order);
         $this->db->where('id_customer',$id_customer);
         $query = $this->db->get($this->_tableOrder);
+        if ($query->num_rows() < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function cekDataReturSimpan($id_order) {
+        $sql = "SELECT *
+                FROM detil_retur a, detil_orders b
+                WHERE a.id_order=b.id_order AND a.id_order='$id_order'
+                GROUP BY a.id_order";
+        $query = $this->db->query($sql);
         if ($query->num_rows() < 0) {
             return true;
         } else {

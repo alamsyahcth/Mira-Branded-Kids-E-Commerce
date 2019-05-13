@@ -48,6 +48,12 @@
                                 <tr>
                                     <td><?php echo $data->telp_customer ?></td>
                                 </tr>
+                                <tr>
+                                    <td><?php echo $data->email_customer ?></td>
+                                </tr>
+                                <tr>
+                                    <td>No.Rekening : <?php echo $data->no_rekening ?></td>
+                                </tr>
                             </table>
                         </div>
                         <div class="col-md-2">
@@ -81,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                
                 <br>
 
                 <div class="card">
@@ -103,6 +109,9 @@
                             </thead>
                             <tbody>
                                 <form action="<?php echo base_url('index.php/Retur/updateRetur') ?>" method="post">
+                                <input type="hidden" name="id_retur2" value="<?php echo $data->id_retur ?>">
+                                <input type="hidden" name="email_customer" value="<?php echo $data->email_customer ?>">
+                                <input type="hidden" name="no_rekening" value="<?php echo $data->no_rekening ?>">
                                 <?php foreach($getRetur as $data) { ?>
                                 <tr>
                                     <td style="text-align:center; vertical-align:middle;"><?php echo $data->id_product ?></td>
@@ -114,7 +123,7 @@
                                     <input type="hidden" name="id_product[]" value="<?php echo $data->id_product ?>">
                                     <input type="hidden" name="id_size[]" value="<?php echo $data->id_size ?>">
                                     <input type="hidden" name="harga[]" value="<?php echo $data->harga ?>">
-                                    <td style="text-align:center; vertical-align:middle;"><input type="number" name="qty[]" class="form-control" value="<?php echo $data->qty ?>" max="<?php echo $data->qty ?>"></td>
+                                    <td style="text-align:center; vertical-align:middle;"><input type="number" name="qty[]" class="form-control" value="<?php echo $data->qty_retur ?>" max="<?php echo $data->qty_retur ?>"></td>
                                     <td style="text-align:center; vertical-align:middle;"><input type="text" name="alasan[]" class="form-control" placeholder="alasan" required=""></td>
                                     <td style="text-align:center; vertical-align:middle;">
                                         <a href="<?php echo base_url('index.php/Retur/deleteData/'.$data->id_retur.'/'.$data->id_product.'/'.$data->id_size); ?>"><button type="button" class="btn btn-primary btn-xs">X</button></a>
@@ -130,6 +139,7 @@
                         </table>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <!--History-->
 
