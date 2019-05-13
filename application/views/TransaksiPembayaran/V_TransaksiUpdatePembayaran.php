@@ -199,7 +199,7 @@
                                                     </form><br>
 
                                                     <form class="form" action="<?php echo base_url('index.php/admin/C_TransaksiPembayaran/tolakPembayaran') ?>" method="post">
-                                                        <input type="text" name="id_confirm" value="<?php echo $data->id_confirm ?>">
+                                                        <input type="hidden" name="id_confirm" value="<?php echo $data->id_confirm ?>">
                                                         <input type="hidden" name="id_order" value="<?php echo $data->id_order ?>">
                                                         <input type="hidden" name="email_customer" value="<?php echo $data->email_customer ?>">
                                                         <input type="submit" name="tolak" id="tolak" value="Tolak Pembayaran" class="btn btn-danger btn-md btn-block">

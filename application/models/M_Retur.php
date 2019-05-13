@@ -35,6 +35,14 @@ class M_Retur extends CI_Model {
         return $this->db->query($sql)->result();
     }
 
+    public function getFaktur($id) {
+        $sql ="SELECT a.id_retur, e.id_resi, nm_customer, telp_customer, alamat_kirim, kode_pos,kurir, tanggal_resi
+                FROM retur a, detil_retur b, detil_orders c, orders d, resi e, customer f
+                WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_order=d.id_order AND d.id_order=e.id_order AND d.id_customer=f.id_customer AND a.id_retur='$id'
+                GROUP BY a.id_retur";
+        return $this->db->query($sql)->result();
+    }
+
     public function getDetilOrder() {
         $sql = "SELECT * FROM detil_orders";
         return $this->db->query($sql)->result();

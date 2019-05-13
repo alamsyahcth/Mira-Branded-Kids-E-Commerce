@@ -58,7 +58,9 @@ class Checkout extends CI_Controller {
 			if ($this->form_validation->run() == true) {
 				$insert = $this->M_FrontProduct->insertOrder($ordData);
 				$order = $this->insertItemData($_POST['id_order']);
-				$this->emailInvoice($this->input->post('email'),$this->input->post('id_order'));
+				$email = $this->input->post('email');
+				$id_order = $this->input->post('id_order');
+				$this->emailInvoice($email,$id_order);
 				$this->cart->destroy();
 				$this->session->set_flashdata('msg','success');
 				redirect('OrderDetail/index/'.$_POST['id_order']);

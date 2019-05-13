@@ -20,6 +20,7 @@
 
             <!--History-->
             <div class="col-md-12">
+                <?php foreach($getFaktur as $data) { ?>
                 <div class="card">
                     <div class="row">
                         <div class="col-md-6">
@@ -27,7 +28,7 @@
                                 <tr>
                                     <td width="5%">ID Faktur</td>
                                     <td width="2%">:</td>
-                                    <td width="20%" style="font-weight:bold;">S0001291818290</td>
+                                    <td width="20%" style="font-weight:bold;"><?php echo $data->id_resi ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -39,13 +40,13 @@
                                     <td style="font-weight:bold;">Alamat Pengiriman</td>
                                 </tr>
                                 <tr>
-                                    <td>Alamsyah Catur</td>
+                                    <td><?php echo $data->nm_customer ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Jalan Mede No.23 RT.005 RW.04 Petukangan Utara Jakarta Selatan 12260</td>
+                                    <td><?php echo $data->alamat_kirim ?> Kode Pos: <?php echo $data->kode_pos ?></td>
                                 </tr>
                                 <tr>
-                                    <td>089670465244</td>
+                                    <td><?php echo $data->telp_customer ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -55,10 +56,10 @@
                                     <td style="font-weight:bold;">Detail Pengiriman</td>
                                 </tr>
                                 <tr>
-                                    <td>Jasa Pengiriman JNE</td>
+                                    <td><?php echo $data->kurir ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Tanggal 2019-04-01</td>
+                                    <td>Tanggal <?php echo $data->tanggal_resi ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -80,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
                 <br>
 
                 <div class="card">

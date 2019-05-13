@@ -38,6 +38,7 @@ class Retur extends CI_Controller {
 
     public function dataRetur($id) {
         $data['kategori'] = $this->M_FrontProduct->getKategori();
+        $data['getFaktur'] = $this->M_Retur->getFaktur($id);
         $data['getRetur'] = $this->M_Retur->getReturOrder($id);
         $this->load->view('front/V_FrontAksiRetur', $data);
     }
