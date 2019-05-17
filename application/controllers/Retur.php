@@ -84,7 +84,7 @@ class Retur extends CI_Controller {
         return $this->email->send();
     }
     
-     public function cetakRetur($id) {
+    public function cetakRetur($id) {
         ob_start();
         $data['getFaktur'] = $this->M_Retur->getFaktur($id);
         $data['retur'] = $this->M_Retur->getReturOrder($id);
@@ -96,6 +96,20 @@ class Retur extends CI_Controller {
         $pdf = new HTML2PDF('p','A4','en');
         $pdf->WriteHTML($html);
         $pdf->output('Retur-'.md5($id).'.pdf','D');
+    }
+
+    public function refund($id) {
+        ob_start();
+        $data['getFaktur'] = $this->M_Retur->getFaktur($id);
+        $data['retur'] = $this->M_Retur->getReturOrder($id);
+        $this->load->view('Front/V_FrontCetakRefund', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        require_once('./Assets/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('p','A4','en');
+        $pdf->WriteHTML($html);
+        $pdf->output('Refund-'.md5($id).'.pdf','D');
     }
 
 }

@@ -36,7 +36,7 @@ class M_Retur extends CI_Model {
     }
 
     public function getFaktur($id) {
-        $sql ="SELECT a.id_retur, e.id_resi, nm_customer, telp_customer, email_customer, no_rekening, grandtotal_retur, alamat_kirim, kode_pos,kurir, tanggal_resi
+        $sql ="SELECT a.id_retur, e.id_resi, nm_customer, telp_customer, email_customer, no_rekening, grandtotal_retur, alamat_kirim, kode_pos,kurir, tanggal_resi, bukti_refund
                 FROM retur a, detil_retur b, detil_orders c, orders d, resi e, customer f, confirm g
                 WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_order=d.id_order AND d.id_order=e.id_order AND d.id_customer=f.id_customer AND d.id_order=g.id_order AND a.id_retur='$id'
                 GROUP BY a.id_retur";
