@@ -18,7 +18,7 @@ class M_TransaksiRetur extends CI_Model {
    }
 
    public function getReturById($id) {
-        $sql = "SELECT a.id_retur, b.id_order, g.id_resi, tgl_retur, nm_customer, no_rekening, grandtotal_retur, bukti_refund
+        $sql = "SELECT a.id_retur, b.id_order, g.id_resi, tgl_retur, nm_customer, no_rekening, grandtotal_retur, bukti_refund, email_customer
                 FROM retur a, detil_retur b, detil_orders c, orders d, customer e, confirm f, resi g
                 WHERE a.id_retur=b.id_retur AND b.id_order=c.id_order AND c.id_order=d.id_order AND d.id_customer=e.id_customer AND d.id_order=f.id_order AND d.id_order=g.id_order AND b.id_retur='$id'
                 GROUP BY b.id_retur

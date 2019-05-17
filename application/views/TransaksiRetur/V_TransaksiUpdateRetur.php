@@ -188,6 +188,7 @@
                                                                 <tr>
                                                                     <td colspan="6"><label for="bukti_refund" class="control-label">Bukti Refund</label>
                                                                     <input type="hidden" name="id_retur" value="<?php foreach($returId as $data) {echo $data->id_retur;} ?>">
+                                                                    <input type="hidden" name="email_customer" value="<?php foreach($returId as $data) {echo $data->email_customer;} ?>">
                                                                     <input type="file" name="bukti_refund" class="form-control"></td>
                                                                 </tr>
                                                                 <tr>
