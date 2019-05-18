@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller {
         $data['totalTransaksi'] = $this->M_Dashboard->getTotalTransaksi();
         $data['transaksiSelesai'] = $this->M_Dashboard->getTransaksiSelesai();
         $data['transaksiBatal'] = $this->M_Dashboard->getTransaksiBatal();
-        $data['jumlahProduct'] = $this->M_Dashboard->getJumlahProduct();
+        $data['transaksiRetur'] = $this->M_Dashboard->getJumlahRetur();
         $data['saran'] = $this->M_Dashboard->getSaran();
         $this->load->view('dashboard', $data);
 	}

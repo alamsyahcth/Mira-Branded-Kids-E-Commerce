@@ -16,7 +16,7 @@
                 <th style="text-align:center; border: 1px solid black;">Kode</th>
                 <th style="text-align:center; border: 1px solid black;">Nama Barang</th>
                 <th style="text-align:center; border: 1px solid black;">Harga</th>
-                <th style="text-align:center; border: 1px solid black;">Stok</th>
+                <th style="text-align:center; border: 1px solid black;" colspan="2">Stok</th>
                 <th style="text-align:center; border: 1px solid black;">Gambar</th>
                 <th style="text-align:center; border: 1px solid black;">Deskripsi</th>
             </tr>
@@ -24,15 +24,32 @@
         <tbody>
             <?php
                 $no=1;
-                foreach ($barang as $b) {
+                foreach ($product as $b) {
             ?>
             <tr>
                 <td style="text-align:center; border: solid 1px black; width:5%"><?php echo $no++ ?></td>
-                <td style="text-align:center; border: solid 1px black; width:5%"><?php echo $b->id_barang ?></td>
-                <td style="text-align:center; border: solid 1px black; width:30%"><?php echo $b->nm_barang ?></td>
+                <td style="text-align:center; border: solid 1px black; width:5%"><?php echo $b->id_product ?></td>
+                <td style="text-align:center; border: solid 1px black; width:20%"><?php echo $b->nm_product ?></td>
                 <td style="text-align:center; border: solid 1px black; width:10%"><?php echo $b->harga ?></td>
-                <td style="text-align:center; border: solid 1px black; width:5%"><?php echo $b->stok ?></td>
-                <td style="text-align:center; border: solid 1px black; width:10%"><img src="<?php echo base_url('upload/barang/'.$b->gambar) ?>" style="width: 30%;"></td>
+                <td style="text-align:center; border: solid 1px black; width:5%">
+                    <?php
+                        foreach ($getStok as $data) {
+                            if ($data->id_product == $b->id_product) {
+                                echo $data->nm_size.'<br>';
+                            }
+                        }
+                    ?>
+                </td>
+                <td style="text-align:center; border: solid 1px black; width:5%">
+                    <?php
+                        foreach ($getStok as $data) {
+                            if ($data->id_product == $b->id_product) {
+                                echo $data->stok.'<br>';
+                            }
+                        }
+                    ?>
+                </td>
+                <td style="text-align:center; border: solid 1px black; width:10%"><img src="<?php echo base_url('upload/product/'.$b->gambar) ?>" style="width: 30%;"></td>
                 <td style="text-align:center; border: solid 1px black; width:35%"><?php echo $b->deskripsi ?></td>
             </tr>
             <?php

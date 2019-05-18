@@ -105,6 +105,7 @@ class C_MasterProduct extends CI_Controller {
     public function pdf() {
         ob_start();
         $data['product'] = $this->M_MasterProduct->getAll();
+        $data['getStok'] = $this->M_MasterProduct->getDetilSizeAll();
         $this->load->view('MasterProduct/V_MasterCetakProduct', $data);
         $html = ob_get_contents();
         ob_end_clean();

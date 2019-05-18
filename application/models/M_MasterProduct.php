@@ -148,6 +148,15 @@ class M_MasterProduct extends CI_Model {
        }
    }
 
+   public function getDetilSizeAll() {
+        $sql = "SELECT a.id_product, b.id_size, nm_size, stok
+                FROM product a, detil_size b, size c
+                WHERE a.id_product=b.id_product AND b.id_size=c.id_size";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
     public function save() {
         $post = $this->input->post();
         $this->id_product = $post['id_product'];

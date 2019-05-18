@@ -26,8 +26,8 @@ class M_Dashboard extends CI_Model {
        return $this->db->query($sql)->result();
    }
 
-   public function getJumlahProduct() {
-       $sql = "SELECT COUNT(id_customer) AS data FROM customer";
+   public function getJumlahRetur() {
+       $sql = "SELECT COUNT(id_retur) AS data FROM retur";
        return $this->db->query($sql)->result();
    }
 
