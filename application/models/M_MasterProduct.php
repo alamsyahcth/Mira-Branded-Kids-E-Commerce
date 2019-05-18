@@ -138,6 +138,16 @@ class M_MasterProduct extends CI_Model {
         return $this->db->query($sql)->result();
     }
 
+    public function cekProduct($id) {
+       $this->db->where('id_product',$id);
+       $query = $this->db->get('detil_size');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+
     public function save() {
         $post = $this->input->post();
         $this->id_product = $post['id_product'];

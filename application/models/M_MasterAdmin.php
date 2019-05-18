@@ -35,6 +35,16 @@ class M_MasterAdmin extends CI_Model {
            return false;
        }
    }
+
+   public function cekAdmin($id) {
+       $this->db->where('username',$id);
+       $query = $this->db->get('reply');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+    }
    
    public function save() {
         $post = $this->input->post();

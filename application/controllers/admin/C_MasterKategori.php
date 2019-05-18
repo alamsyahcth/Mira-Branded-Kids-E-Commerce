@@ -53,7 +53,10 @@ class C_MasterKategori extends CI_Controller {
     public function delete($id) {
         if(!isset($id)) {show_404();}
 
-        if ($this->M_MasterKategori->delete($id)) {
+        if ($this->M_MasterKategori->cekKategori($id)) {
+            $this->session->set_flashdata('del_fail','Data Gagal Dihapus, karena sudah di gunakan dalam transaksi');
+            redirect('admin/C_MasterKategori');
+        } else if ($this->M_MasterKategori->delete($id)) {
             $this->session->set_flashdata('del_sukses','Data Berhasil Dihapus');
             redirect('admin/C_MasterKategori');
         }

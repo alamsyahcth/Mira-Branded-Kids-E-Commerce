@@ -21,8 +21,10 @@ class C_MasterCustomer extends CI_Controller {
     }
 
     public function delete($id) {
-
-        if($this->M_MasterCustomer->delete($id)) {
+        if ($this->M_MasterCustomer->cekCustomer($id)) {
+            $this->session->set_flashdata('del_fail', 'Data Gagal Dihapus');
+            redirect('admin/C_MasterCustomer/index');
+        } else if($this->M_MasterCustomer->delete($id)) {
             $this->session->set_flashdata('del_sukses', 'Data Berhasil Dihapus');
             redirect('admin/C_MasterCustomer/index');
         }

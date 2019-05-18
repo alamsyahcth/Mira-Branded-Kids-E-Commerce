@@ -60,6 +60,16 @@ class M_MasterBank extends CI_Model {
     public function getById($id) {
             return $this->db->get_where($this->_table, ['id_bank'=>$id])->row();
     }
+
+    public function cekBank($id) {
+       $this->db->where('id_bank',$id);
+       $query = $this->db->get('confirm');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+    }
     
     public function save() {
             $post = $this->input->post();

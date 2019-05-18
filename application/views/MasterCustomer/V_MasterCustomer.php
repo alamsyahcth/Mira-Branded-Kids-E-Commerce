@@ -46,6 +46,14 @@
                                                 </div>
                                             </div>
                                         <?php } ?>
+
+                                        <?php if($this->session->flashdata('del_fail')) { ?>
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_fail') ?></h4>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                         <!--Buttton-->
                                         <div class="row">
                                             <div class="col-md-2" style="padding-left:50px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterCustomer/pdf') ?>" target="_blank" ><button class="btn btn-secondary btn-lg" ><i class="mdi mdi-printer"></i></button></a></div>
@@ -73,7 +81,14 @@
                                                         <td width="30%" style="vertical-align:middle; text-align:center;"><?php echo $b->nm_customer ?></td>
                                                         <td width="20%" style="vertical-align:middle; text-align:center;"><?php echo $b->email_customer ?></td>
                                                         <td width="15%" style="vertical-align:middle; text-align:center;"><?php echo $b->telp_customer ?></td>                                                        
-                                                        <td width="10%" style="vertical-align:middle; text-align:center;"><?php echo $b->status_customer ?></td>
+                                                        <td width="10%" style="vertical-align:middle; text-align:center;">
+                                                            <?php if ($b->status_customer == '1') { ?>
+                                                            <p class="text-success">Aktif</p>
+                                                            <?php } ?>
+                                                            <?php if ($b->status_customer == '2') { ?>
+                                                             <p class="text-danger">Belum Aktif</p>
+                                                            <?php } ?>
+                                                        </td>
                                                         <td width="20%" style="vertical-align:middle; text-align:center;">
 
                                                             <!--View-->

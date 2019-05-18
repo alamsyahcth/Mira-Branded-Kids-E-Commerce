@@ -52,6 +52,16 @@ class M_MasterKategori extends CI_Model {
    public function getById($id) {
         return $this->db->get_where($this->_table, ['id_kategori'=>$id])->row();
    }
+
+   public function cekKategori($id) {
+       $this->db->where('id_kategori',$id);
+       $query = $this->db->get('product');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+   }
    
    public function save() {
         $post = $this->input->post();

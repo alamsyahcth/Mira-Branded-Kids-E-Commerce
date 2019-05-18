@@ -61,6 +61,14 @@
                                                 </div>
                                             </div>
                                         <?php } ?>
+
+                                         <?php if($this->session->flashdata('del_fail')) { ?>
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_fail') ?></h4>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                         
                                         <div class="row">
                                             <!--Form-->

@@ -107,6 +107,16 @@ class M_MasterCustomer extends CI_Model {
        }
    }
 
+   public function cekCustomer($id) {
+       $this->db->where('id_customer',$id);
+       $query = $this->db->get('orders');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+
    public function getPasswordCustomer($password) {
        $this->db->where('password_customer', md5($password));
        $query = $this->db->get($this->_table);

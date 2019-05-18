@@ -63,7 +63,10 @@ class C_MasterAdmin extends CI_Controller {
     public function delete($id) {
         if(!isset($id)) {show_404();}
 
-        if ($this->M_MasterAdmin->delete($id)) {
+        if ($this->M_MasterAdmin->cekAdmin($id)) {
+            $this->session->set_flashdata('del_fail','Data Gagal Dihapus, karena sudah digunakan dalam reply komentar');
+            redirect('admin/C_MasterAdmin');
+        } else if ($this->M_MasterAdmin->delete($id)) {
             $this->session->set_flashdata('del_sukses','Data Berhasil Dihapus');
             redirect('admin/C_MasterAdmin');
         }

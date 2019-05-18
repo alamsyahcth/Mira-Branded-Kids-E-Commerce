@@ -53,7 +53,10 @@ class C_MasterBank extends CI_Controller {
     public function delete($id) {
         if(!isset($id)) {show_404();}
 
-        if ($this->M_MasterBank->delete($id)) {
+        if ($this->M_MasterBank->cekBank($id)) {
+            $this->session->set_flashdata('del_fail','Data Gagal Dihapus, karena sudah digunakan dalam transaksi');
+            redirect('admin/C_MasterBank');
+        } else if ($this->M_MasterBank->delete($id)) {
             $this->session->set_flashdata('del_sukses','Data Berhasil Dihapus');
             redirect('admin/C_MasterBank');
         }

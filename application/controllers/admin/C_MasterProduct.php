@@ -61,7 +61,10 @@ class C_MasterProduct extends CI_Controller {
 
     public function delete($id_product) {
 
-        if($this->M_MasterProduct->delete($id_product, $id_size)) {
+        if ($this->M_MasterProduct->cekProduct($id_product)) {
+            $this->session->set_flashdata('del_fail', 'Data Gagal Dihapus Karena stok sudah dientry');
+            redirect('admin/C_MasterProduct/index');
+        } else if($this->M_MasterProduct->delete($id_product)) {
             $this->session->set_flashdata('del_sukses', 'Data Berhasil Dihapus');
             redirect('admin/C_MasterProduct/index');
         }

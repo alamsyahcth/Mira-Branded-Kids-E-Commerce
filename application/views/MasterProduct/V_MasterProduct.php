@@ -61,6 +61,14 @@
                                                 </div>
                                             </div>
                                         <?php } ?>
+
+                                         <?php if($this->session->flashdata('del_fail')) { ?>
+                                            <div class="card" style="padding:10px;" id="alert_s">
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4 style="color:#3d3d3d"><?php echo $this->session->flashdata('del_fail') ?></h4>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                         <!--Buttton-->
                                         <div class="row">
                                             <div class="col-md-2" style="padding-left:40px; padding-top:10px;"><a href="<?php echo site_url('admin/C_MasterProduct/add') ?>" ><button class="btn btn-primary btn-lg" ><i class="mdi mdi-plus-box"></i> Tambah</button></a></div>

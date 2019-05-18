@@ -45,6 +45,16 @@ class M_MasterSize extends CI_Model {
    public function getById($id) {
         return $this->db->get_where($this->_table, ['id_size'=>$id])->row();
    }
+
+   public function cekSize($id) {
+       $this->db->where('id_size',$id);
+       $query = $this->db->get('detil_size');
+       if($query->num_rows() > 0) {
+           return true;
+       } else {
+           return false;
+       }
+   }
    
    public function save() {
         $post = $this->input->post();
