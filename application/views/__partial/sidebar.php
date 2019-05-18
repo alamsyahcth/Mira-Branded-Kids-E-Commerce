@@ -40,7 +40,7 @@
                             <ul aria-expanded="false" class="collapse  first-level" style="padding-left: 20px;">
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_LaporanPemesanan') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Data Pemesanan </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_LaporanPenjualan') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Penjualan </span></a></li>
-                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_TransaksiStatusPemesanana') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Retur </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_LaporanRetur') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Retur </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_LaporanBestSeller') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Best Seller </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('index.php/admin/C_LaporanBestCustomer') ?>" class="sidebar-link"><i class="mdi mdi-receipt"></i><span class="hide-menu"> Laporan Best Customer </span></a></li>
 

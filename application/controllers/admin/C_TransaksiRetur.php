@@ -60,7 +60,7 @@ class C_TransaksiRetur extends CI_Controller {
             <h1 style="font-face:sans-serif; color:#7971ea;">Mira Branded Kids</h1>
             <h4>Hai, Selamat data retur kamu dengan ID Retur '.$id_retur.' sudah ditransfer</h4>
             <h4>Untuk mengetahui bukti refund, bisa dengan mencetak refund</h4>
-            <p style="font-family:Helvetica; margin:10px; text-align: left;"><a href="'.site_url('Retur/refund/'.$id_retur).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Refund</a></p>
+            <p style="font-family:Helvetica; margin:10px; text-align: left;"><a href="'.site_url('Refund/index/'.$id_retur).'" style="background: #7971ea; border:none; padding: 5px 32px; text-align: center; text-decoration: none; color: #f5f6fa; font-size: 10pt; border-radius: 5px;">Cetak Refund</a></p>
             '
         );
 
