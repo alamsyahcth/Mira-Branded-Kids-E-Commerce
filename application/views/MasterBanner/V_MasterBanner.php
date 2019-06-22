@@ -82,7 +82,7 @@
                                                                             </div>
 
                                                                             <div class="form-group">
-                                                                                <label for="gambar_banner" class="control-label">Gambar</label>
+                                                                                <label for="gambar_banner" class="control-label">Gambar <p class="text-danger">Ukuran 10,84 x 4,24</p></label>
                                                                                 <input type="file" name="gambar_banner" id="gambar_banner" class="form-control" placeholder="Gambar Banner">
                                                                             </div>
 

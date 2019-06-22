@@ -1,5 +1,5 @@
     
-    <div class="site-blocks-cover" style="background-image: url('<?php echo base_url('Assets/front/images/hero_1.jpg') ?>')" data-aos="fade">
+    <!--<div class="site-blocks-cover" style="background-image: url('<?php echo base_url('Assets/front/images/hero_1.jpg') ?>')" data-aos="fade">
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
           <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
@@ -13,27 +13,27 @@
           </div>
         </div>
       </div>
-    </div>
-    <div id="demo" class="carousel slide" data-ride="carousel">
+    </div>-->
+<div id="demo" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
   <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
+    <?php $i=0; foreach ($banner as $data) { ?>
+    <li data-target="#demo" data-slide-to="<?php echo $i++; ?>"></li>
+    <?php } ?>
   </ul>
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="la.jpg" alt="Los Angeles">
+    <?php $i=0; foreach ($banner as $data) { ?>
+    <div class="carousel-item <?php if($i==0) {echo 'active';} $i++;  ?>">
+      <img src="<?php echo base_url('upload/banner/'.$data->gambar_banner) ?>" alt="<?php echo $data->judul_banner ?>">
+      <div class="carousel-caption">
+        <h3><?php echo $data->judul_banner ?></h3>
+        <p><?php echo $data->deskripsi_banner ?></p>
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="chicago.jpg" alt="Chicago">
-    </div>
-    <div class="carousel-item">
-      <img src="ny.jpg" alt="New York">
-    </div>
+    <?php } ?>
   </div>
 
   <!-- Left and right controls -->

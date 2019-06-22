@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
+        $data['banner'] = $this->M_FrontProduct->getBanner();
 
         //Pagination
         $config['base_url'] = site_url('home/index');

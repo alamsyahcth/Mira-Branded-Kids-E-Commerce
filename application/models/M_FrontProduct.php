@@ -15,11 +15,16 @@ class M_FrontProduct extends CI_Model {
         $this->resiTable = 'detil_size';
         $this->commentTable = 'comment';
         $this->saranTable = 'saran';
+        $this->bannerTable = 'banner';
     }
 
     //get Kategori
     public function getKategori() {
         return $this->db->get($this->katTable)->result();
+    }
+
+    public function getBanner() {
+        return $this->db->get($this->bannerTable)->result();
     }
 
     //Pagination Function
