@@ -15,7 +15,7 @@ class DetilProduct extends CI_Controller {
         $data['size'] = $this->M_FrontProduct->getDetilSize($id);
         $data['comment'] = $this->M_FrontProduct->getComment($id);
         $data['reply'] = $this->M_FrontProduct->getReply($id);
-        $this->load->view('Front/V_FrontDetilProduct', $data);
+        $this->load->view('front/V_FrontDetilProduct', $data);
     }
 
     public function cekProduct() {

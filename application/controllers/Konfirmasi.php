@@ -20,7 +20,7 @@ class Konfirmasi extends CI_Controller {
         $data['confirmId'] = $this->M_Konfirmasi->confirmID();
         $data['bank'] = $this->M_Konfirmasi->getBank();
 
-        $this->load->view('Front/V_FrontKonfirmasi', $data);
+        $this->load->view('front/V_FrontKonfirmasi', $data);
     }
 
     public function cekOrder() {

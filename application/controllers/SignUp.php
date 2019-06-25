@@ -16,7 +16,7 @@ class SignUp extends CI_Controller {
         $data['kategori'] = $this->M_FrontProduct->getKategori();
 
         $data['autonumber'] = $this->M_MasterCustomer->customerId();
-        $this->load->view('Front/V_FrontSignup', $data);
+        $this->load->view('front/V_FrontSignup', $data);
     }
 
     public function cekEmail() {

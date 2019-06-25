@@ -72,7 +72,7 @@ class Checkout extends CI_Controller {
 		$data['customer'] = $this->M_FrontProduct->getCustomer($this->session->userdata('id_customer'));
 		//$data['ordData'] = $ordData;
 		$data['kategori'] = $this->M_FrontProduct->getKategori();
-		$this->load->view('Front/V_FrontCheckout', $data);
+		$this->load->view('front/V_FrontCheckout', $data);
 	}
 
 	public function insertItemData($ordID) {
@@ -97,7 +97,7 @@ class Checkout extends CI_Controller {
 
 	public function orderSuccess() {
 		//$data['order'] = $this->product->getOrder($ordId);
-		$this->load->view('Front/orderDetail');
+		$this->load->view('front/orderDetail');
 	}
 	//Ongkir Function
 	public function getProvinsi() {

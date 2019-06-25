@@ -13,7 +13,7 @@ class Cart extends CI_Controller {
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
 
-        $this->load->view('Front/V_FrontCart',$data);
+        $this->load->view('front/V_FrontCart',$data);
     }
 
     public function updateItemQty() {

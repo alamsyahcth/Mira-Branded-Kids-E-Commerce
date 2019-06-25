@@ -8,7 +8,7 @@ class Home extends CI_Controller {
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         
-        $this->load->view('Front/V_FrontHome', $data);
+        $this->load->view('front/V_FrontHome', $data);
     }
 
 }

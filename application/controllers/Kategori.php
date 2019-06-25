@@ -46,7 +46,7 @@ class Kategori extends CI_Controller {
         $data['data'] = $this->M_FrontProduct->getForPageKategori($id, $config['per_page'], $data['page']);
 
         $data['pagination'] = $this->pagination->create_links();
-        $this->load->view('Front/V_FrontKategori', $data);
+        $this->load->view('front/V_FrontKategori', $data);
     }
 
 }

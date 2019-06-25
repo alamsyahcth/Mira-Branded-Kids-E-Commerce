@@ -23,7 +23,7 @@ class Retur extends CI_Controller {
         $data['orderData'] = $this->M_Retur->getDetilOrder();
         $data['cekOrder'] = $this->M_Retur->cekOrder();
 
-        $this->load->view('Front/V_FrontRetur', $data);
+        $this->load->view('front/V_FrontRetur', $data);
     }
 
     public function aksi() {
@@ -88,7 +88,7 @@ class Retur extends CI_Controller {
         ob_start();
         $data['getFaktur'] = $this->M_Retur->getFaktur($id);
         $data['retur'] = $this->M_Retur->getReturOrder($id);
-        $this->load->view('Front/V_FrontCetakRetur', $data);
+        $this->load->view('front/V_FrontCetakRetur', $data);
         $html = ob_get_contents();
         ob_end_clean();
 

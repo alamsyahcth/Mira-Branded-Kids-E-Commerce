@@ -13,7 +13,7 @@ class Login extends CI_Controller {
         //Navbar Kategori
         $data['kategori'] = $this->M_FrontProduct->getKategori();
 
-        $this->load->view('Front/V_FrontLogin', $data);
+        $this->load->view('front/V_FrontLogin', $data);
     }
 
     public function auth() {

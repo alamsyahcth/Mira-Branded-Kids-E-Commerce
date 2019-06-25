@@ -47,7 +47,7 @@ class Home extends CI_Controller {
         $data['data'] = $this->M_FrontProduct->getAllForPage($config['per_page'], $data['page']);
 
         $data['pagination'] = $this->pagination->create_links();
-        $this->load->view('Front/V_FrontHome', $data);
+        $this->load->view('front/V_FrontHome', $data);
     }
 
     public function saran() {

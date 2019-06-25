@@ -13,7 +13,7 @@ class Refund extends CI_Controller {
         ob_start();
         $data['getFaktur'] = $this->M_Retur->getFaktur($id);
         $data['retur'] = $this->M_Retur->getReturOrder($id);
-        $this->load->view('Front/V_FrontCetakRefund', $data);
+        $this->load->view('front/V_FrontCetakRefund', $data);
         $html = ob_get_contents();
         ob_end_clean();
 

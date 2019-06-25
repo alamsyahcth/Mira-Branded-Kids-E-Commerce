@@ -22,7 +22,7 @@ class Akun extends CI_Controller {
         $data['resi'] = $this->M_FrontProduct->getResi($this->session->userdata('id_customer'));
         $data['customer'] = $this->M_MasterCustomer->getById($this->session->userdata('id_customer'));
         
-        $this->load->view('Front/V_FrontAkun', $data);
+        $this->load->view('fFront/V_FrontAkun', $data);
     }
 
     public function edit() { 
@@ -46,7 +46,7 @@ class Akun extends CI_Controller {
 
         $data['kategori'] = $this->M_FrontProduct->getKategori();
         $data['k'] = $table->getById($this->session->userdata('id_customer'));
-        $this->load->view('Front/V_FrontEditAkun',$data);
+        $this->load->view('front/V_FrontEditAkun',$data);
     }
 
     public function ubahStatus($id) {

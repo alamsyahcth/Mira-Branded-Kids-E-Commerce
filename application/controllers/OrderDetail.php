@@ -17,7 +17,7 @@ class OrderDetail extends CI_Controller {
         $data['order'] = $this->M_FrontProduct->getDataOrder($ordID);
         $data['gtotal'] = $this->M_FrontProduct->getGrandTotal($ordID);
 
-        $this->load->view('Front/V_FrontOrderDetail', $data);
+        $this->load->view('front/V_FrontOrderDetail', $data);
     }
 
     public function cetakInvoice($ordID) {
@@ -26,7 +26,7 @@ class OrderDetail extends CI_Controller {
         $data['customer'] = $this->M_FrontProduct->getDataCustomers($ordID);
         $data['order'] = $this->M_FrontProduct->getDataOrder($ordID);
         $data['gtotal'] = $this->M_FrontProduct->getGrandTotal($ordID);
-        $this->load->view('Front/V_FrontInvoice', $data);
+        $this->load->view('front/V_FrontInvoice', $data);
         $html = ob_get_contents();
         ob_end_clean();
 

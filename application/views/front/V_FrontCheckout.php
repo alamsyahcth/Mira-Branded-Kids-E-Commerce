@@ -1,6 +1,6 @@
 <!--Load View-->
-<?php $this->load->view('front/__frontpartial/header_front.php') ?>
-<?php $this->load->view('front/__frontpartial/navbar_front.php') ?>
+<?php $this->load->view('front/__frontPartial/header_front.php') ?>
+<?php $this->load->view('front/__frontPartial/navbar_front.php') ?>
 <!--Load View-->
 
 <div class="bg-light py-3">
