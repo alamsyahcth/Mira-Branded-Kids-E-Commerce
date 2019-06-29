@@ -58,9 +58,9 @@ class Checkout extends CI_Controller {
 			if ($this->form_validation->run() == true) {
 				$insert = $this->M_FrontProduct->insertOrder($ordData);
 				$order = $this->insertItemData($_POST['id_order']);
-				$email = $this->input->post('email');
-				$id_order = $this->input->post('id_order');
-				$this->emailInvoice($email,$id_order);
+				//$email = $this->input->post('email');
+				//$id_order = $this->input->post('id_order');
+				$this->emailInvoice($_POST['email'],$_POST['id_order']);
 				$this->cart->destroy();
 				$this->session->set_flashdata('msg','success');
 				redirect('OrderDetail/index/'.$_POST['id_order']);
@@ -121,8 +121,8 @@ class Checkout extends CI_Controller {
         //Konfigurasi Email
         $this->load->library('email');
         $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.gmail.com';
-        $config['smtp_port'] = 465;
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_port'] = '465';
         $config['smtp_user'] = 'mirabrandedkids@gmail.com';
         $config['smtp_pass'] = 'mira1234%';
         $config['charset'] = 'utf-8';

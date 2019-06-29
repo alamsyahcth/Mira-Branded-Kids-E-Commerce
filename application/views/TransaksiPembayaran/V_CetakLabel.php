@@ -17,14 +17,15 @@
             <tr>
                 <td>
                     <p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:1px; text-align: left;">Alamat : </p>
-                    <p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:1px; text-align: left;"><?php echo $r->alamat_customer ?> <br>Kode Pos <?php echo $r->kode_pos ?> </p>
-                </td><br>
+                    <p style="color: #3d3d3d; font-family:Helvetica; font-size: 12pt; margin:1px; text-align: left;"><?php echo $r->alamat_customer ?> Kode Pos <?php echo $r->kode_pos ?> </p>
+                </td>
             </tr>
 
             <tr>
                 <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 14pt; margin:1px; text-align: left;">Telepon :  <?php echo $r->telp_customer ?></p></td>
             </tr>
              <?php } ?>
+            <tr><td>-------------------------------------------------------------------------------------------------------------------------------</td></tr>
             <tr>
                 <td><p style="color: #3d3d3d; font-family:Helvetica; font-size: 14pt; margin:1px; text-align: left;">Nama Pengirim :  Mira Branded Kids</p></td><br>
             </tr>
