@@ -187,6 +187,13 @@
                                                             <td width="70%"><?php echo $data->nm_bank ?></td>
                                                         </tr>
                                                     </table>
+                                                    <form class="submit" action="<?php echo base_url('index.php/admin/C_TaransakiPembayaran/label') ?>" method="post">
+                                                        <input type="hidden" name="id_orderLable" value="<?php echo $data->id_order ?>">
+                                                        <input type="hidden" name="alamat_customerLabel" value="<?php echo $data->alamat_customer ?>">
+                                                        <input type="hidden" name="kode_posLabel" value="<?php echo $data->kode_pos ?>">
+                                                        <input type="hidden" name="telepon_customerLabel" value="<?php echo $data->telp_customer ?>">
+                                                        <input type="submit" name="simpan" id="simpan" value="Cetak Label" class="btn btn-secondary btn-md btn-block">
+                                                    </form><br><br>
                                                     <form class="form" action="<?php echo base_url('index.php/admin/C_TransaksiPembayaran/edit') ?>" method="post">
                                                         <input type="hidden" name="id_resi" value="<?php echo $resiId ?>">
                                                         <input type="hidden" name="id_order" value="<?php echo $data->id_order ?>">
