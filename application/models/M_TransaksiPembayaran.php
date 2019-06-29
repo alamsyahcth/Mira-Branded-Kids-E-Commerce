@@ -27,6 +27,15 @@ class M_TransaksiPembayaran extends CI_Model {
         return $this->db->query($sql)->result();
     }
 
+    public function getLabel($id) {
+        $sql = "SELECT *
+            FROM customer a, orders b, confirm c, bank d
+            WHERE a.id_customer=b.id_customer AND b.id_order=c.id_order AND c.id_bank=d.id_bank AND b.id_order='$id'
+            GROUP BY b.id_order
+            ORDER BY b.id_order";
+        return $this->db->query($sql)->result();
+    }
+
     public function getDetilOrder($id) {
        $sql = "SELECT *
                 FROM orders a, detil_orders b, product c, size d, resi e

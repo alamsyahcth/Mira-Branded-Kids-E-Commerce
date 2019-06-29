@@ -170,8 +170,8 @@
                                                     </table>
                                                     <form class="form" action="<?php echo base_url('index.php/C_TransaksiPembayaran/resi') ?>" method="post">
                                                         <label for="no_resi" class="control-label">No Resi</label>
+                                                        <input type="submit" name="simpan" id="simpan" value="Cetak Label" class="btn btn-secondary btn-md btn-block" disabled><br><br>
                                                         <input type="number" name="no_resi" class="form-control" placeholder="Masukkan Nomor Resi" required readonly><br>
-                                                        <input type="submit" name="simpan" id="simpan" value="Cetak Label" class="btn btn-secondary btn-md btn-block" disabled>
                                                         <input type="submit" name="simpan" id="simpan" value="Konfirmasi" class="btn btn-primary btn-md btn-block" disabled>
                                                     </form>
                                                     

@@ -62,6 +62,22 @@ class C_TransaksiPembayaran extends CI_Controller {
         $this->load->view('TransaksiPembayaran/V_TransaksiBuktiPembayaran', $data);
     }
 
+    public function label() {
+        ob_start();
+        $id_order = $this->input->post('id_orderLabel');
+        $data['label'] = $this->M_TransaksiPembayaran->getLabel($id_order);
+        //$data['GTMonth'] = $this->M_LaporanPenjualan->getGTSalesMonth($this->input->post('bulan'),$this->input->post('tahun'));
+       
+        $this->load->view('TransaksiPembayaran/V_CetakLabel', $data);
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        require_once('./Assets/html2pdf/html2pdf.class.php');
+        $pdf = new HTML2PDF('P','A4','en');
+        $pdf->WriteHTML($html);
+        $pdf->output('CetakLabel'.microtime().'.pdf','D');
+    }
+
     public function emailResi($email, $id_order, $no_resi, $id_resi, $kurir) {
          $from = 'mirabrandedkids@gmail.com';
 
