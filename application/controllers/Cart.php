@@ -34,10 +34,13 @@ class Cart extends CI_Controller {
         echo $update?'ok':'err';
     }
 
-    public function removeCart($rowid) {
-        $this->cart->remove($rowid);
+    public function removeCart($rowid,$id_product,$id_size,$qty) {
+        if ($this->M_FrontProduct->tambahDataStok($id_product,$id_size,$qty)) {
+            $this->cart->remove($rowid);
 
-        redirect('cart');
+            redirect('cart');
+        }
+        
     }
 
 }

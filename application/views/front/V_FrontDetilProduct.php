@@ -18,6 +18,11 @@
             <img src="<?php echo base_url('upload/product/'.$product->gambar) ?>" alt="Image" class="img-fluid" width="70%">
           </div>
           <div class="col-md-6">
+                <?php if($this->session->flashdata('fail')) { ?>
+                    <div class="alert alert-primary" role="alert" id="alert_success">
+                      <h6 style="color:#3d3d3d"><?php echo $this->session->flashdata('fail') ?></h6>
+                    </div>
+                <?php } ?>
             <h2 class="text-black"><?php echo $product->nm_product ?></h2>
 
             <p><strong class="text-primary h4"><?php echo $product->harga ?></strong></p>

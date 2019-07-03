@@ -45,8 +45,10 @@ class DetilProduct extends CI_Controller {
             'weight'=>$berat
         );
 
-        $this->cart->insert($data);
-        redirect('cart');
+        if ($this->M_FrontProduct->kurangDataStok($id_product,$ukuran,$qty)) {
+            $this->cart->insert($data);
+            redirect('cart');
+        }
     }
 
     public function comment() {

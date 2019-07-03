@@ -111,6 +111,18 @@ class M_FrontProduct extends CI_Model {
         //return $this->db->get('detil_size')->result();
     }
 
+    public function kurangDataStok($id_product,$id_size,$qty) {
+        $sql = "UPDATE detil_size SET stok=stok-'$qty' WHERE id_product = '$id_product' AND id_size='$id_size'";
+        $query = $this->db->query($sql);
+        return true;
+    }
+
+    public function tambahDataStok($id_product,$id_size,$qty) {
+        $sql = "UPDATE detil_size SET stok=stok+'$qty' WHERE id_product = '$id_product' AND id_size='$id_size'";
+        $query = $this->db->query($sql);
+        return true;
+    }
+
     public function orderID() {
         $this->db->select('RIGHT(id_order,4) as MaxKode');
         $this->db->order_by('id_order','desc');

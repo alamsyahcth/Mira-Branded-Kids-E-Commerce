@@ -47,7 +47,7 @@
                     <!--Tambah Kurang-->
                     <td>
                       <div class="input-group mb-1" style="max-width: auto;">
-                        <input type="number" class="form-control text-center" value="<?php echo $items["qty"]; ?>" placeholder="" aria-label="Example text with button addon" onchange="updateCartItem(this,'<?php echo $items["rowid"]; ?>')">
+                        <input type="number" class="form-control text-center" value="<?php echo $items["qty"]; ?>" placeholder="" aria-label="Example text with button addon" onchange="updateCartItem(this,'<?php echo $items["rowid"]; ?>')" readonly>
                       </div>
                     </td>
                     <!--Tambah Kurang-->
@@ -61,7 +61,7 @@
                     </td>
 
                     <td>
-                      <a href="<?php echo base_url('index.php/cart/removeCart/'.$items['rowid']) ?>" class="btn btn-primary btn-sm">X</a>
+                      <a href="<?php echo base_url('index.php/cart/removeCart/'.$items['rowid'].'/'.$items['id_product'].'/'.$items['Size'].'/'.$items['qty']) ?>" class="btn btn-primary btn-sm">X</a>
                     </td>
                   </tr>
                     <!--Cart Isi-->
