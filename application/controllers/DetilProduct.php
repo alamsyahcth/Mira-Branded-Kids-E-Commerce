@@ -32,22 +32,28 @@ class DetilProduct extends CI_Controller {
         $id=$id_product.$ukuran;
         $nm_ukuran = $this->M_FrontProduct->getSize($ukuran);
         $pro = $this->M_FrontProduct->getRows($id_product);
+        $cek = $this->M_FrontProduct->cekStok($id_product,$ukuran);
+        if ($cek['stok']>=$qty) {
 
-        $data = array(
-            'id'=>$id,
-            'id_product'=>$pro['id_product'],
-            'qty'=>$qty,
-            'name'=>$pro['nm_product'],
-            'price'=>$pro['harga'],
-            'Size'=>$ukuran,
-            'nm_size'=>$nm_ukuran['nm_size'],
-            'image'=>$pro['gambar'],
-            'weight'=>$berat
-        );
+            $data = array(
+                'id'=>$id,
+                'id_product'=>$pro['id_product'],
+                'qty'=>$qty,
+                'name'=>$pro['nm_product'],
+                'price'=>$pro['harga'],
+                'Size'=>$ukuran,
+                'nm_size'=>$nm_ukuran['nm_size'],
+                'image'=>$pro['gambar'],
+                'weight'=>$berat
+            );
 
-        if ($this->M_FrontProduct->kurangDataStok($id_product,$ukuran,$qty)) {
-            $this->cart->insert($data);
-            redirect('cart');
+            if ($this->M_FrontProduct->kurangDataStok($id_product,$ukuran,$qty)) {
+                $this->cart->insert($data);
+                redirect('cart');
+            }
+        } else {
+            $this->session->set_flashdata('fail','data stok kurang');
+            redirect('DetilProduct/data/'.$id_product);
         }
     }
 

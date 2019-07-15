@@ -123,6 +123,15 @@ class M_FrontProduct extends CI_Model {
         return true;
     }
 
+    public function cekStok($id_product,$id_size) {
+        $sql = "SELECT stok
+                FROM product a, detil_size b, size c
+                WHERE a.id_product=b.id_product AND b.id_size=c.id_size AND b.id_product = '$id_product' AND b.id_size='$id_size'";
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+        return $result;
+    }
+
     public function orderID() {
         $this->db->select('RIGHT(id_order,4) as MaxKode');
         $this->db->order_by('id_order','desc');
