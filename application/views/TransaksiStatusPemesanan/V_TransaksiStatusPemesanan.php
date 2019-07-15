@@ -134,7 +134,7 @@
                                                             <?php } ?>
                                                         </td>
                                                         <td style="text-align:center; vertical-align:middle;">
-                                                            <?php if($data->status == '6') { ?>
+                                                            <?php if($data->status == '6' || $data->status == '5') { ?>
                                                             <button class="btn btn-secondary btn-xs" disabled>Batal</button>
                                                             <?php } else { ?>
                                                             <a href="<?php echo base_url('index.php/admin/C_TransaksiStatusPemesanan/batal/'.$data->id_order) ?>" class="btn btn-secondary btn-xs">Batal</a>

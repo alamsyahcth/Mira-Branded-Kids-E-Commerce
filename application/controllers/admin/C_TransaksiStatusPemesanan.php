@@ -21,6 +21,10 @@ class C_TransaksiStatusPemesanan extends CI_Controller {
     }
 
     public function batal($id) {
+        $dataPemesanan = $this->M_TransaksiStatusPemesanan->dataOrder($id);
+        foreach ($dataPemesanan as $data) {
+            $this->M_TransaksiStatusPemesanan->ubahStok($data['id_product'],$data['id_size'],$data['qty']);
+        }
         $this->M_TransaksiStatusPemesanan->batalOrder($id);
         $this->session->set_flashdata('success','Data order dibatalkan');
         redirect('admin/C_TransaksiStatusPemesanan');

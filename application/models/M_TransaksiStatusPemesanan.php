@@ -41,4 +41,16 @@ class M_TransaksiStatusPemesanan extends CI_Model {
 
         return true;
    }
+
+   public function dataOrder($id) {
+       $this->db->where('id_order',$id);
+       $data = $this->db->get('detil_orders');
+       return $data->result_array();
+   }
+
+   public function ubahStok($id_product,$id_size,$qty) {
+       $sql = "UPDATE detil_size SET stok=stok+'$qty' WHERE id_product='$id_product' AND id_size='$id_size'";
+       $data = $this->db->query($sql);
+       return true;
+   }
 }
